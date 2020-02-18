@@ -38,9 +38,14 @@ class UserLikerRepository
       $ret->execute($row);
 
       if ($ret->fetch(PDO::FETCH_ASSOC)) {
+        $sql = "DELETE FROM likes WHERE
+        liker=:liker
+        AND
+        liked=:liked;";
+        $this->connection->prepare($sql)->execute($row);
         $result = [
-          'status' => 0,
-          'error' => 'Reprendre c\'est volé.'
+          'status' => 1,
+          'success' => 'Unliked.'
         ];
       }
       else {
@@ -51,7 +56,7 @@ class UserLikerRepository
         AND
         score > 1";
         $this->connection->query($sql);
-        
+
         $sql = "INSERT INTO likes SET
         liker=:liker,
         liked=:liked;";
@@ -66,12 +71,12 @@ class UserLikerRepository
         $sql = "SELECT score FROM users WHERE
         id = '$id'";
         $ret = $this->connection->query($sql)->fetch(PDO::FETCH_ASSOC);
-    
+
         if ((int)$ret['score'] < 94)
           $increase = 7;
         else if ((int)$ret['score'] <= 100){
           $increase = 100 - (int)$ret['score'];
-        } 
+        }
         else if ((int)$ret['score'] < 100)
           $increase = 0;
         $sql = "UPDATE users SET
@@ -79,16 +84,16 @@ class UserLikerRepository
         WHERE
         id = '$id'";
         $this->connection->query($sql);
-        
+
         $sql = "SELECT score FROM users WHERE
         id = '$idToLike'";
         $ret = $this->connection->query($sql)->fetch(PDO::FETCH_ASSOC);
-    
+
         if ((int)$ret['score'] < 94)
           $increase = 7;
         else if ((int)$ret['score'] <= 100){
           $increase = 100 - (int)$ret['score'];
-        } 
+        }
         else if ((int)$ret['score'] < 100)
           $increase = 0;
         $sql = "UPDATE users SET
@@ -96,7 +101,7 @@ class UserLikerRepository
         WHERE
         id = '$idToLike'";
         $this->connection->query($sql);
-        
+
         $row = [
           'liked' => $id,
           'liker' => $idToLike

@@ -159,7 +159,7 @@ class ListSuggesterRepository
           userid = '$userid'
           AND
           profil = '1'";
-          $profilPic = $this->connection->query($sql)->fetch(PDO::FETCH_ASSOC)
+          $profilPic = $this->connection->query($sql)->fetch(PDO::FETCH_ASSOC);
 
           $sql = "SELECT * FROM likes WHERE
           liker = '$mainId'
