@@ -6,7 +6,7 @@ use Ratchet\WebSocket\WsServer;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
-define('APP_PORT', 8070);
+define('APP_PORT', 3500);
 
 class ServerImpl implements MessageComponentInterface {
     protected $clients;
