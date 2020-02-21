@@ -59,6 +59,20 @@ class db {
     catch(PDOException $e) {
       $this->table_likes($conn);
     }
+    
+    try {
+      $conn->query("SELECT * FROM chat LIMIT 1");
+    }
+    catch(PDOException $e) {
+      $this->table_chat($conn);
+    }
+
+    try {
+      $conn->query("SELECT * FROM notif LIMIT 1");
+    }
+    catch(PDOException $e) {
+      $this->table_notif($conn);
+    }
 
     return $conn;
   }
@@ -122,7 +136,7 @@ class db {
                 reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
       }
       catch(PDOException $e) {
-        echo "tags_table failed: " . $e->getMessage();
+        echo "images_table failed: " . $e->getMessage();
       }
   }
 
@@ -136,7 +150,7 @@ class db {
                   visit_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
         }
         catch(PDOException $e) {
-          echo "tags_table failed: " . $e->getMessage();
+          echo "viewers_table failed: " . $e->getMessage();
         }
   }
 
@@ -151,7 +165,7 @@ class db {
                   visit_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
         }
         catch(PDOException $e) {
-          echo "tags_table failed: " . $e->getMessage();
+          echo "likes_table failed: " . $e->getMessage();
         }
   }
 
@@ -170,7 +184,38 @@ class db {
                 reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
       }
       catch(PDOException $e) {
-        echo "tags_table failed: " . $e->getMessage();
+        echo "cities_table failed: " . $e->getMessage();
+      }
+  }
+  
+  
+  private function table_chat($db) {
+  try {
+    $db->query("CREATE TABLE IF NOT EXISTS chat (
+                id INT UNIQUE AUTO_INCREMENT PRIMARY KEY,
+                sender VARCHAR(50) NOT NULL,
+                msg VARCHAR(1024) NOT NULL,
+                receiver VARCHAR(50) NOT NULL,
+                reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
+      }
+      catch(PDOException $e) {
+        echo "chat_table failed: " . $e->getMessage();
+      }
+  }
+  
+  
+  private function table_notif($db) {
+  try {
+    $db->query("CREATE TABLE IF NOT EXISTS notif (
+                id INT UNIQUE AUTO_INCREMENT PRIMARY KEY,
+                sender VARCHAR(50) NOT NULL,
+                type VARCHAR(50) NOT NULL,
+                readen INT DEFAULT 0,
+                receiver VARCHAR(50) NOT NULL,
+                reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
+      }
+      catch(PDOException $e) {
+        echo "notif_table failed: " . $e->getMessage();
       }
   }
 

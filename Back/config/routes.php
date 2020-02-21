@@ -22,4 +22,7 @@ return function (App $app) {
   $app->post('/api/get_historic', \Src\Action\GetHistoricAction::class);
   $app->post('/api/report', \Src\Action\ReportUserAction::class);
   $app->get('/api/get_cities', Src\Action\GetCitiesAction::class);
+  $app->post('/api/send_message', Src\Chat\SendMessage::class);
+  $app->post('/api/get_conv', Src\Chat\GetConv::class);
+  $app->post('/api/get_notif', Src\Notif\GetNotif::class);
 };

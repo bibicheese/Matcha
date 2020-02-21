@@ -24,7 +24,11 @@ class UserLikerRepository
       $idToLike->execute($row);
       $idToLike = $idToLike->fetch(PDO::FETCH_ASSOC);
       $idToLike = $idToLike['id'];
-
+      
+      $sql_from = "SELECT login FROM users WHERE
+      id = '$id'";
+      $from = $this->connection->query($sql_from)->fetch(PDO::FETCH_ASSOC);
+      $from_login = $from['login'];
 
       $row = [
         'liker' => $id,
@@ -43,10 +47,17 @@ class UserLikerRepository
         AND
         liked=:liked;";
         $this->connection->prepare($sql)->execute($row);
+        
         $result = [
           'status' => 1,
           'success' => 'Unliked.'
         ];
+        
+        $sql_notif = "INSERT INTO notif SET
+        sender = '$from_login',
+        type = 'Unliked',
+        receiver = '$user->login'";
+        $this->connection->query($sql_notif);
       }
       else {
         $sql = "UPDATE users SET
@@ -64,6 +75,13 @@ class UserLikerRepository
           'status' => 1,
           'success' => 'liked'
         ];
+        
+        $sql_notif = "INSERT INTO notif SET
+        sender = '$from_login',
+        type = 'Liked',
+        receiver = '$user->login'";
+        $this->connection->query($sql_notif);
+        
       }
       $this->connection->prepare($sql)->execute($row);
 
@@ -118,6 +136,12 @@ class UserLikerRepository
               'status' => 1,
               'success' => 'MATCH'
             ];
+            
+            $sql_notif = "INSERT INTO notif SET
+            sender = '$from_login',
+            type = 'MATCH',
+            receiver = '$user->login'";
+            $this->connection->query($sql_notif);
         }
       }
       return $result;
