@@ -250,6 +250,44 @@ export class ProfileEdit extends Component {
             }
         }).catch(e => {console.log(e)});
         this.setCitiesList();
+        
+        M.Chips.init(tags, {
+            autocompleteOptions : {
+                data : autocomplete_data,
+                limit : Infinity,
+                minLength : 1
+            },
+            onChipAdd : (chip) => {
+                let value = chip[0].childNodes[chip[0].childNodes.length - 3].textContent;
+                value = value.replace("close", "");
+                if (!this.state.tags.includes(value)) {
+                    this.setState({
+                        tags : [...this.state.tags, value]
+                    })
+                }
+            },
+            onChipDelete : (e, data) => {
+                let tag = getChipDeleted(e, data);
+                console.log("Deleted tag : " + tag);
+                if (tag) {
+                  this.setState({
+                    tags : this.state.tags.filter(ftag => { return ftag !== tag })
+                  })
+                }
+            }
+        });
+        
+        let carousel = document.querySelector('.carousel');
+        M.Carousel.init(carousel, {indicators:true});
+
+        let selects = document.querySelectorAll('select');
+        M.FormSelect.init(selects);
+
+        let tags = document.querySelectorAll('.chips');
+        let autocomplete_data = {};
+        this.props.tags.map(tag => {
+            return autocomplete_data[tag] = null;
+        })
     }
 
     setCitiesList = () => {
@@ -274,43 +312,6 @@ export class ProfileEdit extends Component {
     componentDidUpdate() {
         let bioArea = document.querySelector('#bio');
         M.textareaAutoResize(bioArea);
-
-        let carousel = document.querySelector('.carousel');
-        M.Carousel.init(carousel, {indicators:true});
-
-        let selects = document.querySelectorAll('select');
-        M.FormSelect.init(selects);
-
-        let tags = document.querySelectorAll('.chips');
-        let autocomplete_data = {};
-        this.props.tags.map(tag => {
-            return autocomplete_data[tag] = null;
-        })
-        M.Chips.init(tags, {
-            autocompleteOptions : {
-                data : autocomplete_data,
-                limit : Infinity,
-                minLength : 1
-            },
-            onChipAdd : (chip) => {
-                let value = chip[0].childNodes[chip[0].childNodes.length - 3].textContent;
-                value = value.replace("close", "");
-                if (!this.state.tags.includes(value)) {
-                    this.setState({
-                        tags : [...this.state.tags, value]
-                    })
-                }
-            },
-            onChipDelete : (e, data) => {
-                /*let tag = getChipDeleted(e, data);
-                console.log("Deleted tag : " + tag);
-                if (tag) {
-                  this.setState({
-                    tags : this.state.tags.filter(ftag => { return ftag !== tag })
-                  })
-                }*/
-            }
-        });
     }
 
     render() {
