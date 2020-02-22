@@ -40,7 +40,7 @@ const initState = {
     images : ["/img/users/Shulgin1.jpg", "/img/users/Shulgin2.jpg", "/img/users/Shulgin3.jpg",]},
     ],
     chat : null,
-    tags : ["#La photographie", "#Les voyages", "#La mode", "#La beauté", "#Sports", "#Humanité", "#Féminisme", "#Cinéma", "#L'équitation",],
+    tags : [],
     filtered_profiles : []
 }
 

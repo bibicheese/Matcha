@@ -251,6 +251,12 @@ export class ProfileEdit extends Component {
         }).catch(e => {console.log(e)});
         this.setCitiesList();
         
+        let tags = document.querySelectorAll('.chips');
+        let autocomplete_data = {};
+        this.props.tags.map(tag => {
+            return autocomplete_data[tag] = null;
+        });
+
         M.Chips.init(tags, {
             autocompleteOptions : {
                 data : autocomplete_data,
@@ -282,12 +288,6 @@ export class ProfileEdit extends Component {
 
         let selects = document.querySelectorAll('select');
         M.FormSelect.init(selects);
-
-        let tags = document.querySelectorAll('.chips');
-        let autocomplete_data = {};
-        this.props.tags.map(tag => {
-            return autocomplete_data[tag] = null;
-        })
     }
 
     setCitiesList = () => {
