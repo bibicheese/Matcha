@@ -10,13 +10,13 @@ const SignedInLinks = ({onLogout, state, notifC}) => {
             <li><NavLink to='/lucky' className="pink-text">Lucky</NavLink></li>
             <li><NavLink to='/profile-admirer' className="black-text">Historique</NavLink></li>
             <li><NavLink to='/' className="red-text" onClick={onLogout}>Log Out</NavLink></li>
-            <li><NavLink to='/cCenter'><i className="fas fa-bell notif"></i><span className="new badge blue">notifC</span></NavLink></li>
+            <li><NavLink to='/cCenter'><i className="fas fa-bell notif"></i><span className="new badge blue" data-badge-caption=""> { notifC } </span></NavLink></li>
             <li><NavLink to='/profile-edit' className="btn btn-floating pink lighten-1">{initial}</NavLink></li>
         </ul>
     )
 }
 
-export const SignedInLinksSidebar = ({onClickLink, onLogout, state}) => {
+export const SignedInLinksSidebar = ({onClickLink, onLogout, state, notifC}) => {
     const name = state ? state.firstname + " " + state.lastname : "Casper";
     return (
         <div>
@@ -28,7 +28,7 @@ export const SignedInLinksSidebar = ({onClickLink, onLogout, state}) => {
                     </NavLink>
                 </div>
             </li>
-            <li><NavLink to='/cCenter' className="cyan-text" onClick={onClickLink}><span className="new badge blue">notifC</span><i className="fas fa-bell"></i></NavLink></li>
+            <li><NavLink to='/cCenter' className="cyan-text" onClick={onClickLink}><span className="new badge blue" data-badge-caption=""> { notifC } </span><i className="fas fa-bell"></i></NavLink></li>
             <li><NavLink to='/lucky' className="pink-text" onClick={onClickLink}>Lucky</NavLink></li>
             <li><NavLink to='/profiles-list' className="black-text" onClick={onClickLink}>Profiles</NavLink></li>
             <li><NavLink to='/profile-admirer' className="black-text">Historique</NavLink></li>
