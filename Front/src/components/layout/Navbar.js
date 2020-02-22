@@ -56,7 +56,8 @@ class Navbar extends Component {
     getNumberOfUnread = () => {
         let count = 0;
         this.props.notifs.forEach(n => {
-            if (n.readen === 0) count++;
+            console.log(n);
+            if (n.readen === 0) count += 1;
         });
         return count;
     }
