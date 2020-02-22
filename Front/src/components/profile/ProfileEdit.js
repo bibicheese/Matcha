@@ -349,7 +349,7 @@ export class ProfileEdit extends Component {
 
             wants = user_profile.orientation === "Bisexual" ? "fas fa-venus-mars" : user_profile.orientation === "Hétérosexuel" ? hetero : homo;
             wants += " sweet_pink";
-            gender = hetero;
+            gender = sex === "Male" ? "fas fa-mars" : "fas fa-venus";
 
             pictures = user_profile.images.length ? (
                 <div className="carousel">

@@ -80,16 +80,18 @@ export class Profile extends Component {
     render() {
         var i = 0;
         const user_profile = this.state.profile;
-        var wants, sex, pictures, arr, liked_style, liked_icon_style = null;
+        var wants, sex, pictures, arr, liked_style, liked_icon_style, gender, gender_display = null;
         if (user_profile) {
             
             sex = user_profile.gender;
             
-            let homo = sex === "male" ? "fas fa-mars-double" : "fas fa-venus-double";
-            let hetero = sex === "male" ? "fas fa-venus" : "fas fa-mars";
+            let homo = sex === "Male" ? "fas fa-mars-double" : "fas fa-venus-double";
+            let hetero = sex === "Male" ? "fas fa-venus" : "fas fa-mars";
             
             wants = user_profile.orientation === "Bisexual" ? "fas fa-venus-mars" : user_profile.orientation === "Hétérosexuel" ? hetero : homo;
             wants += " sweet_pink";
+            gender = sex === "Male" ? "fas fa-mars" : "fas fa-venus";
+            gender_display = sex === "Male" ? "Homme" : "Femme";
 
             if (user_profile.arr != null) {
                 arr = ", " + user_profile.arr + "ème";
@@ -139,6 +141,10 @@ export class Profile extends Component {
                     <div className="col s4 center profile-info"><i className="fas fa-map-marker-alt"></i> {user_profile.city}{ arr } - {user_profile.dst} Kms</div>
                     <div className="col s4 center profile-info"><i className="fas fa-birthday-cake"></i> {user_profile.age} ans</div>
                     <div className="col s4 center profile-info"><i className={wants}></i> {user_profile.orientation} </div>
+                </div>
+                <div className="divider center"></div>
+                <div className="row main-info">
+                    <div className="col s4 center profile-info"><i className={gender}></i> { gender_display } </div>
                 </div>
                 <div className="divider center"></div>
                 <div className="section container ">
