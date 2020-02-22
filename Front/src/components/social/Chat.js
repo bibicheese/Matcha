@@ -5,9 +5,8 @@ class Chat extends Component {
 
 
     componentDidMount() {
-        $(document).ready(function(){
-            $('.tabs').tabs();
-          });
+        var elems = document.getElementsByClassName(".tabs");
+        M.Tabs.init(elems);
     }
 
     render() {
