@@ -46,7 +46,7 @@ class Notifications extends Component {
     }
 
     render() {
-        const notif_display = getDisplay();
+        const notif_display = this.getDisplay();
 
         return (
             <div className="container">
