@@ -585,3 +585,7 @@ code {
   top : 0;
   text-align: center;
 }
+
+.notif-unread {
+  background-color: aliceblue;
+}
