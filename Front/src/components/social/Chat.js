@@ -10,7 +10,7 @@ const get_rooms = (props) => {
     }).then(response => {
         console.log(response);
         this.setState({
-            rooms = []
+            rooms : []
         });
     });
 }
