@@ -122,7 +122,7 @@ const mapDispatchToProps = (dispatch) => {
         authLogout : () => { dispatch(authOut()) },
         notifA : (notif) => { dispatch(add_notif(notif)) },
         notifD : (notif) => { dispatch(delete_notif(notif)) },
-        notifR : (notif) => { dispatch(read_notif(notif)) },
+        notifR : (notif) => { dispatch(read_notif(notif)) }
     }
 }
 

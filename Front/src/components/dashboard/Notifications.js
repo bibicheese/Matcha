@@ -12,6 +12,19 @@ const read_notif_remote = (notif, props) => {
     });
 }
 
+const read_all_notif_remote = (notifs, props) => {
+    let ids = [];
+    notifs.forEach((n, index) => {
+        ids[index] = n.id;
+    });
+    console.log(ids);
+    Axios.post("http://localhost:8080/api/delete_notif", {
+        id : props.auth.uid,
+        token : props.auth.key,
+        notif : notifs
+    });
+}
+
 class Notifications extends Component {
 
     constructor(props) {
@@ -29,6 +42,13 @@ class Notifications extends Component {
         read_notif_remote(notif, this.props);
     }
 
+    handleAllRead = () => {
+        this.state.notifs.forEach(n => {
+            this.props.readNotif(n);
+        });
+        read_all_notif_remote(this.state.notifs, this.props);
+    }
+
     redirect = (e, login) => {
         if (e.nativeEvent.button === 1 || e.nativeEvent.button === 0) {
             if (e.nativeEvent.button === 1) {
@@ -39,13 +59,23 @@ class Notifications extends Component {
         }
     }
 
+    getDisplay = () => {
+        let dp = "";
+
+        return dp;
+    }
+
     render() {
+        const notif_display = this.getDisplay();
+
         return (
             <div className="container">
                 <h3>Centre des notifications :</h3>
+                <div className="notif-read-all btn btn-large" onClick={() => {this.handleAllRead()}}>Marquer tout lu</div>
                 {
-                    this.state.notifs.map((n) => {
-                        const status = n.readen ? <i className='fas fa-check green-text'></i> : <i className='fas fa-question'></i>;
+                    this.state.notifs.slice(0).reverse().map((n) => {
+                        if (n.readen === 1) return null;
+                        const status = n.readen ? <i className='fas fa-check green-text'></i> : <i className='fas fa-times'></i>;
                         return <div className="card" key={n.id}>
                             <div className={ n.readen ? "notif-card" : "notif-card notif-unread" }>
                                 <div className="notif-timestamp">

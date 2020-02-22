@@ -342,6 +342,7 @@ export class ProfileEdit extends Component {
         var homo, hetero, wants, sex, pictures, gender = null;
 
         if (user_profile) {
+            this.askForTags();
             sex = user_profile.gender;
 
             homo = sex === "Male" ? "fas fa-mars-double" : "fas fa-venus-double";
@@ -361,7 +362,6 @@ export class ProfileEdit extends Component {
                     })}
                 </div>
             ) : null;
-            console.log(this.state);
         }
         const page = user_profile ? (
         (
@@ -454,7 +454,7 @@ export class ProfileEdit extends Component {
                             this.state.tags.map((tag, index) => {
                                 return (
                                     <div className="chip" key={index}>
-                                        {tag}
+                                        { tag }
                                         { /*<i className="material-icons close" onClick={() => {this.setState({
                                             tags : this.state.tags.filter(ftag => { return ftag !== tag })
                                         })}}>close</i>*/}
