@@ -70,7 +70,6 @@ const rootReducer = (state = initState, action) => {
         }
     }
     else if (action.type === "NOTIF_ADD") {
-        console.log("WESH");
         return {
             ...state,
             notifs : [...state.notifs, action.payload.notif]

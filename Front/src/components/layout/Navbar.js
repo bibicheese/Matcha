@@ -10,6 +10,14 @@ import Axios from 'axios';
 
 class Navbar extends Component {
 
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            needs_update : 1
+        };
+    }
+
     componentDidMount() {
         const options = {
             inDuration: 250,
@@ -39,6 +47,11 @@ class Navbar extends Component {
 
     handleNotifUpdate = () => {
         //console.log("Asked for notif update");
+        
+        if (this.state.needs_update === 0) return ;
+        this.setState({
+            needs_update : 0
+        });
         Axios.post("http://localhost:8080/api/get_notif", {
             id : this.props.auth.uid,
             token : this.props.auth.key,
@@ -51,6 +64,9 @@ class Navbar extends Component {
                         M.toast({html : element.msg});
                         this.props.notifA(element);
                     }
+                })
+                this.setState({
+                    needs_update : 1
                 })
             }
         });
