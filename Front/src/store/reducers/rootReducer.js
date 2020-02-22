@@ -13,7 +13,6 @@ const initState = {
 
 function getIndex(value, arr, prop) {
     for (let i = 0; i < arr.length; i++) {
-        console.log(arr[i][prop]);
       if (arr[i][prop] === value) {
         return i;
       }

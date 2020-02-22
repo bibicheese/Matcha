@@ -9,8 +9,6 @@ const read_notif_remote = (notif, props) => {
         id : props.auth.uid,
         token : props.auth.key,
         notif : [notif.id]
-    }).then(response => {
-        console.log(response);
     });
 }
 
@@ -23,14 +21,6 @@ class Notifications extends Component {
             notifs : this.props.notifs,
             update : 0
         }
-    }
-
-    shouldComponentUpdate() {
-        if (this.props.notifs !== this.state.notifs) {
-            console.log("Yes it should!");
-            return true;
-        }
-        return true;
     }
 
     handleRead = (notif) => {
