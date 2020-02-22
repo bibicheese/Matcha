@@ -53,7 +53,7 @@ class Navbar extends Component {
     }
 
     componentDidUpdate() {
-        console.log("Did update");
+       // console.log("Did update");
     }
 
     componentWillUnmount() {
