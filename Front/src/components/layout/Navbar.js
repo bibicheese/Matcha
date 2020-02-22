@@ -32,6 +32,15 @@ class Navbar extends Component {
         M.Sidenav.getInstance(this.Sidenav).close();
     }
 
+    handleNotifUpdate = () => {
+        console.log("Asked for notif update");
+    }
+
+    componentDidMount() {
+        console.log("mounted");
+        setTimeout(this.handleNotifUpdate(), 5000);
+    }
+
     render() {
         const auth = this.props.auth.id !== -1 && this.props.auth.key != null;
         const main_links = auth ? <SignedInLinks onLogout={this.handleLogout} state={this.props.auth}/> : <SignedOutLinks />;
