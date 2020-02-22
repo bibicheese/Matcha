@@ -11,6 +11,7 @@ import ProtectedRoute, { NotAuthRoute } from './components/auth/ProtectedRoute';
 import MatchList from './components/profile/MatchList';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Historic from './components/hist/Historic';
+import Notifications from './components/dashboard/Notifications';
 
 /*
 <ProtectedRoute path="/profiles/:user_id" component={Profile} />
@@ -32,6 +33,7 @@ class App extends Component {
             <ProtectedRoute path="/profile-edit" component={ProfileEdit} />
             <ProtectedRoute path="/lucky" component={MatchList} />
             <ProtectedRoute exact path="/profile-admirer" component={Historic} />
+            <ProtectedRoute exact path="/Center" component={Notifications} />
             {/* <Route path="/profiles/:user_id" component={Profile} />
             <Route path="/profiles-list" component={ProfileList} />
             <Route path="/profile-edit" component={ProfileEdit} />
