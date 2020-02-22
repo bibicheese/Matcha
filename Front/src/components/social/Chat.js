@@ -13,6 +13,9 @@ function get_rooms(props) {
             rooms : []
         });
     });
+    this.setState({
+        rooms : []
+    });
 }
 
 class Chat extends Component {
@@ -31,7 +34,7 @@ class Chat extends Component {
     constructor(props) {
         super(props);
 
-        get_all_rooms = get_rooms.bind(this);
+        this.get_all_rooms = get_rooms.bind(this);
     }
 
     createRoom = (userId) => {
