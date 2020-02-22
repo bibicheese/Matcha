@@ -52,10 +52,10 @@ final class SendMessage
         type = '$message'
         AND
         receiver = '$to'";
-        
+
         $sql = "INSERT INTO notif SET
         sender = '$sender',
-        type = 'message',
+        msg = \"$sender vous a envoyé un message.\",
         receiver = '$to'";
         $this->connection->query($sql);
 
