@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 
 class Chat extends Component {
+
+    componentDidMount() {
+        var instance = M.Tabs.init();
+    }
+
     render() {
         return (
             <div className="conv-anchor">
