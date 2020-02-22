@@ -45,6 +45,13 @@ class Navbar extends Component {
         M.Sidenav.getInstance(this.Sidenav).close();
     }
 
+    containThisNotif = (notif) => {
+        this.props.notifs.forEach(n => {
+            if (n.id === notif.id) return true;
+        });
+        return false;
+    }
+
     handleNotifUpdate = () => {
         //console.log("Asked for notif update");
         
@@ -61,7 +68,7 @@ class Navbar extends Component {
             if (response.data.status === 1) {
                 let notifs = response.data.success;
                 notifs.forEach(element => {
-                    if (!this.props.notifs.includes(element)) {
+                    if (!this.containThisNotif(element)) {
                         console.log(element);
                         M.toast({html : element.msg});
                         this.props.notifA(element);
