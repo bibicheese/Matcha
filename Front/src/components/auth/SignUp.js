@@ -102,13 +102,13 @@ export class SignUp extends Component {
                             <label htmlFor="login">Login</label>
                             <input type="text" id="login" onChange={this.handleChange} className="validate" maxLength={30} required/>
                         </div>
-                        <ReactPasswordStrength className="input-field password-field" minLength={6} minScore={2}
-                            scoreWords={['Faible', 'Moyen', 'Suffisant', 'Fort', 'Compliqué']}
+                        <ReactPasswordStrength className="input-field password-field" minLength={6} minScore={3}
+                            scoreWords={['Faible', 'Moyen', 'Presque', 'Fort', 'Compliqué']}
                             tooShortWord={"Trop court"}
                             changeCallback={(e) => {this.handlePassword(e, "password")}}
                             inputProps={{ id: "password", name: "password", autoComplete: "off", placeholder: "Nouveau password"}}/>
-                        <ReactPasswordStrength className="input-field password-field" minLength={6} minScore={2}
-                            scoreWords={['Faible', 'Moyen', 'Suffisant', 'Fort', 'Compliqué']}
+                        <ReactPasswordStrength className="input-field password-field" minLength={6} minScore={3}
+                            scoreWords={['Faible', 'Moyen', 'Presque', 'Fort', 'Compliqué']}
                             tooShortWord={"Trop court"}
                             changeCallback={(e) => {this.handlePassword(e, "vpassword")}}
                             inputProps={{ id: "vpassword", name: "password", autoComplete: "off", placeholder: "Vérification"}}/>

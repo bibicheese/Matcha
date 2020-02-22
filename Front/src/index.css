@@ -602,3 +602,12 @@ code {
 .click-on-me-notif {
   cursor: pointer;
 }
+
+.conv {
+  width: 150px;
+  height: 300px;
+  background-color: black;
+  position: absolute;
+  bottom: 150px;
+  left: 150px
+}
