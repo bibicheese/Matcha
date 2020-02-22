@@ -78,8 +78,15 @@ class ProfilDisplayerRepository
       $j = count($tags_db);
       while ($j-- != 0)
         $tags = !$tags ? $tags_db[$j]['tag'] : $tags . "," . $tags_db[$j]['tag'];
-
       $tags = explode(',', $tags);
+
+      $time = explode(' ', $dataUser['last_log']);
+      $hour = explode(':', $time[1]);
+      $date = explode('-', $time[0]);
+
+      $date = $date[2] . '/' . $date[1] . '/' . $date[0];
+      $hour = $hour[0] . ':' . $hour[1];
+
       return [
         'status' => 1,
         'success' => [
@@ -101,7 +108,8 @@ class ProfilDisplayerRepository
           'arr' => $dataUser['arr'],
           'dst' => $this->getDistance($latFrom, $lonFrom, $latTo, $lonTo),
           'log' => $dataUser['token_log'] ? 1 : 0,
-          'last_log' => $dataUser['token_log'] ? NULL : $dataUser['last_log'],
+          'last_log_date' => $dataUser['token_log'] ? NULL : $date,
+          'last_log_hour' => $dataUser['token_log'] ? NULL : $hour,
           'tags' => $tags
         ]
       ];
