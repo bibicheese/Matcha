@@ -11,7 +11,7 @@ function get_rooms(props) {
     }).then(response => {
         console.log(response);
         this.setState({
-            rooms : []
+            rooms : [...this.state.rooms, ...response.data.success]
         });
     });
 }
