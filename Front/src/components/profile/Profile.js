@@ -80,7 +80,7 @@ export class Profile extends Component {
     render() {
         var i = 0;
         const user_profile = this.state.profile;
-        var wants, sex, pictures, arr, liked_style, liked_icon_style, gender, gender_display = null;
+        var wants, sex, pictures, arr, liked_style, liked_icon_style, gender, gender_display, status = null;
         if (user_profile) {
             
             console.log(user_profile);
@@ -93,6 +93,8 @@ export class Profile extends Component {
             wants += " sweet_pink";
             gender = sex === "Male" ? "fas fa-mars" : "fas fa-venus";
             gender_display = sex === "Male" ? "Homme" : "Femme";
+
+            status = user_profile.log === 0 ? "Dernière connexion : " + user_profile.last_log_date + " " + user_profile.last_log.hour : sex === "Male" ? "Connecté" : "Connectée";
 
             if (user_profile.arr != null) {
                 arr = ", " + user_profile.arr + "ème";
@@ -167,7 +169,7 @@ export class Profile extends Component {
                 </div>
                 {pictures}
                 <div className="divider center"></div>
-                <span className="">Status : </span>
+                    <span className="">Status : { status }</span>
             </div>
         )) : (  <div className="preloader-wrapper active center-loader">
                     <div className="spinner-layer spinner-red-only">
