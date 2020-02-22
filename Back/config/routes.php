@@ -4,6 +4,10 @@ use Slim\Http\Response;
 use Slim\Http\ServerRequest;
 use Slim\App;
 
+header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
 return function (App $app) {
   $app->get('/api/active', \Src\Action\ActiveAction::class);
   $app->post('/api/create_user', \Src\Action\UserCreateAction::class);
