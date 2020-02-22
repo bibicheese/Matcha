@@ -47,8 +47,7 @@ class Navbar extends Component {
 
     containThisNotif = (notif) => {
         this.props.notifs.forEach(n => {
-            console.log(n);
-            console.log(notif);
+            console.log(n.id + " ?== " + notif.id);
             if (n.id === notif.id) return true;
         });
         return false;
