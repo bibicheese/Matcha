@@ -9,7 +9,7 @@ const initState = {
     notifs : [],
     tags : [],
     filtered_profiles : [],
-    updage : {
+    update : {
         navbar : 0
     }
 }
