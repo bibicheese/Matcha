@@ -309,10 +309,12 @@ export class ProfileEdit extends Component {
 
     componentDidUpdate() {
         let bioArea = document.querySelector('#bio');
-        M.textareaAutoResize(bioArea);
+        if (bioArea)
+            M.textareaAutoResize(bioArea);
 
         let selects = document.querySelectorAll('select');
-        M.FormSelect.init(selects);
+        if (selects)
+            M.FormSelect.init(selects);
     }
 
     render() {
