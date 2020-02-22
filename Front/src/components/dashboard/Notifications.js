@@ -21,8 +21,18 @@ class Notifications extends Component {
 
         this.state = {
             notifs : this.props.notifs,
-            updated : 0
+            update : 0
         }
+    }
+
+    sdedhouldComponentUpdate() {
+        if (this.props.notifs !== this.state.notifs) {
+            this.setState({
+                notifs : this.props.notifs
+            });
+            return true;
+        }
+        return false;
     }
 
     handleRead = (notif) => {
@@ -41,7 +51,6 @@ class Notifications extends Component {
     }
 
     render() {
-        console.log(this.state.notifs);
         return (
             <div className="container">
                 <h3>Centre des notifications :</h3>
