@@ -45,12 +45,13 @@ class Navbar extends Component {
         M.Sidenav.getInstance(this.Sidenav).close();
     }
 
-    containThisNotif = (notif) => {
+    containNotThisNotif = (notif) => {
+        let exist = true;
         this.props.notifs.forEach(n => {
             console.log(n.id + " ?== " + notif.id);
-            if (n.id === notif.id) return true;
+            if (n.id === notif.id) exist = false;
         });
-        return false;
+        return exist;
     }
 
     handleNotifUpdate = () => {
@@ -69,7 +70,7 @@ class Navbar extends Component {
             if (response.data.status === 1) {
                 let notifs = response.data.success;
                 notifs.forEach(element => {
-                    if (!this.containThisNotif(element)) {
+                    if (this.containNotThisNotif(element)) {
                         //console.log(element);
                         M.toast({html : element.msg});
                         this.props.notifA(element);
