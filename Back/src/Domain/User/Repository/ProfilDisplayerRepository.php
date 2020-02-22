@@ -147,18 +147,22 @@ class ProfilDisplayerRepository
         host = '$idVisited'";
         $this->connection->query($sql);
 
-        $sql = "SELECT login FROM users WHERE
-        id = '$currId'
-        OR
+        $sql_curr = "SELECT login FROM users WHERE
+        id = '$currId'";
+        $sql_visited = "SELECT login FROM users WHERE
         id = '$idVisited'";
-        $ret = $this->connection->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-        $sender = $ret[0]['login'];
-        $receiver = $ret[1]['login'];
+
+        $ret_curr = $this->connection->query($sql_curr)->fetch(PDO::FETCH_ASSOC);
+        $ret_visited = $this->connection->query($sql_visited)->fetch(PDO::FETCH_ASSOC);
+
+        $sender = $ret_curr['login'];
+        $receiver = $ret_visited['login'];
 
         $sql = "INSERT INTO notif SET
         sender = '$sender',
         msg = \"$sender vous a rendu visite.\",
         receiver = '$receiver'";
+
         $this->connection->query($sql);
 
       }
