@@ -59,7 +59,7 @@ class db {
     catch(PDOException $e) {
       $this->table_likes($conn);
     }
-    
+
     try {
       $conn->query("SELECT * FROM chat LIMIT 1");
     }
@@ -94,6 +94,7 @@ class db {
                 password VARCHAR(255) NOT NULL,
                 token VARCHAR(255) DEFAULT NULL,
                 token_log VARCHAR(255) DEFAULT NULL,
+                last_log TIMESTAMP DEFAULT NULL,
                 bio VARCHAR(255) DEFAULT NULL,
                 score INT DEFAULT 50,
                 views VARCHAR(255) DEFAULT NULL,
@@ -187,8 +188,8 @@ class db {
         echo "cities_table failed: " . $e->getMessage();
       }
   }
-  
-  
+
+
   private function table_chat($db) {
   try {
     $db->query("CREATE TABLE IF NOT EXISTS chat (
@@ -202,8 +203,8 @@ class db {
         echo "chat_table failed: " . $e->getMessage();
       }
   }
-  
-  
+
+
   private function table_notif($db) {
   try {
     $db->query("CREATE TABLE IF NOT EXISTS notif (
@@ -239,8 +240,10 @@ class db {
     age=:age,
     gender=:gender,
     orientation=:orientation,
+    last_log=:last_log,
     login=:login,
     password=:password,
+    token_log=:token_log,
     score=:score,
     bio=:bio,
     city=:city,
@@ -280,6 +283,12 @@ class db {
 
         if ($j > 2)
           $j = 0;
+
+        $today = time();
+        $ago = time() - 604800;
+        $time = rand($ago, $today);
+        $date = date('Y/m/d H:i:s', $time);
+
         $row = [
           'active' => 1,
           'complete' => 1,
@@ -292,7 +301,9 @@ class db {
           'orientation' => $orientation[$j],
           'login' => $ligne[5],
           'password' => hash('whirlpool', $ligne[6]),
+          'token_log' => $j == 2 ? 'bonsoir' : NULL,
           'score' => $score,
+          'last_log' => $date,
           'bio' => str_replace(["\n","\r"], "", $ligne[7]),
           'city' => $i < 400 ? $paris[0] . ' ' . $paris[1] : $idf[0],
           'arr' => $i < 400 ? $paris[1] : NULL,

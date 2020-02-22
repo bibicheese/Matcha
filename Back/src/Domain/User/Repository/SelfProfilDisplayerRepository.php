@@ -56,7 +56,7 @@ class SelfProfilDisplayerRepository
           'email' => $user['email'],
           'birth' => $user['birth'],
           'age' => (int)$user['age'],
-          'genre' => $user['gender'],
+          'gender' => $user['gender'],
           'orientation' => $user['orientation'],
           'login' => $user['login'],
           'password' => $crypted,

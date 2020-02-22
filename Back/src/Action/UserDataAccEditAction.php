@@ -21,13 +21,13 @@ final class UserDataAccEditAction
 
     public function __invoke(ServerRequest $request, Response $response): Response {
         $data = $request->getParsedBody();
-        
+
         $userAuth = new UserAuth();
         $userAuth->id = $data['id'];
         $userAuth->token = $data['token'];
-        
+
         $user = $this->fillUser($data);
-        
+
         if ($status = $this->checkAuth->check($userAuth))
           $result = ['status' => 0, 'error' => $status];
         else {
@@ -35,7 +35,7 @@ final class UserDataAccEditAction
             $this->userDataAccEditor->checkInterest($data['interest'], $userAuth->id);
           $result = $this->userDataAccEditor->modifyData($user, $userAuth->id);
         }
-         
+
         return $response->withJson($result);
     }
 
