@@ -102,7 +102,7 @@ export class ProfileEdit extends Component {
         }
         let {profile, password, new_password, nv_password, login, ...profile_update} = this.state; // this line is used to exclude profile field in the object we'll be disptaching
         profile_update = this.getModifications();
-        // console.log(profile_update);
+        console.log(profile_update);
         //this.props.updateProfile(profile_update);
         Axios.post("http://localhost:8080/api/account_editor", {
             id : this.props.auth.uid,
@@ -437,7 +437,7 @@ export class ProfileEdit extends Component {
                     <div className="row main-info-edit">
                         <div className="center profile-info"><i className={gender}></i>
                             <div className="input-field col s12">
-                                <select defaultValue={this.state.gender} id="genre" onChange={this.handleChange}>
+                                <select defaultValue={this.state.genre} id="genre" onChange={this.handleChange}>
                                     <option value="Male">Homme</option>
                                     <option value="Female">Femme</option>
                                     <option value="Other">Secret</option>
