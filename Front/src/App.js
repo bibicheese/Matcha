@@ -12,6 +12,7 @@ import MatchList from './components/profile/MatchList';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Historic from './components/hist/Historic';
 import Notifications from './components/dashboard/Notifications';
+import Chat from './components/social/chat';
 
 /*
 <ProtectedRoute path="/profiles/:user_id" component={Profile} />
@@ -42,6 +43,7 @@ class App extends Component {
             <NotAuthRoute path="/signup" component={SignUp} />
             <NotAuthRoute path="/act/:token" component={Dashboard} />
           </Switch>
+          <Chat />
         </div>
       </BrowserRouter>
     );
