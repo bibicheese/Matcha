@@ -80,6 +80,8 @@ const rootReducer = (state = initState, action) => {
     else if (action.type === "NOTIF_READ") {
         let index = getIndex(action.payload.notif, state.notifs, 'id');
         let notifs = state.notifs.slice();
+        console.log(action);
+        console.log(state.notifs);
         console.log(index);
         return {
             ...state,
