@@ -575,6 +575,7 @@ code {
 }
 
 .notif-status {
+  cursor: pointer;
   width: 50px;
   height: 100%;
   position: absolute;
@@ -584,8 +585,19 @@ code {
   right: 0;
   top : 0;
   text-align: center;
+  scale: 1;
+  transition: scale ease-in 0.5s;
+}
+
+.notif-status:hover {
+  color: #ffc305;
+  scale: 1.5;
 }
 
 .notif-unread {
   background-color: aliceblue;
+}
+
+.click-on-me-notif {
+  cursor: pointer;
 }

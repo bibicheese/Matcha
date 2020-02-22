@@ -55,7 +55,7 @@ class Notifications extends Component {
                                     <span> { n.date } </span>
                                     <span> { n.hour } </span>
                                 </div>
-                                <div className="card-content" onClick={(e) => {this.redirect(e, n.sender)}}>{ n.msg }</div>
+                                <div className="card-content" onMouseDown={(e) => {this.redirect(e, n.sender)}}>{ n.msg }</div>
                                 <div className="notif-status" onClick={() => {this.handleRead(n)}}>{ status }</div>
                             </div>
                         </div>
