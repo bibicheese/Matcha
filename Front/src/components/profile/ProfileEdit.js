@@ -250,7 +250,36 @@ export class ProfileEdit extends Component {
             }
         }).catch(e => {console.log(e)});
         this.setCitiesList();
-        
+    }
+
+    setCitiesList = () => {
+        Axios.get("http://localhost:8080/api/get_cities").then(response => {
+            let cities = response.data;
+            var Position = document.querySelectorAll('.autocomplete');
+            var autocomplete_city = {};
+            var state_city = [];
+            cities.map(place => {
+                return autocomplete_city[place.city] = null;
+            });
+            cities.map(place => {
+                return state_city.push(place.city);
+            });
+            this.setState({
+                places : state_city
+            });
+            M.Autocomplete.init(Position, { data : autocomplete_city, limit : 5, minLength : 1, onAutocomplete : (place) => this.handlePositionChangeAC(place) });
+        });
+    }
+
+    componentDidUpdate() {
+        let bioArea = document.querySelector('#bio');
+        if (bioArea)
+            M.textareaAutoResize(bioArea);
+
+        let selects = document.querySelectorAll('select');
+        if (selects)
+            M.FormSelect.init(selects);
+
         let tags = document.querySelectorAll('.chips');
         let autocomplete_data = {};
         this.props.tags.map(tag => {
@@ -285,36 +314,6 @@ export class ProfileEdit extends Component {
         
         let carousel = document.querySelector('.carousel');
         M.Carousel.init(carousel, {indicators:true});
-        this.setState({});
-    }
-
-    setCitiesList = () => {
-        Axios.get("http://localhost:8080/api/get_cities").then(response => {
-            let cities = response.data;
-            var Position = document.querySelectorAll('.autocomplete');
-            var autocomplete_city = {};
-            var state_city = [];
-            cities.map(place => {
-                return autocomplete_city[place.city] = null;
-            });
-            cities.map(place => {
-                return state_city.push(place.city);
-            });
-            this.setState({
-                places : state_city
-            });
-            M.Autocomplete.init(Position, { data : autocomplete_city, limit : 5, minLength : 1, onAutocomplete : (place) => this.handlePositionChangeAC(place) });
-        });
-    }
-
-    componentDidUpdate() {
-        let bioArea = document.querySelector('#bio');
-        if (bioArea)
-            M.textareaAutoResize(bioArea);
-
-        let selects = document.querySelectorAll('select');
-        if (selects)
-            M.FormSelect.init(selects);
     }
 
     render() {
