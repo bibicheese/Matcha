@@ -3,9 +3,11 @@ import M from 'materialize-css';
 
 class Chat extends Component {
 
-    componentDidUpdate() {
-        var tabs = document.getElementsByClassName(".tabs");
-        M.Tabs.init(tabs, null);
+
+    componentDidMount() {
+        $(document).ready(function(){
+            $('.tabs').tabs();
+          });
     }
 
     render() {
