@@ -64,11 +64,8 @@ class Navbar extends Component {
             <nav className="nav-wrapper white">
                 <Link to='/' className="brand-logo black-text logo">Matcha'Soul</Link>
                 { main_links }
-                <a href="#!!" data-target="slide-out">
-                    <i className="material-icons">bell</i>
-                </a>
                 <a href="#!" data-target="slide-out" className="sidenav-trigger right">
-                    <i className="material-icons">menu</i>
+                    <i className="material-icons">bell</i>
                 </a>
                 <ul ref={Sidenav => { this.Sidenav = Sidenav; }} id="slide-out" className="sidenav">
                     { side_links }
