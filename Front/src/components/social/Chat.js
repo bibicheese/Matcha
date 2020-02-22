@@ -3,7 +3,7 @@ import M from 'materialize-css';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 
-const get_rooms = (props) => {
+function get_rooms(props) {
     Axios.post("http://localhost:8080/api/get_room", {
         id : props.auth.uid,
         token : props.auth.key
