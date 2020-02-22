@@ -47,6 +47,8 @@ class Navbar extends Component {
 
     containThisNotif = (notif) => {
         this.props.notifs.forEach(n => {
+            console.log(n);
+            console.log(notif);
             if (n.id === notif.id) return true;
         });
         return false;
@@ -55,7 +57,7 @@ class Navbar extends Component {
     handleNotifUpdate = () => {
         //console.log("Asked for notif update");
         
-        console.log(this.props);
+        //console.log(this.props);
         if (this.state.needs_update === 0) return ;
         this.setState({
             needs_update : 0
@@ -69,7 +71,7 @@ class Navbar extends Component {
                 let notifs = response.data.success;
                 notifs.forEach(element => {
                     if (!this.containThisNotif(element)) {
-                        console.log(element);
+                        //console.log(element);
                         M.toast({html : element.msg});
                         this.props.notifA(element);
                     }
