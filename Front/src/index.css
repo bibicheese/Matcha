@@ -546,3 +546,10 @@ code {
 .side_profile {
   height: 100%;
 }
+
+.log_status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
