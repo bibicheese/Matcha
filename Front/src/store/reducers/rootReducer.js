@@ -85,6 +85,11 @@ const rootReducer = (state = initState, action) => {
             ...state,
             notifs
         }
+    } else if (action.type === "NOTIF_DELETE") {
+        return {
+            ...state,
+            notifs : []
+        }
     }
     return state;
 }
