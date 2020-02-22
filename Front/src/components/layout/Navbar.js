@@ -45,9 +45,8 @@ class Navbar extends Component {
             console.log(response);
             if (response.data.status === 1) {
                 let notifs = response.data.success;
-                notifs.array.forEach(element => {
-                    console.log(element);
-                });
+                console.log(response);
+                console.log(notifs);
             }
         });
     }
