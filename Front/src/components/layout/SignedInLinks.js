@@ -9,7 +9,7 @@ const SignedInLinks = ({onLogout, state}) => {
             <li><NavLink to='/lucky' className="pink-text">Lucky</NavLink></li>
             <li><NavLink to='/profile-admirer' className="black-text">Historique</NavLink></li>
             <li><NavLink to='/' className="red-text" onClick={onLogout}>Log Out</NavLink></li>
-            <li><NavLink to='/cCenter' className="cyan-text"><i className="fas fa-bell"></i></NavLink></li>
+            <li><NavLink to='/cCenter'><i className="fas fa-bell"></i></NavLink></li>
             <li><NavLink to='/profile-edit' className="btn btn-floating pink lighten-1">{initial}</NavLink></li>
         </ul>
     )
