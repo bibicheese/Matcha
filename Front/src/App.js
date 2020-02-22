@@ -12,7 +12,7 @@ import MatchList from './components/profile/MatchList';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Historic from './components/hist/Historic';
 import Notifications from './components/dashboard/Notifications';
-import Chat from './components/social/chat';
+import Chat from './components/social/Chat';
 
 /*
 <ProtectedRoute path="/profiles/:user_id" component={Profile} />
