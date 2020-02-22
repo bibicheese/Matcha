@@ -302,13 +302,13 @@ export class ProfileEdit extends Component {
                 }
             },
             onChipDelete : (e, data) => {
-                let tag = getChipDeleted(e, data);
+                /*let tag = getChipDeleted(e, data);
                 console.log("Deleted tag : " + tag);
                 if (tag) {
                   this.setState({
                     tags : this.state.tags.filter(ftag => { return ftag !== tag })
                   })
-                }
+                }*/
             }
         });
     }
