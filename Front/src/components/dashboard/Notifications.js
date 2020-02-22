@@ -19,13 +19,13 @@ class Notifications extends Component {
     }
 
     render() {
+        console.log(this.state.notifs);
         return (
             <div className="container">
                 <h3>Centre des notifications :</h3>
                 {
                     this.state.notifs.map(n => {
-                        console.log(n);
-                        return <div className="card" key={n.id}>
+                        return <div className="card notif-card" key={n.id}>
                             <div className="card-title">n-title</div>
                             <div className="card-content">n-content</div>
                         </div>

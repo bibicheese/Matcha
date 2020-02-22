@@ -558,3 +558,7 @@ code {
   height: 26px !important;
   color: grey;
 }
+
+.notif-card {
+  padding: 15px;
+}
