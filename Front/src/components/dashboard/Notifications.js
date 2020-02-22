@@ -43,7 +43,7 @@ class Notifications extends Component {
 
     handleAllRead = () => {
         this.state.notifs.forEach(n => {
-            this.props.readNotif(notif);
+            this.props.readNotif(n);
         });
         read_all_notif_remote(this.state.notifs, this.props);
     }
@@ -70,7 +70,7 @@ class Notifications extends Component {
         return (
             <div className="container">
                 <h3>Centre des notifications :</h3>
-                <div className="notif-read-all btn btn-large" onClick={() => {this.handleAllRead}}>Marquer tout lu</div>
+                <div className="notif-read-all btn btn-large" onClick={() => {this.handleAllRead()}}>Marquer tout lu</div>
                 {
                     this.state.notifs.slice(0).reverse().map((n) => {
                         if (n.readen === 1) return null;
