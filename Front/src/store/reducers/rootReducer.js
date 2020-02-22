@@ -72,7 +72,7 @@ const rootReducer = (state = initState, action) => {
     else if (action.type === "NOTIF_ADD") {
         return {
             ...state,
-            notifs : [...this.props.notifs, action.payload.notif]
+            notifs : [...state.notifs, action.payload.notif]
         }
     }
     return state;
