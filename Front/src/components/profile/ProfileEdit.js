@@ -339,7 +339,7 @@ export class ProfileEdit extends Component {
     render() {
         var i = 0;
         const user_profile = this.state.profile;
-        var homo, hetero, wants, sex, pictures = null;
+        var homo, hetero, wants, sex, pictures, gender = null;
 
         if (user_profile) {
             sex = user_profile.gender;
@@ -349,6 +349,7 @@ export class ProfileEdit extends Component {
 
             wants = user_profile.orientation === "Bisexual" ? "fas fa-venus-mars" : user_profile.orientation === "Hétérosexuel" ? hetero : homo;
             wants += " sweet_pink";
+            gender = hetero;
 
             pictures = user_profile.images.length ? (
                 <div className="carousel">
@@ -429,6 +430,19 @@ export class ProfileEdit extends Component {
                                     <option value="Homosexuel">Homosexuel</option>
                                 </select>
                                 <label>Orientation</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="divider center"></div>
+                    <div className="row main-info-edit">
+                        <div className="center profile-info"><i className={gender}></i>
+                            <div className="input-field col s12">
+                                <select defaultValue={this.state.gender} id="genre" onChange={this.handleChange}>
+                                    <option value="Male">Homme</option>
+                                    <option value="Female">Femme</option>
+                                    <option value="Other">Secret</option>
+                                </select>
+                                <label>Genre</label>
                             </div>
                         </div>
                     </div>
