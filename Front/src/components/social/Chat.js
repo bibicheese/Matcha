@@ -14,7 +14,7 @@ class Chat extends Component {
                 <div className="conv">
                     <div className="row">
                         <div className="col s12">
-                            <ul className="tabs" ref={Tabs => {this.Tabs = Tabs;}}>
+                            <ul className="tabs tabs-fixed-width" ref={Tabs => {this.Tabs = Tabs;}}>
                                 <li className="tab col s3"><a href="#test1">Test 1</a></li>
                                 <li className="tab col s3"><a className="active" href="#test2">Test 2</a></li>
                                 <li className="tab col s3"><a href="#test3">Test 3</a></li>
