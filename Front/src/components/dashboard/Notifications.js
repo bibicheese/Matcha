@@ -6,7 +6,6 @@ import { read_notif } from '../../store/actions/notifActions';
 
 //api/delete_notif id token + array with id of notif read
 const read_notif_remote = (notif, props) => {
-    console.log("GO!");
     Axios.post("http://localhost:8080/api/delete_notif", {
         id : props.auth.uid,
         token : props.auth.key,
@@ -22,18 +21,17 @@ class Notifications extends Component {
         super(props);
 
         this.state = {
-            notifs : this.props.notifs
+            notifs : this.props.notifs,
+            updated : 0
         }
     }
 
-
-    componentDidMount = () => {
-
+    shouldComponentUpdate() {
+        console.log('hi');
     }
 
     handleRead = (notif, index) => {
         this.props.readNotif(notif);
-        console.log("hi");
         read_notif_remote(notif, this.props);
     }
 
@@ -44,6 +42,7 @@ class Notifications extends Component {
                 <h3>Centre des notifications :</h3>
                 {
                     this.state.notifs.map((n, index) => {
+                        console.log(n);
                         const status = n.readen ? <i className='fas fa-check green-text'></i> : <i className='fas fa-question'></i>;
                         return <div className="card" key={n.id}>
                             <div className={ n.readen ? "notif-card" : "notif-card notif-unread" }>
