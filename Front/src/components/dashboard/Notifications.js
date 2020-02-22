@@ -29,9 +29,6 @@ class Notifications extends Component {
         console.log("hi");
         if (this.props.notifs !== this.state.notifs) {
             console.log("Yes it should!");
-            this.setState({
-                notifs : this.props.notifs
-            });
             return true;
         }
         return false;
