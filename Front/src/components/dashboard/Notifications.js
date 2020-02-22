@@ -30,6 +30,16 @@ class Notifications extends Component {
         read_notif_remote(notif, this.props);
     }
 
+    redirect = (e, login) => {
+        if (e.nativeEvent.button === 1 || e.nativeEvent.button === 0) {
+            if (e.nativeEvent.button === 1) {
+                window.open("/profiles/" + login, "_blank");
+            } else {
+                this.props.history.push("/profiles/" + login);
+            }
+        }
+    }
+
     render() {
         console.log(this.state.notifs);
         return (
@@ -45,7 +55,7 @@ class Notifications extends Component {
                                     <span> { n.date } </span>
                                     <span> { n.hour } </span>
                                 </div>
-                                <div className="card-content">{ n.msg }</div>
+                                <div className="card-content" onClick={(e) => {this.redirect(e, n.sender)}}>{ n.msg }</div>
                                 <div className="notif-status" onClick={() => {this.handleRead(n)}}>{ status }</div>
                             </div>
                         </div>
