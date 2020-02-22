@@ -41,7 +41,7 @@ class UserLikerRepository
       $ret = $this->connection->prepare($sql);
       $ret->execute($row);
 
-      if ($ret->fetch(PDO::FETCH_ASSOC)) {
+      if ($ret = $ret->fetch(PDO::FETCH_ASSOC)) {
         $sql = "DELETE FROM likes WHERE
         liker=:liker
         AND
@@ -57,7 +57,6 @@ class UserLikerRepository
         sender = '$from_login',
         msg = \"$from_login ne s'interesse plus à vous.\",
         receiver = '$user->login'";
-        $this->connection->query($sql_notif);
       }
       else {
         $sql = "UPDATE users SET
@@ -75,17 +74,16 @@ class UserLikerRepository
           'status' => 1,
           'success' => 'liked'
         ];
+        $liked = 1;
 
         $sql_notif = "INSERT INTO notif SET
         sender = '$from_login',
         msg = \"$from_login vous a aimé.\",
         receiver = '$user->login'";
-        $this->connection->query($sql_notif);
-
       }
       $this->connection->prepare($sql)->execute($row);
 
-      if ($result['success'] == "liked") {
+      if ($liked) {
         $sql = "SELECT score FROM users WHERE
         id = '$id'";
         $ret = $this->connection->query($sql)->fetch(PDO::FETCH_ASSOC);
@@ -141,9 +139,10 @@ class UserLikerRepository
             sender = '$from_login',
             msg = \"Vous venez de MATCH avec $from_login.\",
             receiver = '$user->login'";
-            $this->connection->query($sql_notif);
+
         }
       }
+      $this->connection->query($sql_notif);
       return $result;
     }
 }
