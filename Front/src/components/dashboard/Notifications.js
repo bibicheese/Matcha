@@ -15,7 +15,6 @@ const read_notif_remote = (notif, props) => {
 const read_all_notif_remote = (notifs, props) => {
     let ids = [];
     notifs.forEach((n, index) => {
-        console.log(n);
         ids[index] = n.id;
     });
     Axios.post("http://localhost:8080/api/delete_notif", {
@@ -46,7 +45,8 @@ class Notifications extends Component {
         this.state.notifs.forEach(n => {
             this.props.readNotif(n);
         });
-        read_all_notif_remote(this.state.notifs, this.props);
+        read_all_notif_remote(this.state.notifs, this.props.slice(0));
+        this.props.delete_notifs();
     }
 
     redirect = (e, login) => {
@@ -101,7 +101,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        readNotif : (notif) => { dispatch(read_notif(notif)); }
+        readNotif : (notif) => { dispatch(read_notif(notif)); },
+        delete_notifs : () => { dispatch({type : "NOTIFS_DELETE"})}
     }
 }
 
