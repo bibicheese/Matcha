@@ -8,6 +8,7 @@ const SignedInLinks = ({onLogout, state, count}) => {
         <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><NavLink to='/profiles-list' className="black-text">Profiles</NavLink></li>
             <li><NavLink to='/lucky' className="pink-text">Lucky</NavLink></li>
+            <li><NavLink to='/socialRoom' className="pink-text">Auditorium</NavLink></li>
             <li><NavLink to='/profile-admirer' className="black-text">Historique</NavLink></li>
             <li><NavLink to='/' className="red-text" onClick={onLogout}>Log Out</NavLink></li>
             <li><NavLink to='/Center'><i className="fas fa-bell notif"></i><span className="new badge blue" data-badge-caption=""> { count } </span></NavLink></li>
@@ -30,6 +31,7 @@ export const SignedInLinksSidebar = ({onClickLink, onLogout, state, count}) => {
             </li>
             <li><NavLink to='/Center' className="cyan-text" onClick={onClickLink}><span className="new badge blue" data-badge-caption=""> { count } </span><i className="fas fa-bell"></i></NavLink></li>
             <li><NavLink to='/lucky' className="pink-text" onClick={onClickLink}>Lucky</NavLink></li>
+            <li><NavLink to='/socialRoom' className="pink-text" onClick={onClickLink}>Auditorium</NavLink></li>
             <li><NavLink to='/profiles-list' className="black-text" onClick={onClickLink}>Profiles</NavLink></li>
             <li><NavLink to='/profile-admirer' className="black-text">Historique</NavLink></li>
             <li><NavLink to='/' className="red-text" onClick={onLogout}>Log Out</NavLink></li>
