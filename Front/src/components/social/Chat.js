@@ -37,18 +37,6 @@ function get_message(props, to) {
     });
 }
 
-function get_rooms(props) {
-    Axios.post("http://localhost:8080/api/get_room", {
-        id : props.auth.uid,
-        token : props.auth.key
-    }).then(response => {
-        console.log(response);
-        this.setState({
-            rooms : []
-        });
-    });
-}
-
 class Chat extends Component {
 
     // rooms : [login, firstname, lastname]
