@@ -99,15 +99,17 @@ export class Profile extends Component {
             }
             
             pictures = user_profile.images.length ? (
-                <div className="divider center"></div>
-                <div className="section container">
-                    <div className="carousel">
-                    <h5 className="center">Petit aperçu de moi ;)</h5>
-                        {user_profile.images.map((image, index) => {
-                            return (// eslint-disable-next-line
-                                <a key={index} className="carousel-item images"><img src={"http://localhost:8080/" + image['link']} alt="Some stuff"/></a>
-                            )
-                        })}
+                <div className="">
+                    <div className="divider center"></div>
+                    <div className="section container">
+                        <div className="carousel">
+                        <h5 className="center">Petit aperçu de moi ;)</h5>
+                            {user_profile.images.map((image, index) => {
+                                return (// eslint-disable-next-line
+                                    <a key={index} className="carousel-item images"><img src={"http://localhost:8080/" + image['link']} alt="Some stuff"/></a>
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
             ) : null;
