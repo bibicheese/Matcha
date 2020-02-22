@@ -9,7 +9,9 @@ const get_rooms = (props) => {
         token : props.auth.key
     }).then(response => {
         console.log(response);
-        return "banane";
+        this.setState({
+            rooms = []
+        });
     });
 }
 
@@ -26,6 +28,12 @@ class Chat extends Component {
         ]
     }
 
+    constructor(props) {
+        super(props);
+
+        get_rooms = get_rooms.bind(this);
+    }
+
     createRoom = (userId) => {
 
     }
@@ -36,7 +44,7 @@ class Chat extends Component {
 
     componentDidMount() {
         M.Tabs.init(this.Tabs);
-        let rooms = get_rooms(this.props);
+        let rooms = this.get_rooms(this.props);
         console.log(rooms);
     }
 
