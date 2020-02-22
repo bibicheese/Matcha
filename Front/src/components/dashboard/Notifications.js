@@ -45,7 +45,7 @@ class Notifications extends Component {
         this.state.notifs.forEach(n => {
             this.props.readNotif(n);
         });
-        read_all_notif_remote(this.state.notifs, this.props.slice(0));
+        read_all_notif_remote(this.state.notifs.slice(), this.props);
         this.props.delete_notifs();
     }
 
