@@ -51,7 +51,7 @@ class Chat extends Component {
                                 {
                                     this.state.rooms.map(room => {
                                         return <li className="tab col s3" key={room.login}><a href={ "#" + room.login }>{ room.firstname + " " + room.lastname }</a></li>
-                                    });
+                                    })
                                 }
                                 {/*<li className="tab col s3"><a className="active" href="#test2">Test 2</a></li>
                                 <li className="tab col s3"><a href="#test3">Test 3</a></li>
