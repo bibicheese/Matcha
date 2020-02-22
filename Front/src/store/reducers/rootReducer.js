@@ -32,6 +32,7 @@ const rootReducer = (state = initState, action) => {
             },
             profiles : [],
             chat : [],
+            notifs : [],
             tags : [],
         }
     }
