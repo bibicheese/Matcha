@@ -603,11 +603,19 @@ code {
   cursor: pointer;
 }
 
+.App {
+  position: relative;
+}
+
 .conv-anchor {
+  position: absolute;
   width: 25px;
   height: 25px;
   left: 0;
-  margin: auto 0;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .conv {
