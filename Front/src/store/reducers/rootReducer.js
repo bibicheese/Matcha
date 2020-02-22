@@ -71,7 +71,7 @@ const rootReducer = (state = initState, action) => {
     }
     else if (action.type === "NOTIF_ADD") {
         let notif_array = state.notifs;
-        if (notif_array.length == 15) {
+        if (notif_array.length === 15) {
             notif_array = notif_array.slice(1);
         }
         return {
