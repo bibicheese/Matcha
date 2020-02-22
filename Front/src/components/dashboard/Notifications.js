@@ -24,7 +24,8 @@ class Notifications extends Component {
                 <h3>Centre des notifications :</h3>
                 {
                     this.state.notifs.map(n => {
-                        return <div className="card">
+                        console.log(n);
+                        return <div className="card" key={n.id}>
                             <div className="card-title">n-title</div>
                             <div className="card-content">n-content</div>
                         </div>
