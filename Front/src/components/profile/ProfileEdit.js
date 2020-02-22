@@ -440,7 +440,6 @@ export class ProfileEdit extends Component {
                                 <select defaultValue={this.state.gender} id="gender" onChange={this.handleChange}>
                                     <option value="Male">Homme</option>
                                     <option value="Female">Femme</option>
-                                    <option value="Other">Secret</option>
                                 </select>
                                 <label>Genre</label>
                             </div>
