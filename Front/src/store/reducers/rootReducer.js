@@ -8,7 +8,10 @@ const initState = {
     chat : [],
     notifs : [],
     tags : [],
-    filtered_profiles : []
+    filtered_profiles : [],
+    updage : {
+        navbar : 0
+    }
 }
 
 function getIndex(value, arr, prop) {
@@ -34,6 +37,24 @@ const rootReducer = (state = initState, action) => {
             chat : [],
             notifs : [],
             tags : [],
+        }
+    }
+    else if (action.type === "NAV_UPDATE") {
+        return {
+            ...state,
+            update : {
+                ...state.update,
+                navbar : 1
+            }
+        }
+    }
+    else if (action.type === "NAV_UPDATED") {
+        return {
+            ...state,
+            update : {
+                ...state.update,
+                navbar : 0
+            }
         }
     }
     else if (action.type === "AUTH_USER") {

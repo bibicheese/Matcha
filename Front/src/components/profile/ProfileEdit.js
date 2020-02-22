@@ -115,6 +115,7 @@ export class ProfileEdit extends Component {
                 M.toast({html : data.error, classes : "red"});
             } else {
                 M.toast({html : "Profile mis à jour :)", classes : "green"});
+                this.updateNavBar();
             }
         }).catch(e => {console.log(e)})
     }
@@ -342,6 +343,7 @@ export class ProfileEdit extends Component {
         var homo, hetero, wants, sex, pictures, gender = null;
 
         if (user_profile) {
+            this.askForTags();
             sex = user_profile.gender;
 
             homo = sex === "Male" ? "fas fa-mars-double" : "fas fa-venus-double";
@@ -361,7 +363,6 @@ export class ProfileEdit extends Component {
                     })}
                 </div>
             ) : null;
-            console.log(this.state);
         }
         const page = user_profile ? (
         (
@@ -452,9 +453,6 @@ export class ProfileEdit extends Component {
                         <div className="row profile-tags">
                             { user_profile.tags.length ?
                             this.state.tags.map((tag, index) => {
-                                console.log(user_profile);
-                                console.log(tag);
-                                console.log(index);
                                 return (
                                     <div className="chip" key={index}>
                                         { tag }
@@ -505,7 +503,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateProfile : (profile) => {dispatch(updateProfile(profile))}
+        updateProfile : (profile) => {dispatch(updateProfile(profile))},
+        updateNavBar : () => { dispatch({type : "NAV_UPDATE"}) }
     }
 }
 
