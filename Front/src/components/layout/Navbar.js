@@ -45,7 +45,7 @@ class Navbar extends Component {
             //console.log(response);
             if (response.data.status === 1) {
                 let notifs = response.data.success;
-                notifs.foreach(element => {
+                notifs.forEach(element => {
                     M.toast({html : "New notif"});
                 })
             }
