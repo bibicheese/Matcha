@@ -28,6 +28,7 @@ class Notifications extends Component {
                         const status = n.readen ? <i className='fas fa-check green-text'></i> : <i className='fas fa-question'></i>;
                         return <div className="card" key={n.id}>
                             <div className="notif-card">
+                                <div className="notif-timestamp"> { n.date } </div>
                                 <div className="card-content">{ n.msg }</div>
                                 <div className="notif-status">{ status }</div>
                             </div>

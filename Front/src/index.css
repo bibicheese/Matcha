@@ -562,6 +562,13 @@ code {
 .notif-card {
   padding: 0 15px;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.notif-timestamp {
+  height: 100%;
 }
 
 .notif-status {
