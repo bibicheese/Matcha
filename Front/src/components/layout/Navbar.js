@@ -67,9 +67,9 @@ class Navbar extends Component {
                         this.props.notifA(element);
                     }
                 })
-                /*this.setState({
+                this.setState({
                     needs_update : 1
-                })*/
+                })
             }
         });
     }
