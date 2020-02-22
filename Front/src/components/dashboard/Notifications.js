@@ -36,6 +36,7 @@ class Notifications extends Component {
     }
 
     handleRead = (notif) => {
+        if (notif.readen) return ;
         this.props.readNotif(notif);
         read_notif_remote(notif, this.props);
     }
