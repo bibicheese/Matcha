@@ -52,6 +52,7 @@ final class GetNotif
 
           $ret[$i][date] = $date[2] . '/' . $date[1] . '/' . $date[0];
           $ret[$i][hour] = $hour[0] . ':' . $hour[1];
+          $ret[$i]['readen'] = (int)$ret[$i]['readen'];
           unset($ret[$i]['reg_date']);
           unset($ret[$i]['receiver']);
           $i++;

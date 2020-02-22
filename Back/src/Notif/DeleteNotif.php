@@ -7,7 +7,7 @@ use Src\Domain\User\Data\UserAuth;
 use Src\Domain\User\Repository\checkUserLoggedRepository;
 use PDO;
 
-final class GetNotif
+final class DeleteNotif
 {
     private $connection;
     private $checkAuth;
@@ -19,6 +19,7 @@ final class GetNotif
 
     public function __invoke(ServerRequest $request, Response $response): Response {
       $data = $request->getParsedBody();
+      $notif = $data['notif'];
 
       $userAuth = new UserAuth();
       $userAuth->id = $data['id'];
@@ -27,7 +28,17 @@ final class GetNotif
       if ($status = $this->checkAuth->check($userAuth))
         $result = ['status' => 0, 'error' => $status];
       else {
-        
+        foreach ($notif as $key => $value) {
+          $sql = "UPDATE notif SET
+          readen = 1
+          WHERE
+          id = '$value'";
+          $this->connection->query($sql);
+
+          $result = ['status' => 1, 'success' => 'Notif deleted'];
+        }
       }
+
+      return $response->withjson($result);
     }
 }
