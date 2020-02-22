@@ -1,11 +1,35 @@
 import React, { Component } from 'react'
 import M from 'materialize-css';
+import Axios from 'axios';
+
+const get_rooms = (props) => {
+    Axios.post("http://localhost:8080/api/get_room", {
+        id : props.auth.uid,
+        token : props.auth.key
+    }).then(response => {
+        console.log(response);
+        return "banane";
+    });
+}
 
 class Chat extends Component {
 
+    state = {
+        rooms : []
+    }
+
+    createRoom = (userId) => {
+
+    }
+
+    sendMessageTo = (userId, message) => {
+
+    }
 
     componentDidMount() {
         M.Tabs.init(this.Tabs);
+        let rooms = get_rooms();
+        console.log(rooms);
     }
 
     render() {
@@ -19,21 +43,6 @@ class Chat extends Component {
                                 <li className="tab col s3"><a className="active" href="#test2">Test 2</a></li>
                                 <li className="tab col s3"><a href="#test3">Test 3</a></li>
                                 <li className="tab col s3"><a href="#test4">Test 4</a></li>
-                                <li className="tab col s3"><a href="#test5">Test 5</a></li>
-                                <li className="tab col s3"><a href="#test6">Test 6</a></li>
-                                <li className="tab col s3"><a href="#test7">Test 7</a></li>
-                                <li className="tab col s3"><a href="#test5">Test 5</a></li>
-                                <li className="tab col s3"><a href="#test6">Test 6</a></li>
-                                <li className="tab col s3"><a href="#test7">Test 7</a></li>
-                                <li className="tab col s3"><a href="#test5">Test 5</a></li>
-                                <li className="tab col s3"><a href="#test6">Test 6</a></li>
-                                <li className="tab col s3"><a href="#test7">Test 7</a></li>
-                                <li className="tab col s3"><a href="#test5">Test 5</a></li>
-                                <li className="tab col s3"><a href="#test6">Test 6</a></li>
-                                <li className="tab col s3"><a href="#test7">Test 7</a></li>
-                                <li className="tab col s3"><a href="#test5">Test 5</a></li>
-                                <li className="tab col s3"><a href="#test6">Test 6</a></li>
-                                <li className="tab col s3"><a href="#test7">Test 7</a></li>
                             </ul>
                         </div>
                         <div id="test1" className="col s12">Test 1</div>
