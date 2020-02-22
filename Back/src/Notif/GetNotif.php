@@ -36,7 +36,7 @@ final class GetNotif
         receiver=:receiver
         AND
         readen = 0
-        ORDER BY id DESC LIMIT 15;";
+        ORDER BY id ASC LIMIT 15;";
 
         $row = [
           'receiver' => $receiver

@@ -15,20 +15,17 @@ class UserLikerRepository
 
     public function addLike(UserData $user, $id) {
       $login = $user->login;
-      $row = [
-        'login' => $login
-      ];
-      $sql = "SELECT id FROM users WHERE
-      login=:login;";
-      $idToLike = $this->connection->prepare($sql);
-      $idToLike->execute($row);
-      $idToLike = $idToLike->fetch(PDO::FETCH_ASSOC);
-      $idToLike = $idToLike['id'];
 
-      $sql_from = "SELECT login FROM users WHERE
+      $sql = "SELECT * FROM users WHERE
+      login = '$login'";
+      $to = $this->connection->query($sql)->fetch(PDO::FETCH_ASSOC);
+      $idToLike = $to['id'];
+
+      $sql_from = "SELECT * FROM users WHERE
       id = '$id'";
       $from = $this->connection->query($sql_from)->fetch(PDO::FETCH_ASSOC);
       $from_login = $from['login'];
+      $from_name = $from['firstname'] . ' ' . $from['lastname'];
 
       $row = [
         'liker' => $id,
@@ -55,7 +52,7 @@ class UserLikerRepository
 
         $sql_notif = "INSERT INTO notif SET
         sender = '$from_login',
-        msg = \"$from_login ne s'interesse plus à vous.\",
+        msg = \"$from_name ne s'interesse plus à vous.\",
         receiver = '$user->login'";
       }
       else {
@@ -78,7 +75,7 @@ class UserLikerRepository
 
         $sql_notif = "INSERT INTO notif SET
         sender = '$from_login',
-        msg = \"$from_login vous a aimé.\",
+        msg = \"$from_name vous a aimé.\",
         receiver = '$user->login'";
       }
       $this->connection->prepare($sql)->execute($row);
@@ -137,7 +134,7 @@ class UserLikerRepository
 
             $sql_notif = "INSERT INTO notif SET
             sender = '$from_login',
-            msg = \"Vous venez de MATCH avec $from_login.\",
+            msg = \"Vous venez de MATCH avec $from_name.\",
             receiver = '$user->login'";
 
         }
