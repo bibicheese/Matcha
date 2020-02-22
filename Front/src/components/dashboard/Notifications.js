@@ -26,12 +26,11 @@ class Notifications extends Component {
     }
 
     shouldComponentUpdate() {
-        console.log("hi");
         if (this.props.notifs !== this.state.notifs) {
             console.log("Yes it should!");
             return true;
         }
-        return false;
+        return true;
     }
 
     handleRead = (notif) => {
