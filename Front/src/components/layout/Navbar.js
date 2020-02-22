@@ -5,6 +5,7 @@ import SignedOutLinks, { SignedOutLinksSidebar } from './SignedOutLinks';
 import M from 'materialize-css';
 import { connect } from 'react-redux';
 import { authOut } from '../../store/actions/authActions';
+import { add_notif, delete_notif, read_notif } from '../../store/actions/notifActions';
 import Axios from 'axios';
 
 class Navbar extends Component {
@@ -46,7 +47,10 @@ class Navbar extends Component {
             if (response.data.status === 1) {
                 let notifs = response.data.success;
                 notifs.forEach(element => {
-                    M.toast({html : "New notif"});
+                    if (!this.props.notifs.includes(element)) {
+                        M.toast({html : element.msg});
+                        this.props.notifA(element);
+                    }
                 })
             }
         });
@@ -89,7 +93,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        authLogout : () => { dispatch(authOut()) }
+        authLogout : () => { dispatch(authOut()) },
+        notifA : (notif) => { dispatch(add_notif(notif)) },
+        notifD : (notif) => { dispatch(delete_notif(notif)) },
+        notifR : (notif) => { dispatch(read_notif(notif)) },
     }
 }
 

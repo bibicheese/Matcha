@@ -5,8 +5,8 @@ const initState = {
         firstname : "",
         lastname : ""
     },
-    chat : null,
-    notif : null,
+    chat : [],
+    notifs : [],
     tags : [],
     filtered_profiles : []
 }
@@ -67,6 +67,12 @@ const rootReducer = (state = initState, action) => {
                     .concat(action.profile)
                     .concat(state.profiles.slice(index + 1))
             }
+        }
+    }
+    else if (action.type === "NOTIF_ADD") {
+        return {
+            ...state,
+            notifs : [...this.props.notifs, action.payload.notif]
         }
     }
     return state;
