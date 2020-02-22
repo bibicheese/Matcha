@@ -66,7 +66,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        readNotif : (notif) => { dispatch(read_notif(nodif)); }
+        readNotif : (notif) => { dispatch(read_notif(notif)); }
     }
 }
 
