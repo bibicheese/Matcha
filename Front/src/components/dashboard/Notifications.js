@@ -28,6 +28,7 @@ class Notifications extends Component {
 
     shouldComponentUpdate() {
         console.log('hi');
+        return true;
     }
 
     handleRead = (notif, index) => {
