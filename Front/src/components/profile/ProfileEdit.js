@@ -235,6 +235,58 @@ export class ProfileEdit extends Component {
             });           
     }
 
+    initTags = () => {
+        let tags = document.querySelectorAll('.chips');
+        let autocomplete_data = {};
+        this.state.tags_server.map(tag => {
+            return autocomplete_data[tag] = null;
+        });
+
+        console.log(autocomplete_data);
+        M.Chips.init(tags, {
+            autocompleteOptions : {
+                data : autocomplete_data,
+                limit : Infinity,
+                minLength : 1
+            },
+            onChipAdd : (chip) => {
+                let value = chip[0].childNodes[chip[0].childNodes.length - 3].textContent;
+                value = value.replace("close", "");
+                if (!this.state.tags.includes(value)) {
+                    this.setState({
+                        tags : [...this.state.tags, value]
+                    })
+                }
+            },
+            onChipDelete : (e, data) => {
+                let tag = getChipDeleted(e, data);
+                console.log("Deleted tag : " + tag);
+                if (tag) {
+                  this.setState({
+                    tags : this.state.tags.filter(ftag => { return ftag !== tag })
+                  })
+                }
+            }
+        });
+    }
+
+    askForTags = () => {
+        Axios.get("http://localhost:8080/api/get_tags").then(response => {
+            let tags = response.data;
+            if (tags.length === 0 ) {
+                M.toast({html : "No tags retrieved.", classes: "red"});
+            } else {
+                this.setState({
+                    tags_server : tags
+                }, () => {
+                this.initTags(); 
+                } );
+            }
+            }).catch(err => {
+                console.log(err);
+        });
+    }
+
     componentDidMount = () => {
         Axios.get("http://localhost:8080/api/my_account?id=" + this.props.auth.uid + "&token=" + this.props.auth.key).then((response) => {
             if (response.data != null) {
@@ -279,39 +331,6 @@ export class ProfileEdit extends Component {
         let selects = document.querySelectorAll('select');
         if (selects)
             M.FormSelect.init(selects);
-
-        let tags = document.querySelectorAll('.chips');
-        let autocomplete_data = {};
-        this.props.tags.map(tag => {
-            return autocomplete_data[tag] = null;
-        });
-
-        console.log(autocomplete_data);
-        M.Chips.init(tags, {
-            autocompleteOptions : {
-                data : autocomplete_data,
-                limit : Infinity,
-                minLength : 1
-            },
-            onChipAdd : (chip) => {
-                let value = chip[0].childNodes[chip[0].childNodes.length - 3].textContent;
-                value = value.replace("close", "");
-                if (!this.state.tags.includes(value)) {
-                    this.setState({
-                        tags : [...this.state.tags, value]
-                    })
-                }
-            },
-            onChipDelete : (e, data) => {
-                let tag = getChipDeleted(e, data);
-                console.log("Deleted tag : " + tag);
-                if (tag) {
-                  this.setState({
-                    tags : this.state.tags.filter(ftag => { return ftag !== tag })
-                  })
-                }
-            }
-        });
         
         let carousel = document.querySelector('.carousel');
         M.Carousel.init(carousel, {indicators:true});
