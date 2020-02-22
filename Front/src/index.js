@@ -18,7 +18,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 const persistConfig = {
  key: 'root',
  storage: storage,
- whitelist : ['auth'],
+ whitelist : ['auth', 'notifs', 'chat'],
  stateReconciler: autoMergeLevel2
 };
 
