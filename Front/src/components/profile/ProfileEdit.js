@@ -452,6 +452,7 @@ export class ProfileEdit extends Component {
                         <div className="row profile-tags">
                             { user_profile.tags.length ?
                             this.state.tags.map((tag, index) => {
+                                console.log(user_profile);
                                 console.log(tag);
                                 console.log(index);
                                 return (
