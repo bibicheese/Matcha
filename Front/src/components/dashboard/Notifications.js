@@ -16,7 +16,8 @@ const read_all_notif_remote = (notifs, props) => {
     let ids = [];
     notifs.forEach((n, index) => {
         ids[n] = n.id;
-    })
+    });
+    console.log(ids);
     Axios.post("http://localhost:8080/api/delete_notif", {
         id : props.auth.uid,
         token : props.auth.key,
