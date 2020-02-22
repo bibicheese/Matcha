@@ -558,3 +558,34 @@ code {
   height: 26px !important;
   color: grey;
 }
+
+.notif-card {
+  padding: 0 15px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.notif-timestamp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.notif-status {
+  width: 50px;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  top : 0;
+  text-align: center;
+}
+
+.notif-unread {
+  background-color: aliceblue;
+}
