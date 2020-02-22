@@ -13,9 +13,6 @@ function get_rooms(props) {
             rooms : []
         });
     });
-    this.setState({
-        rooms : []
-    });
 }
 
 class Chat extends Component {
