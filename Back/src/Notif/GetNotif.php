@@ -34,7 +34,9 @@ final class GetNotif
 
         $sql = "SELECT * FROM notif WHERE
         receiver=:receiver
-        ORDER BY id DESC LIMIT 10;";
+        AND
+        readen = 0
+        ORDER BY id DESC LIMIT 15;";
 
         $row = [
           'receiver' => $receiver
