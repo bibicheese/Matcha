@@ -48,16 +48,12 @@ class Navbar extends Component {
     containNotThisNotif = (notif) => {
         let exist = true;
         this.props.notifs.forEach(n => {
-            console.log(n.id + " ?== " + notif.id);
             if (n.id === notif.id) exist = false;
         });
         return exist;
     }
 
     handleNotifUpdate = () => {
-        //console.log("Asked for notif update");
-        
-        //console.log(this.props);
         if (this.state.needs_update === 0) return ;
         this.setState({
             needs_update : 0
@@ -66,12 +62,10 @@ class Navbar extends Component {
             id : this.props.auth.uid,
             token : this.props.auth.key,
         }).then(response => {
-            //console.log(response);
             if (response.data.status === 1) {
                 let notifs = response.data.success;
                 notifs.forEach(element => {
                     if (this.containNotThisNotif(element)) {
-                        //console.log(element);
                         M.toast({html : element.msg});
                         this.props.notifA(element);
                     }
@@ -81,10 +75,6 @@ class Navbar extends Component {
                 })
             }
         });
-    }
-
-    componentDidUpdate() {
-       // console.log("Did update");
     }
 
     componentWillUnmount() {
