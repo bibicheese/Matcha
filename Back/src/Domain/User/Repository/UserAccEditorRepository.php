@@ -21,7 +21,7 @@ class UserAccEditorRepository
         > date("md") ?
         ((date("Y") - $birth[2]) - 1) :
         (date("Y") - $birth[2]));
-      } 
+      }
 
       $data = [
         'login' => $user->login,
@@ -47,7 +47,7 @@ class UserAccEditorRepository
         $sql = "SELECT * FROM cities WHERE
         city = '$city'";
         $ret = $this->connection->query($sql)->fetch(PDO::FETCH_ASSOC);
-        
+
         $sql = "UPDATE users SET
         city=:city,
         arr=:arr,
@@ -57,7 +57,7 @@ class UserAccEditorRepository
         longitude=:longitude
         WHERE
         id = '$id'";
-        
+
         $row = [
           'city' => $ret['city'],
           'arr' => $ret['arr'],
@@ -70,19 +70,19 @@ class UserAccEditorRepository
       }
       if (!$data && !$city)
         return ['status' => 1, 'success' => 'RAS'];
-        
+
       if ($data) {
         $elm = count($data);
         $i = 0;
         foreach ($data as $key => $value) {
           $query = ++$i == $elm ? $query . "$key=:$key" : $query . "$key=:$key,";
         }
-      
+
         $sql = "UPDATE users SET
-        $query 
+        $query
         WHERE
         id = '$id'";
-      
+
         $this->connection->prepare($sql)->execute($data);
       }
       return ['status' => 1, 'success' => 'OK boomer'];
@@ -114,7 +114,7 @@ class UserAccEditorRepository
           else
             return $key . " taken";
         }
-          
+
       }
 
       $row = [
@@ -139,7 +139,7 @@ class UserAccEditorRepository
           $value = '#' . $value;
           $interest[$key] = $value;
         }
-          
+
 
         $row = [
           'tag' => $value
@@ -186,7 +186,7 @@ class UserAccEditorRepository
 
 
     private function removeUserFromTag($interest, $id) {
-      
+
       $ret = $this->connection->query("SELECT * FROM tags")->fetchAll(PDO::FETCH_ASSOC);
       $rows = count($ret);
       $i = -1;
@@ -226,7 +226,7 @@ class UserAccEditorRepository
 
     private function removeId($userids, $id) {
       $userids = explode(',', $userids);
-      
+
       foreach ($userids as $key => $value) {
         if ($value != $id && $value)
           $newids = ! $newids ? $value : $newids . ',' . $value;
