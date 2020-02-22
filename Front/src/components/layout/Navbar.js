@@ -37,8 +37,14 @@ class Navbar extends Component {
 
     handleNotifUpdate = () => {
         console.log("Asked for notif update");
+        Axios.post("http://localhost:8080/api/get_notif", {
+            id : this.props.auth.uid,
+            token : this.props.auth.token,
+        }).then(response => {
+            console.log(response);
+        });
     }
-    
+
     componentDidUpdate() {
         console.log("Did update");
     }
