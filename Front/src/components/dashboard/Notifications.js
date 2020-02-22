@@ -9,7 +9,9 @@ const read_notif_remote = (notif, props) => {
     Axios.post("http://localhost:8080/api/delete_notif", {
         id : props.auth.uid,
         token : props.auth.key,
-        notifs : [notif.id]
+        notif : [notif.id]
+    }).then(response => {
+        console.log(response);
     });
 }
 
