@@ -45,8 +45,10 @@ class SelfProfilDisplayerRepository
       $j = count($tags_db);
       while ($j-- != 0)
         $tags = !$tags ? $tags_db[$j]['tag'] : $tags . "," . $tags_db[$j]['tag'];
-      $tags = explode(',', $tags);
-
+      if ($tags)
+        $tags = explode(',', $tags);
+      else
+        $tags = [];
 
       return [
         'status' => 1,
