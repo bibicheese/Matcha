@@ -94,7 +94,7 @@ export class Profile extends Component {
             gender = sex === "Male" ? "fas fa-mars" : "fas fa-venus";
             gender_display = sex === "Male" ? "Homme" : "Femme";
 
-            status = user_profile.log === 0 ? "Dernière connexion : " + user_profile.last_log_date + " " + user_profile.last_log.hour : sex === "Male" ? "Connecté" : "Connectée";
+            status = user_profile.log === 0 ? "Dernière connexion : " + user_profile.last_log_date + " " + user_profile.last_log_hour : sex === "Male" ? "Connecté" : "Connectée";
 
             if (user_profile.arr != null) {
                 arr = ", " + user_profile.arr + "ème";
