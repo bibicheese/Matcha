@@ -29,5 +29,5 @@ return function (App $app) {
   $app->post('/api/send_message', Src\Chat\SendMessage::class);
   $app->post('/api/get_conv', Src\Chat\GetConv::class);
   $app->post('/api/get_notif', Src\Notif\GetNotif::class);
-  $app->post('/api/readen_notif', Src\Notif\DeleteNotif::class);
+  $app->post('/api/delete_notif', Src\Notif\DeleteNotif::class);
 };
