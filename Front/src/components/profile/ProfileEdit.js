@@ -411,7 +411,7 @@ export class ProfileEdit extends Component {
                         </div>
                     </div>
                     <div className="divider center"></div>
-                    <div className="row main-info">
+                    <div className="row main-info-edit">
                         <div className="center profile-info input-field pos-field">
                             <i className="fas fa-map-marker-alt prefix"></i>
                             <input type="text" id="autocomplete-input" className="autocomplete" value={this.state.city} onChange={this.handlePositionChange}/>
