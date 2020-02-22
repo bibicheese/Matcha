@@ -6,6 +6,7 @@ import { read_notif } from '../../store/actions/notifActions';
 
 //api/delete_notif id token + array with id of notif read
 const read_notif_remote = (notif, props) => {
+    console.log("GO!");
     Axios.post("http://localhost:8080/api/delete_notif", {
         id : props.auth.uid,
         token : props.auth.key,
@@ -32,6 +33,7 @@ class Notifications extends Component {
 
     handleRead = (notif, index) => {
         this.props.readNotif(notif);
+        console.log("hi");
         read_notif_remote(notif, this.props);
     }
 
