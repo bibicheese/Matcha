@@ -602,3 +602,7 @@ code {
 .click-on-me-notif {
   cursor: pointer;
 }
+
+.room-container {
+  height: 100%;
+}
