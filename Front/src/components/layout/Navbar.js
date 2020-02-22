@@ -38,7 +38,11 @@ class Navbar extends Component {
 
     componentDidMount() {
         console.log("mounted");
-        this.interval = setInterval(this.handleNotifUpdate, 5000);
+        this.interval = setInterval(this.handleNotifUpdate, 2500);
+    }
+
+    componentDidUpdate() {
+        console.log("Did update");
     }
 
     componentWillUnmount() {
