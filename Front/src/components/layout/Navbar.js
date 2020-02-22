@@ -19,7 +19,7 @@ class Navbar extends Component {
         M.Sidenav.init(this.Sidenav, options);
 
         console.log("mounted");
-        if (this.props.auth.uid != -1)
+        if (this.props.auth.uid !== -1)
             this.interval = setInterval(this.handleNotifUpdate, 2500);
     }
 
