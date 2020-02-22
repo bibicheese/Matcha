@@ -44,7 +44,7 @@ class Chat extends Component {
 
     componentDidMount() {
         M.Tabs.init(this.Tabs);
-        let rooms = this.get_rooms(this.props);
+        let rooms = get_rooms(this.props);
         console.log(rooms);
     }
 
