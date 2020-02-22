@@ -51,6 +51,7 @@ class Notifications extends Component {
         return (
             <div className="container">
                 <h3>Centre des notifications :</h3>
+                <div className="notif-read-all btn btn-large">Marquer tout lu</div>
                 {
                     this.state.notifs.slice(0).reverse().map((n) => {
                         if (n.readen === 1) return null;
