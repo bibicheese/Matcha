@@ -340,6 +340,7 @@ export class ProfileEdit extends Component {
                     })}
                 </div>
             ) : null;
+            console.log(this.state);
         }
         const page = user_profile ? (
         (
@@ -423,9 +424,9 @@ export class ProfileEdit extends Component {
                                 return (
                                     <div className="chip" key={index}>
                                         {tag}
-                                        <i className="material-icons close" onClick={() => {this.setState({
+                                        { /*<i className="material-icons close" onClick={() => {this.setState({
                                             tags : this.state.tags.filter(ftag => { return ftag !== tag })
-                                        })}}>close</i>
+                                        })}}>close</i>*/}
                                     </div>
                                 )
                             }) : <div className="red-text">No tags</div> }
