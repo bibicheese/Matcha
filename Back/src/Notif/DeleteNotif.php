@@ -19,7 +19,6 @@ final class GetNotif
 
     public function __invoke(ServerRequest $request, Response $response): Response {
       $data = $request->getParsedBody();
-      $id = $data['id'];
 
       $userAuth = new UserAuth();
       $userAuth->id = $data['id'];
@@ -28,7 +27,7 @@ final class GetNotif
       if ($status = $this->checkAuth->check($userAuth))
         $result = ['status' => 0, 'error' => $status];
       else {
-
+        
       }
     }
 }
