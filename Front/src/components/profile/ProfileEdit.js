@@ -285,9 +285,7 @@ export class ProfileEdit extends Component {
         
         let carousel = document.querySelector('.carousel');
         M.Carousel.init(carousel, {indicators:true});
-
-        let selects = document.querySelectorAll('select');
-        M.FormSelect.init(selects);
+        this.setState({});
     }
 
     setCitiesList = () => {
@@ -312,6 +310,9 @@ export class ProfileEdit extends Component {
     componentDidUpdate() {
         let bioArea = document.querySelector('#bio');
         M.textareaAutoResize(bioArea);
+
+        let selects = document.querySelectorAll('select');
+        M.FormSelect.init(selects);
     }
 
     render() {
