@@ -603,11 +603,19 @@ code {
   cursor: pointer;
 }
 
+.conv-anchor {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: 0;
+  margin: auto 0;
+}
+
 .conv {
   width: 150px;
   height: 300px;
   background-color: black;
   position: absolute;
-  bottom: 150px;
-  left: 150px
+  bottom: 0;
+  left: 0;
 }
