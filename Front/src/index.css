@@ -604,5 +604,6 @@ code {
 }
 
 .room-container {
-  height: 500px;
+  margin: 0 0.75rem;
+  background-color: white;
 }
