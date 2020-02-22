@@ -210,7 +210,7 @@ class db {
     $db->query("CREATE TABLE IF NOT EXISTS notif (
                 id INT UNIQUE AUTO_INCREMENT PRIMARY KEY,
                 sender VARCHAR(50) NOT NULL,
-                type VARCHAR(50) NOT NULL,
+                msg VARCHAR(100) NOT NULL,
                 readen INT DEFAULT 0,
                 receiver VARCHAR(50) NOT NULL,
                 reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");

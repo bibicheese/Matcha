@@ -157,7 +157,7 @@ class ProfilDisplayerRepository
 
         $sql = "INSERT INTO notif SET
         sender = '$sender',
-        type = 'Visit',
+        msg = \"$sender vous a rendu visite.\",
         receiver = '$receiver'";
         $this->connection->query($sql);
 
