@@ -29,7 +29,7 @@ class Notifications extends Component {
     }
 
     handleRead = (notif, index) => {
-        this.props.read_notif(notif);
+        this.props.readNotif(notif);
         read_notif_remote(notif, this.props);
     }
 
