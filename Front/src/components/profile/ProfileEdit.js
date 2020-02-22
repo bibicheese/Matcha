@@ -452,9 +452,11 @@ export class ProfileEdit extends Component {
                         <div className="row profile-tags">
                             { user_profile.tags.length ?
                             this.state.tags.map((tag, index) => {
+                                console.log(tag);
+                                console.log(index);
                                 return (
                                     <div className="chip" key={index}>
-                                        {tag}
+                                        { tag }
                                         { /*<i className="material-icons close" onClick={() => {this.setState({
                                             tags : this.state.tags.filter(ftag => { return ftag !== tag })
                                         })}}>close</i>*/}

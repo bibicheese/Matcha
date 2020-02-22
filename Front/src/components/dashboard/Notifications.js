@@ -39,7 +39,15 @@ class Notifications extends Component {
         }
     }
 
+    getDisplay = () => {
+        let dp = "";
+
+        return dp;
+    }
+
     render() {
+        const notif_display = getDisplay();
+
         return (
             <div className="container">
                 <h3>Centre des notifications :</h3>
