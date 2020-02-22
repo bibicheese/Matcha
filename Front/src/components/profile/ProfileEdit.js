@@ -242,7 +242,6 @@ export class ProfileEdit extends Component {
             return autocomplete_data[tag] = null;
         });
 
-        console.log(autocomplete_data);
         M.Chips.init(tags, {
             autocompleteOptions : {
                 data : autocomplete_data,
@@ -273,7 +272,6 @@ export class ProfileEdit extends Component {
     askForTags = () => {
         Axios.get("http://localhost:8080/api/get_tags").then(response => {
             let tags = response.data;
-            console.log(response);
             if (tags.length === 0 ) {
                 M.toast({html : "No tags retrieved.", classes: "red"});
             } else {
