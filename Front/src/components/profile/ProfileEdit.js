@@ -336,6 +336,8 @@ export class ProfileEdit extends Component {
         
         let carousel = document.querySelector('.carousel');
         M.Carousel.init(carousel, {indicators:true});
+
+        this.initTags();
     }
 
     render() {
