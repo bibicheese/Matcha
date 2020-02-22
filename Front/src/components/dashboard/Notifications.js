@@ -15,6 +15,7 @@ const read_notif_remote = (notif, props) => {
 const read_all_notif_remote = (notifs, props) => {
     let ids = [];
     notifs.forEach((n, index) => {
+        console.log(n);
         ids[index] = n.id;
     });
     console.log(ids);
