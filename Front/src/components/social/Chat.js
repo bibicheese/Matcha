@@ -56,4 +56,10 @@ class Chat extends Component {
     }
 }
 
-export default Chat
+const mapStateToProps = (state) => {
+    return (
+        ...state
+    );
+}
+
+export default connect(mapStateToProps)(Chat)
