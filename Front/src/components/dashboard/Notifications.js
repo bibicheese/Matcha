@@ -25,7 +25,7 @@ class Notifications extends Component {
                 <h3>Centre des notifications :</h3>
                 {
                     this.state.notifs.map(n => {
-                        const status = n.readen ? "<i className='fas fa-check green-text'></i>" : "<i className='fas fa-question'></i>";
+                        const status = n.readen ? <i className='fas fa-check green-text'></i> : <i className='fas fa-question'></i>;
                         return <div className="card notif-card" key={n.id}>
                             <div className="card-title">n-title</div>
                             <div className="card-content">n-content</div>
