@@ -62,6 +62,7 @@ class Navbar extends Component {
                 let notifs = response.data.success;
                 notifs.forEach(element => {
                     if (!this.props.notifs.includes(element)) {
+                        console.log(element);
                         M.toast({html : element.msg});
                         this.props.notifA(element);
                     }
