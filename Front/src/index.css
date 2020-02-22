@@ -565,6 +565,12 @@ code {
 }
 
 .notif-status {
+  width: 25px;
+  height: 100%;
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   right: 0;
+  text-align: center;
 }

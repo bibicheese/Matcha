@@ -26,10 +26,12 @@ class Notifications extends Component {
                 {
                     this.state.notifs.map(n => {
                         const status = n.readen ? <i className='fas fa-check green-text'></i> : <i className='fas fa-question'></i>;
-                        return <div className="card notif-card" key={n.id}>
-                            <div className="card-title">n-title</div>
-                            <div className="card-content">n-content</div>
-                            <div className="notif-status">{ status }</div>
+                        return <div className="card" key={n.id}>
+                            <div className="notif-card">
+                                <div className="card-title">n-title</div>
+                                <div className="card-content">n-content</div>
+                                <div className="notif-status">{ status }</div>
+                            </div>
                         </div>
                     })
                 }
