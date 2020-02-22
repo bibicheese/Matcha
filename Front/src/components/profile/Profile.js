@@ -146,6 +146,10 @@ export class Profile extends Component {
                     </div>
                 </div>
                 <div className="divider center"></div>
+                <div className="section container log_status">
+                    <span className={status_class}>Status : { status }</span>
+                </div>
+                <div className="divider center"></div>
                 <div className="row main-info">
                     <div className="col s4 center profile-info"><i className="fas fa-map-marker-alt"></i> {user_profile.city}{ arr } - {user_profile.dst} Kms</div>
                     <div className="col s4 center profile-info"><i className="fas fa-birthday-cake"></i> {user_profile.age} ans</div>
@@ -169,10 +173,6 @@ export class Profile extends Component {
                     </div>
                 </div>
                 {pictures}
-                <div className="divider center"></div>
-                <div className="section container log_status">
-                    <span className={status_class}>Status : { status }</span>
-                </div>
             </div>
         )) : (  <div className="preloader-wrapper active center-loader">
                     <div className="spinner-layer spinner-red-only">
