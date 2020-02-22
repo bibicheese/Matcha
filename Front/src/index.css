@@ -257,8 +257,9 @@ code {
   margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .sweet_pink {

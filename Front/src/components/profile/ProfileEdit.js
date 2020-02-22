@@ -412,16 +412,16 @@ export class ProfileEdit extends Component {
                     </div>
                     <div className="divider center"></div>
                     <div className="row main-info">
-                        <div className="col s4 center profile-info input-field pos-field">
+                        <div className="center profile-info input-field pos-field">
                             <i className="fas fa-map-marker-alt prefix"></i>
                             <input type="text" id="autocomplete-input" className="autocomplete" value={this.state.city} onChange={this.handlePositionChange}/>
                             <i className="fas fa-check green-text check-pos"></i>
                         </div>
-                        <div className="col s4 center profile-info"><i className="fas fa-birthday-cake"></i>&nbsp;
+                        <div className="center profile-info"><i className="fas fa-birthday-cake"></i>&nbsp;
                             <DatePicker id="birthday" dateFormat="dd/MM/yyyy" selected={this.state.display_date} onChange={this.handleDate} locale="fr" autoComplete="off"
                             /*maxDate={subYears(new Date(), 18)} minDate={subYears(new Date(), 125)}*//>
                         </div>
-                        <div className="col s4 center profile-info"><i className={wants}></i>
+                        <div className="center profile-info"><i className={wants}></i>
                             <div className="input-field col s12">
                                 <select defaultValue={this.state.orientation} id="orientation" onChange={this.handleChange}>
                                     <option value="Bisexuel">Bisexuel</option>
