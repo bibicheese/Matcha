@@ -85,7 +85,7 @@ class UserLikerRepository
       }
       $this->connection->prepare($sql)->execute($row);
 
-      if ($result == "liked") {
+      if ($result['success'] == "liked") {
         $sql = "SELECT score FROM users WHERE
         id = '$id'";
         $ret = $this->connection->query($sql)->fetch(PDO::FETCH_ASSOC);
