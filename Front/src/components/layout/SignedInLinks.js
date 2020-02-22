@@ -26,10 +26,9 @@ export const SignedInLinksSidebar = ({onClickLink, onLogout, state}) => {
                     </NavLink>
                 </div>
             </li>
-            <li><NavLink to='/profiles-list' className="black-text" onClick={onClickLink}>Profiles</NavLink></li>
-            <li><NavLink to='/match' className="pink-text" onClick={onClickLink}>Match</NavLink></li>
-            <li><NavLink to='/profile-admirer' className="black-text">Historique</NavLink></li>
             <li><NavLink to='/lucky' className="pink-text" onClick={onClickLink}>Lucky</NavLink></li>
+            <li><NavLink to='/profiles-list' className="black-text" onClick={onClickLink}>Profiles</NavLink></li>
+            <li><NavLink to='/profile-admirer' className="black-text">Historique</NavLink></li>
             <li><NavLink to='/' className="red-text" onClick={onLogout}>Log Out</NavLink></li>
         </div>
     )

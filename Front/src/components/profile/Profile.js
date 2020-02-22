@@ -80,29 +80,40 @@ export class Profile extends Component {
     render() {
         var i = 0;
         const user_profile = this.state.profile;
-        var wants, sex, pictures, arr, liked_style, liked_icon_style = null;
+        var wants, sex, pictures, arr, liked_style, liked_icon_style, gender, gender_display, status, status_class = null;
         if (user_profile) {
             
+            console.log(user_profile);
             sex = user_profile.gender;
             
-            let homo = sex === "male" ? "fas fa-mars-double" : "fas fa-venus-double";
-            let hetero = sex === "male" ? "fas fa-venus" : "fas fa-mars";
+            let homo = sex === "Male" ? "fas fa-mars-double" : "fas fa-venus-double";
+            let hetero = sex === "Male" ? "fas fa-venus" : "fas fa-mars";
             
             wants = user_profile.orientation === "Bisexual" ? "fas fa-venus-mars" : user_profile.orientation === "Hétérosexuel" ? hetero : homo;
             wants += " sweet_pink";
+            gender = sex === "Male" ? "fas fa-mars" : "fas fa-venus";
+            gender_display = sex === "Male" ? "Homme" : "Femme";
+
+            status = user_profile.log === 0 ? "Dernière connexion : " + user_profile.last_log_date + " " + user_profile.last_log_hour : sex === "Male" ? "Connecté" : "Connectée";
+            status_class = user_profile.log === 0 ? "red-text" : "green-text";
 
             if (user_profile.arr != null) {
                 arr = ", " + user_profile.arr + "ème";
             }
             
             pictures = user_profile.images.length ? (
-                <div className="carousel">
-                <h5 className="center">Petit aperçu de moi ;)</h5>
-                    {user_profile.images.map((image, index) => {
-                        return (// eslint-disable-next-line
-                            <a key={index} className="carousel-item images"><img src={"http://localhost:8080/" + image['link']} alt="Some stuff"/></a>
-                        )
-                    })}
+                <div className="">
+                    <div className="divider center"></div>
+                    <div className="section container">
+                        <div className="carousel">
+                        <h5 className="center">Petit aperçu de moi ;)</h5>
+                            {user_profile.images.map((image, index) => {
+                                return (// eslint-disable-next-line
+                                    <a key={index} className="carousel-item images"><img src={"http://localhost:8080/" + image['link']} alt="Some stuff"/></a>
+                                )
+                            })}
+                        </div>
+                    </div>
                 </div>
             ) : null;
 
@@ -135,10 +146,18 @@ export class Profile extends Component {
                     </div>
                 </div>
                 <div className="divider center"></div>
+                <div className="section container log_status">
+                    <span className={status_class}>Status : { status }</span>
+                </div>
+                <div className="divider center"></div>
                 <div className="row main-info">
                     <div className="col s4 center profile-info"><i className="fas fa-map-marker-alt"></i> {user_profile.city}{ arr } - {user_profile.dst} Kms</div>
                     <div className="col s4 center profile-info"><i className="fas fa-birthday-cake"></i> {user_profile.age} ans</div>
                     <div className="col s4 center profile-info"><i className={wants}></i> {user_profile.orientation} </div>
+                </div>
+                <div className="divider center"></div>
+                <div className="row main-info">
+                    <div className="center profile-info"><i className={gender}></i> { gender_display } </div>
                 </div>
                 <div className="divider center"></div>
                 <div className="section container ">
@@ -153,10 +172,7 @@ export class Profile extends Component {
                         }) : <div className="red-text">No tags</div> }
                     </div>
                 </div>
-                <div className="divider center"></div>
-                <div className="section container">
-                    {pictures}
-                </div>
+                {pictures}
             </div>
         )) : (  <div className="preloader-wrapper active center-loader">
                     <div className="spinner-layer spinner-red-only">

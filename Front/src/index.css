@@ -261,6 +261,15 @@ code {
   justify-content: space-evenly;
 }
 
+.main-info-edit {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .sweet_pink {
   color: #fbc2eb;
 }
@@ -536,4 +545,11 @@ code {
 
 .side_profile {
   height: 100%;
+}
+
+.log_status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

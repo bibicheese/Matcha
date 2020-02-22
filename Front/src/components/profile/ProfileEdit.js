@@ -83,10 +83,10 @@ export class ProfileEdit extends Component {
 
         let today = new Date();
         let birth = Date.parse(this.state.birth);
-        
+
         if (!this.state.cityIsValid) {
             M.toast({html : "Merci de mettre une des villes proposées ou de contacter le staff.", classes : "red"});
-            return ;   
+            return ;
         }
         if (/*this.state.age < 18 || this.state.age > 125 || */subYears(today, 18).getTime() < birth || subYears(today, 125).getTime() > birth) {
             M.toast({html : "Merci de mettre un âge entre 18 et 125 ans.", classes : "red"});
@@ -102,7 +102,7 @@ export class ProfileEdit extends Component {
         }
         let {profile, password, new_password, nv_password, login, ...profile_update} = this.state; // this line is used to exclude profile field in the object we'll be disptaching
         profile_update = this.getModifications();
-        // console.log(profile_update);
+        console.log(profile_update);
         //this.props.updateProfile(profile_update);
         Axios.post("http://localhost:8080/api/account_editor", {
             id : this.props.auth.uid,
@@ -232,60 +232,16 @@ export class ProfileEdit extends Component {
             .catch(function (response) {
                 //handle error
                 console.log(response);
-            });           
+            });
     }
 
-    componentDidMount = () => {
-        Axios.get("http://localhost:8080/api/my_account?id=" + this.props.auth.uid + "&token=" + this.props.auth.key).then((response) => {
-            if (response.data != null) {
-                if (response.data.status !== 1) {
-                    M.toast({html : "An error occurred. Please retry later or contact staff.", classes: "red"});
-                } else {
-                    this.setState({
-                        ...response.data.success,
-                        display_date : Date.parse(response.data.success.birth),
-                        profile : response.data.success
-                    });
-                }
-            }
-        }).catch(e => {console.log(e)});
-        this.setCitiesList();
-    }
-
-    setCitiesList = () => {
-        Axios.get("http://localhost:8080/api/get_cities").then(response => {
-            let cities = response.data;
-            var Position = document.querySelectorAll('.autocomplete');
-            var autocomplete_city = {};
-            var state_city = [];
-            cities.map(place => {
-                return autocomplete_city[place.city] = null;
-            });
-            cities.map(place => {
-                return state_city.push(place.city);
-            });
-            this.setState({
-                places : state_city
-            });
-            M.Autocomplete.init(Position, { data : autocomplete_city, limit : 5, minLength : 1, onAutocomplete : (place) => this.handlePositionChangeAC(place) });
-        });
-    }
-
-    componentDidUpdate() {
-        let bioArea = document.querySelector('#bio');
-        M.textareaAutoResize(bioArea);
-
-        let carousel = document.querySelector('.carousel');
-        M.Carousel.init(carousel, {indicators:true});
-
-        let selects = document.querySelectorAll('select');
-        M.FormSelect.init(selects);
-
+    initTags = () => {
         let tags = document.querySelectorAll('.chips');
         let autocomplete_data = {};
-        this.props.tags.map(tag => {
+        this.state.tags_server.map(tag => {
             return autocomplete_data[tag] = null;
-        })
+        });
+
         M.Chips.init(tags, {
             autocompleteOptions : {
                 data : autocomplete_data,
@@ -313,19 +269,87 @@ export class ProfileEdit extends Component {
         });
     }
 
+    askForTags = () => {
+        Axios.get("http://localhost:8080/api/get_tags").then(response => {
+            let tags = response.data;
+            if (tags.length === 0 ) {
+                M.toast({html : "No tags retrieved.", classes: "red"});
+            } else {
+                this.setState({
+                    tags_server : tags
+                }, () => {
+                this.initTags(); 
+                } );
+            }
+            }).catch(err => {
+                console.log(err);
+        });
+    }
+
+    componentDidMount = () => {
+        Axios.get("http://localhost:8080/api/my_account?id=" + this.props.auth.uid + "&token=" + this.props.auth.key).then((response) => {
+            if (response.data != null) {
+                if (response.data.status !== 1) {
+                    M.toast({html : "An error occurred. Please retry later or contact staff.", classes: "red"});
+                } else {
+                    this.setState({
+                        ...response.data.success,
+                        display_date : Date.parse(response.data.success.birth),
+                        profile : response.data.success
+                    });
+                }
+            }
+        }).catch(e => {console.log(e)});
+        this.setCitiesList();
+        this.askForTags();
+    }
+
+    setCitiesList = () => {
+        Axios.get("http://localhost:8080/api/get_cities").then(response => {
+            let cities = response.data;
+            var Position = document.querySelectorAll('.autocomplete');
+            var autocomplete_city = {};
+            var state_city = [];
+            cities.map(place => {
+                return autocomplete_city[place.city] = null;
+            });
+            cities.map(place => {
+                return state_city.push(place.city);
+            });
+            this.setState({
+                places : state_city
+            });
+            M.Autocomplete.init(Position, { data : autocomplete_city, limit : 5, minLength : 1, onAutocomplete : (place) => this.handlePositionChangeAC(place) });
+        });
+    }
+
+    componentDidUpdate() {
+        let bioArea = document.querySelector('#bio');
+        if (bioArea)
+            M.textareaAutoResize(bioArea);
+
+        let selects = document.querySelectorAll('select');
+        if (selects)
+            M.FormSelect.init(selects);
+        
+        let carousel = document.querySelector('.carousel');
+        M.Carousel.init(carousel, {indicators:true});
+    }
+
     render() {
         var i = 0;
         const user_profile = this.state.profile;
-        var homo, hetero, wants, sex, pictures = null;
+        var homo, hetero, wants, sex, pictures, gender = null;
 
         if (user_profile) {
             sex = user_profile.gender;
-            
+
             homo = sex === "Male" ? "fas fa-mars-double" : "fas fa-venus-double";
             hetero = sex === "Male" ? "fas fa-venus" : "fas fa-mars";
-            
+
             wants = user_profile.orientation === "Bisexual" ? "fas fa-venus-mars" : user_profile.orientation === "Hétérosexuel" ? hetero : homo;
             wants += " sweet_pink";
+            gender = sex === "Male" ? "fas fa-mars" : "fas fa-venus";
 
             pictures = user_profile.images.length ? (
                 <div className="carousel">
@@ -337,6 +361,7 @@ export class ProfileEdit extends Component {
                     })}
                 </div>
             ) : null;
+            console.log(this.state);
         }
         const page = user_profile ? (
         (
@@ -365,7 +390,7 @@ export class ProfileEdit extends Component {
                     <div className="divider center"></div>
                     <div className="row top-info">
                         <div className="col">
-                            <input id="profil_pic" type="file" onChange={this.uploadProfile} accept="image/*" ref={input => this.inputElement = input}/> 
+                            <input id="profil_pic" type="file" onChange={this.uploadProfile} accept="image/*" ref={input => this.inputElement = input}/>
                             <div className="row s4 center fullprofile-holder"><img id="profil_pic_trigger" src={"http://localhost:8080/" + user_profile.profilePic} className="fullprofile-image center" alt="Principale" onClick={this.uploadProfileTrigger}/></div>
                             <div className="actions">
                             </div>
@@ -387,17 +412,17 @@ export class ProfileEdit extends Component {
                         </div>
                     </div>
                     <div className="divider center"></div>
-                    <div className="row main-info">
-                        <div className="col s4 center profile-info input-field pos-field">
+                    <div className="row main-info-edit">
+                        <div className="center profile-info input-field pos-field">
                             <i className="fas fa-map-marker-alt prefix"></i>
                             <input type="text" id="autocomplete-input" className="autocomplete" value={this.state.city} onChange={this.handlePositionChange}/>
                             <i className="fas fa-check green-text check-pos"></i>
                         </div>
-                        <div className="col s4 center profile-info"><i className="fas fa-birthday-cake"></i>&nbsp;
+                        <div className="center profile-info"><i className="fas fa-birthday-cake"></i>&nbsp;
                             <DatePicker id="birthday" dateFormat="dd/MM/yyyy" selected={this.state.display_date} onChange={this.handleDate} locale="fr" autoComplete="off"
                             /*maxDate={subYears(new Date(), 18)} minDate={subYears(new Date(), 125)}*//>
                         </div>
-                        <div className="col s4 center profile-info"><i className={wants}></i>
+                        <div className="center profile-info"><i className={wants}></i>
                             <div className="input-field col s12">
                                 <select defaultValue={this.state.orientation} id="orientation" onChange={this.handleChange}>
                                     <option value="Bisexuel">Bisexuel</option>
@@ -405,6 +430,18 @@ export class ProfileEdit extends Component {
                                     <option value="Homosexuel">Homosexuel</option>
                                 </select>
                                 <label>Orientation</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="divider center"></div>
+                    <div className="row main-info-edit">
+                        <div className="center profile-info"><i className={gender}></i>
+                            <div className="input-field col s12">
+                                <select defaultValue={this.state.gender} id="gender" onChange={this.handleChange}>
+                                    <option value="Male">Homme</option>
+                                    <option value="Female">Femme</option>
+                                </select>
+                                <label>Genre</label>
                             </div>
                         </div>
                     </div>
@@ -420,9 +457,9 @@ export class ProfileEdit extends Component {
                                 return (
                                     <div className="chip" key={index}>
                                         {tag}
-                                        <i className="material-icons close" onClick={() => {this.setState({
+                                        { /*<i className="material-icons close" onClick={() => {this.setState({
                                             tags : this.state.tags.filter(ftag => { return ftag !== tag })
-                                        })}}>close</i>
+                                        })}}>close</i>*/}
                                     </div>
                                 )
                             }) : <div className="red-text">No tags</div> }
