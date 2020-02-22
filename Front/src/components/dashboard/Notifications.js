@@ -29,7 +29,7 @@ class Notifications extends Component {
                         return <div className="card notif-card" key={n.id}>
                             <div className="card-title">n-title</div>
                             <div className="card-content">n-content</div>
-                            <div className="notif-status"></div>
+                            <div className="notif-status">{ status }</div>
                         </div>
                     })
                 }
