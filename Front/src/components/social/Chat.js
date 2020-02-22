@@ -4,8 +4,8 @@ import M from 'materialize-css';
 class Chat extends Component {
 
     componentDidMount() {
-        var tabs = document.getElementsByClassName(".tab");
-        var instance = M.Tabs.init(tabs);
+        var tabs = document.getElementsByClassName(".tabs");
+        M.Tabs.init(tabs, null);
     }
 
     render() {
