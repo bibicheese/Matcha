@@ -30,9 +30,10 @@ final class SendMessage
       if ($status = $this->checkAuth->check($userAuth))
         $result = ['status' => 0, 'error' => $status];
       else {
-        $ret = $this->connection->query("SELECT login FROM users WHERE id = '$from'")->fetch(PDO::FETCH_ASSOC);
+        $ret = $this->connection->query("SELECT login, lastname, firstname FROM users WHERE id = '$from'")->fetch(PDO::FETCH_ASSOC);
 
         $sender = $ret['login'];
+        $name = $ret['firstname'] . ' ' . $ret['lastname'];
         $sql = "INSERT INTO chat SET
         sender=:sender,
         msg=:msg,
@@ -46,16 +47,9 @@ final class SendMessage
 
         $this->connection->prepare($sql)->execute($row);
 
-        $sql = "SELECT * FROM notif WHERE
-        sender = '$sender'
-        AND
-        type = '$message'
-        AND
-        receiver = '$to'";
-
         $sql = "INSERT INTO notif SET
         sender = '$sender',
-        msg = \"$sender vous a envoyé un message.\",
+        msg = \"$name vous a envoyé un message.\",
         receiver = '$to'";
         $this->connection->query($sql);
 
