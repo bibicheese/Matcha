@@ -17,6 +17,9 @@ class Navbar extends Component {
             edge : "right"
         };
         M.Sidenav.init(this.Sidenav, options);
+
+        console.log("mounted");
+        this.interval = setInterval(this.handleNotifUpdate, 2500);
     }
 
     handleNav = () => {
@@ -35,12 +38,7 @@ class Navbar extends Component {
     handleNotifUpdate = () => {
         console.log("Asked for notif update");
     }
-
-    componentDidMount() {
-        console.log("mounted");
-        this.interval = setInterval(this.handleNotifUpdate, 2500);
-    }
-
+    
     componentDidUpdate() {
         console.log("Did update");
     }
