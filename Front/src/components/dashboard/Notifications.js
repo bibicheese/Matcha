@@ -27,7 +27,7 @@ class Notifications extends Component {
                     this.state.notifs.map(n => {
                         const status = n.readen ? <i className='fas fa-check green-text'></i> : <i className='fas fa-question'></i>;
                         return <div className="card" key={n.id}>
-                            <div className={ "notif-card" + n.readen ? " notif-unread" : "" }>
+                            <div className={ n.readen ? "notif-card notif-unread" : "notif-card" }>
                                 <div className="notif-timestamp">
                                     <span> { n.date } </span>
                                     <span> { n.hour } </span>
