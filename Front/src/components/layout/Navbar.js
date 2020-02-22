@@ -48,6 +48,7 @@ class Navbar extends Component {
     handleNotifUpdate = () => {
         //console.log("Asked for notif update");
         
+        console.log(this.props);
         if (this.state.needs_update === 0) return ;
         this.setState({
             needs_update : 0
@@ -65,9 +66,9 @@ class Navbar extends Component {
                         this.props.notifA(element);
                     }
                 })
-                this.setState({
+                /*this.setState({
                     needs_update : 1
-                })
+                })*/
             }
         });
     }
