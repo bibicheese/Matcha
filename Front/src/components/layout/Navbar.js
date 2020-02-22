@@ -43,6 +43,12 @@ class Navbar extends Component {
             token : this.props.auth.key,
         }).then(response => {
             console.log(response);
+            if (response.data.status === 1) {
+                let notifs = response.data.success;
+                notifs.array.forEach(element => {
+                    console.log(element);
+                });
+            }
         });
     }
 
