@@ -85,14 +85,6 @@ class Navbar extends Component {
         });
     }
 
-    shouldComponentUpdate() {
-        if (this.props.update.navbar === 1) {
-            this.props.navUpdated();
-            return true;
-        }
-        return true;
-    }
-
     componentWillUnmount() {
         clearInterval(this.interval);
     }
@@ -130,8 +122,7 @@ const mapDispatchToProps = (dispatch) => {
         authLogout : () => { dispatch(authOut()) },
         notifA : (notif) => { dispatch(add_notif(notif)) },
         notifD : (notif) => { dispatch(delete_notif(notif)) },
-        notifR : (notif) => { dispatch(read_notif(notif)) },
-        navUpdated : () => { dispatch({type : "NAV_UPDATED"}) }
+        notifR : (notif) => { dispatch(read_notif(notif)) }
     }
 }
 

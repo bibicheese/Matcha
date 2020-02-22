@@ -115,7 +115,6 @@ export class ProfileEdit extends Component {
                 M.toast({html : data.error, classes : "red"});
             } else {
                 M.toast({html : "Profile mis à jour :)", classes : "green"});
-                this.updateNavBar();
             }
         }).catch(e => {console.log(e)})
     }
@@ -503,8 +502,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateProfile : (profile) => {dispatch(updateProfile(profile))},
-        updateNavBar : () => { dispatch({type : "NAV_UPDATE"}) }
+        updateProfile : (profile) => {dispatch(updateProfile(profile))}
     }
 }
 
