@@ -37,16 +37,16 @@ class Navbar extends Component {
     }
 
     handleNotifUpdate = () => {
-        console.log("Asked for notif update");
+        //console.log("Asked for notif update");
         Axios.post("http://localhost:8080/api/get_notif", {
             id : this.props.auth.uid,
             token : this.props.auth.key,
         }).then(response => {
-            console.log(response);
+            //console.log(response);
             if (response.data.status === 1) {
                 let notifs = response.data.success;
                 notifs.foreach(element => {
-                    console.log(element);
+                    M.toast({html : "New notif"});
                 })
             }
         });
