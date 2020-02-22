@@ -83,10 +83,10 @@ export class ProfileEdit extends Component {
 
         let today = new Date();
         let birth = Date.parse(this.state.birth);
-        
+
         if (!this.state.cityIsValid) {
             M.toast({html : "Merci de mettre une des villes proposées ou de contacter le staff.", classes : "red"});
-            return ;   
+            return ;
         }
         if (/*this.state.age < 18 || this.state.age > 125 || */subYears(today, 18).getTime() < birth || subYears(today, 125).getTime() > birth) {
             M.toast({html : "Merci de mettre un âge entre 18 et 125 ans.", classes : "red"});
@@ -232,7 +232,7 @@ export class ProfileEdit extends Component {
             .catch(function (response) {
                 //handle error
                 console.log(response);
-            });           
+            });
     }
 
     initTags = () => {
@@ -343,10 +343,10 @@ export class ProfileEdit extends Component {
 
         if (user_profile) {
             sex = user_profile.gender;
-            
+
             homo = sex === "Male" ? "fas fa-mars-double" : "fas fa-venus-double";
             hetero = sex === "Male" ? "fas fa-venus" : "fas fa-mars";
-            
+
             wants = user_profile.orientation === "Bisexual" ? "fas fa-venus-mars" : user_profile.orientation === "Hétérosexuel" ? hetero : homo;
             wants += " sweet_pink";
 
@@ -389,7 +389,7 @@ export class ProfileEdit extends Component {
                     <div className="divider center"></div>
                     <div className="row top-info">
                         <div className="col">
-                            <input id="profil_pic" type="file" onChange={this.uploadProfile} accept="image/*" ref={input => this.inputElement = input}/> 
+                            <input id="profil_pic" type="file" onChange={this.uploadProfile} accept="image/*" ref={input => this.inputElement = input}/>
                             <div className="row s4 center fullprofile-holder"><img id="profil_pic_trigger" src={"http://localhost:8080/" + user_profile.profilePic} className="fullprofile-image center" alt="Principale" onClick={this.uploadProfileTrigger}/></div>
                             <div className="actions">
                             </div>
