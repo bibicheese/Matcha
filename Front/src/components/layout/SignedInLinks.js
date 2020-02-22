@@ -10,7 +10,7 @@ const SignedInLinks = ({onLogout, state, count}) => {
             <li><NavLink to='/lucky' className="pink-text">Lucky</NavLink></li>
             <li><NavLink to='/profile-admirer' className="black-text">Historique</NavLink></li>
             <li><NavLink to='/' className="red-text" onClick={onLogout}>Log Out</NavLink></li>
-            <li><NavLink to='/cCenter'><i className="fas fa-bell notif"></i><span className="new badge blue" data-badge-caption=""> { count } </span></NavLink></li>
+            <li><NavLink to='/Center'><i className="fas fa-bell notif"></i><span className="new badge blue" data-badge-caption=""> { count } </span></NavLink></li>
             <li><NavLink to='/profile-edit' className="btn btn-floating pink lighten-1">{initial}</NavLink></li>
         </ul>
     )
@@ -28,7 +28,7 @@ export const SignedInLinksSidebar = ({onClickLink, onLogout, state, count}) => {
                     </NavLink>
                 </div>
             </li>
-            <li><NavLink to='/cCenter' className="cyan-text" onClick={onClickLink}><span className="new badge blue" data-badge-caption=""> { count } </span><i className="fas fa-bell"></i></NavLink></li>
+            <li><NavLink to='/Center' className="cyan-text" onClick={onClickLink}><span className="new badge blue" data-badge-caption=""> { count } </span><i className="fas fa-bell"></i></NavLink></li>
             <li><NavLink to='/lucky' className="pink-text" onClick={onClickLink}>Lucky</NavLink></li>
             <li><NavLink to='/profiles-list' className="black-text" onClick={onClickLink}>Profiles</NavLink></li>
             <li><NavLink to='/profile-admirer' className="black-text">Historique</NavLink></li>
