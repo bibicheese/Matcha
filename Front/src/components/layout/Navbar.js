@@ -53,6 +53,14 @@ class Navbar extends Component {
         return exist;
     }
 
+    getNumberOfUnread = () => {
+        let count = 0;
+        this.props.notif.forEach(n => {
+            if (n.readen === 0) count++;
+        });
+        return count;
+    }
+
     handleNotifUpdate = () => {
         if (this.state.needs_update === 0) return ;
         this.setState({
@@ -66,7 +74,7 @@ class Navbar extends Component {
                 let notifs = response.data.success;
                 notifs.forEach(element => {
                     if (this.containNotThisNotif(element)) {
-                        M.toast({html : element.msg});
+                        M.toast({html : element.msg, classes : "white black-text"});
                         this.props.notifA(element);
                     }
                 })
@@ -82,9 +90,10 @@ class Navbar extends Component {
     }
 
     render() {
+        const notifC = this.getNumberOfUnread();
         const auth = this.props.auth.id !== -1 && this.props.auth.key != null;
-        const main_links = auth ? <SignedInLinks onLogout={this.handleLogout} state={this.props.auth}/> : <SignedOutLinks />;
-        const side_links = auth ? <SignedInLinksSidebar onClickLink={this.handleNav} onLogout={this.handleLogout} state={this.props.auth}/> : <SignedOutLinksSidebar onClickLink={this.handleNav}/>;
+        const main_links = auth ? <SignedInLinks onLogout={this.handleLogout} state={this.props.auth} count={notifC}/> : <SignedOutLinks />;
+        const side_links = auth ? <SignedInLinksSidebar onClickLink={this.handleNav} onLogout={this.handleLogout} state={this.props.auth} count={notifC}/> : <SignedOutLinksSidebar onClickLink={this.handleNav}/>;
         // const main_links = <div><SignedInLinks onLogout={this.handleLogout}/><SignedOutLinks /></div>;
         // const side_links = <div><SignedInLinksSidebar onClickLink={this.handleNav} onLogout={this.handleLogout}/><SignedOutLinksSidebar onClickLink={this.handleNav}/></div>;
         return (
