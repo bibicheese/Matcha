@@ -418,10 +418,6 @@ export class ProfileEdit extends Component {
                             <input type="text" id="autocomplete-input" className="autocomplete" value={this.state.city} onChange={this.handlePositionChange}/>
                             <i className="fas fa-check green-text check-pos"></i>
                         </div>
-                        <div className="center profile-info"><i className="fas fa-birthday-cake"></i>&nbsp;
-                            <DatePicker id="birthday" dateFormat="dd/MM/yyyy" selected={this.state.display_date} onChange={this.handleDate} locale="fr" autoComplete="off"
-                            /*maxDate={subYears(new Date(), 18)} minDate={subYears(new Date(), 125)}*//>
-                        </div>
                         <div className="center profile-info"><i className={wants}></i>
                             <div className="input-field col s12">
                                 <select defaultValue={this.state.orientation} id="orientation" onChange={this.handleChange}>
@@ -432,9 +428,6 @@ export class ProfileEdit extends Component {
                                 <label>Orientation</label>
                             </div>
                         </div>
-                    </div>
-                    <div className="divider center"></div>
-                    <div className="row main-info-edit">
                         <div className="center profile-info"><i className={gender}></i>
                             <div className="input-field col s12">
                                 <select defaultValue={this.state.gender} id="gender" onChange={this.handleChange}>
@@ -443,6 +436,11 @@ export class ProfileEdit extends Component {
                                 </select>
                                 <label>Genre</label>
                             </div>
+                        </div>
+                        
+                        <div className="center profile-info"><i className="fas fa-birthday-cake"></i>&nbsp;
+                            <DatePicker id="birthday" dateFormat="dd/MM/yyyy" selected={this.state.display_date} onChange={this.handleDate} locale="fr" autoComplete="off"
+                            /*maxDate={subYears(new Date(), 18)} minDate={subYears(new Date(), 125)}*//>
                         </div>
                     </div>
                     <div className="divider center"></div>
