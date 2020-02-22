@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Axios from 'axios';
-import M from 'materialize-css';
 import { read_notif } from '../../store/actions/notifActions';
 
 //api/delete_notif id token + array with id of notif read
@@ -26,12 +25,7 @@ class Notifications extends Component {
         }
     }
 
-    shouldComponentUpdate() {
-        console.log('hi');
-        return true;
-    }
-
-    handleRead = (notif, index) => {
+    handleRead = (notif) => {
         this.props.readNotif(notif);
         read_notif_remote(notif, this.props);
     }
@@ -42,7 +36,7 @@ class Notifications extends Component {
             <div className="container">
                 <h3>Centre des notifications :</h3>
                 {
-                    this.state.notifs.map((n, index) => {
+                    this.state.notifs.map((n) => {
                         console.log(n);
                         const status = n.readen ? <i className='fas fa-check green-text'></i> : <i className='fas fa-question'></i>;
                         return <div className="card" key={n.id}>
@@ -52,7 +46,7 @@ class Notifications extends Component {
                                     <span> { n.hour } </span>
                                 </div>
                                 <div className="card-content">{ n.msg }</div>
-                                <div className="notif-status" onClick={() => {this.handleRead(n, index)}}>{ status }</div>
+                                <div className="notif-status" onClick={() => {this.handleRead(n)}}>{ status }</div>
                             </div>
                         </div>
                     })
