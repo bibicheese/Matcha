@@ -334,8 +334,8 @@ export class ProfileEdit extends Component {
         
         let carousel = document.querySelector('.carousel');
         M.Carousel.init(carousel, {indicators:true});
-        
-        this.askForTags();
+
+        this.initTags();
     }
 
     render() {
@@ -344,7 +344,6 @@ export class ProfileEdit extends Component {
         var homo, hetero, wants, sex, pictures, gender = null;
 
         if (user_profile) {
-            this.askForTags();
             sex = user_profile.gender;
 
             homo = sex === "Male" ? "fas fa-mars-double" : "fas fa-venus-double";
