@@ -83,6 +83,7 @@ export class Profile extends Component {
         var wants, sex, pictures, arr, liked_style, liked_icon_style, gender, gender_display = null;
         if (user_profile) {
             
+            console.log(user_profile);
             sex = user_profile.gender;
             
             let homo = sex === "Male" ? "fas fa-mars-double" : "fas fa-venus-double";
@@ -98,13 +99,16 @@ export class Profile extends Component {
             }
             
             pictures = user_profile.images.length ? (
-                <div className="carousel">
-                <h5 className="center">Petit aperçu de moi ;)</h5>
-                    {user_profile.images.map((image, index) => {
-                        return (// eslint-disable-next-line
-                            <a key={index} className="carousel-item images"><img src={"http://localhost:8080/" + image['link']} alt="Some stuff"/></a>
-                        )
-                    })}
+                <div className="divider center"></div>
+                <div className="section container">
+                    <div className="carousel">
+                    <h5 className="center">Petit aperçu de moi ;)</h5>
+                        {user_profile.images.map((image, index) => {
+                            return (// eslint-disable-next-line
+                                <a key={index} className="carousel-item images"><img src={"http://localhost:8080/" + image['link']} alt="Some stuff"/></a>
+                            )
+                        })}
+                    </div>
                 </div>
             ) : null;
 
@@ -144,7 +148,7 @@ export class Profile extends Component {
                 </div>
                 <div className="divider center"></div>
                 <div className="row main-info">
-                    <div className="col s4 center profile-info"><i className={gender}></i> { gender_display } </div>
+                    <div className="center profile-info"><i className={gender}></i> { gender_display } </div>
                 </div>
                 <div className="divider center"></div>
                 <div className="section container ">
@@ -159,10 +163,9 @@ export class Profile extends Component {
                         }) : <div className="red-text">No tags</div> }
                     </div>
                 </div>
+                {pictures}
                 <div className="divider center"></div>
-                <div className="section container">
-                    {pictures}
-                </div>
+                <span className="">Status : </span>
             </div>
         )) : (  <div className="preloader-wrapper active center-loader">
                     <div className="spinner-layer spinner-red-only">
