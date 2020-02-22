@@ -286,6 +286,7 @@ export class ProfileEdit extends Component {
             return autocomplete_data[tag] = null;
         });
 
+        console.log(autocomplete_data);
         M.Chips.init(tags, {
             autocompleteOptions : {
                 data : autocomplete_data,
