@@ -46,7 +46,7 @@ export class ProfileEdit extends Component {
     }
 
     getModifications = () => {
-        let fields = ['firstname', 'lastname', 'birth', 'age', 'genre', 'orientation', 'bio', 'tags', 'city', 'arr'];
+        let fields = ['firstname', 'lastname', 'birth', 'age', 'gender', 'orientation', 'bio', 'tags', 'city', 'arr'];
         let profile_update = {};
 
         fields.forEach((value, index) => {
@@ -437,7 +437,7 @@ export class ProfileEdit extends Component {
                     <div className="row main-info-edit">
                         <div className="center profile-info"><i className={gender}></i>
                             <div className="input-field col s12">
-                                <select defaultValue={this.state.genre} id="genre" onChange={this.handleChange}>
+                                <select defaultValue={this.state.gender} id="gender" onChange={this.handleChange}>
                                     <option value="Male">Homme</option>
                                     <option value="Female">Femme</option>
                                     <option value="Other">Secret</option>
