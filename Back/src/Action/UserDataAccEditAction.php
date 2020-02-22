@@ -31,7 +31,7 @@ final class UserDataAccEditAction
         if ($status = $this->checkAuth->check($userAuth))
           $result = ['status' => 0, 'error' => $status];
         else {
-          if ($data['interest'])
+          if (isset($data['interest']))
             $this->userDataAccEditor->checkInterest($data['interest'], $userAuth->id);
           $result = $this->userDataAccEditor->modifyData($user, $userAuth->id);
         }
