@@ -90,7 +90,7 @@ class Navbar extends Component {
             this.props.navUpdated();
             return true;
         }
-        return false;
+        return true;
     }
 
     componentWillUnmount() {
