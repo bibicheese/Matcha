@@ -29,7 +29,9 @@ class Chat extends Component {
     }
 
     componentDidMount() {
-        M.Tabs.init(this.Tabs);
+        if (this.Tabs) {
+            M.Tabs.init(this.Tabs);
+        }
         let rooms = get_rooms(this.props);
         console.log(rooms);
     }
@@ -44,7 +46,7 @@ class Chat extends Component {
                                 {/*<li className="tab col s3"><a href="#test1">Test 1</a></li>
                                 <li className="tab col s3"><a className="active" href="#test2">Test 2</a></li>
                                 <li className="tab col s3"><a href="#test3">Test 3</a></li>
-        <li className="tab col s3"><a href="#test4">Test 4</a></li>*/}
+                                <li className="tab col s3"><a href="#test4">Test 4</a></li>*/}
                             </ul>
                         </div>
                         <div id="test1" className="col s12">Test 1</div>
