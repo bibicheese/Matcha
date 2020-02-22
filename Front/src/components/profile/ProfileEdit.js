@@ -302,6 +302,7 @@ export class ProfileEdit extends Component {
             }
         }).catch(e => {console.log(e)});
         this.setCitiesList();
+        this.askForTags();
     }
 
     setCitiesList = () => {
