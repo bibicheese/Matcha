@@ -48,7 +48,7 @@ class Notifications extends Component {
                                     <span> { n.hour } </span>
                                 </div>
                                 <div className="card-content">{ n.msg }</div>
-                                <div className="notif-status" onClick={this.handleRead(n, index)}>{ status }</div>
+                                <div className="notif-status" onClick={() => {this.handleRead(n, index)}}>{ status }</div>
                             </div>
                         </div>
                     })
