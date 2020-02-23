@@ -73,35 +73,43 @@ class Chat extends Component {
     }
 
     componentDidMount() {
-        M.Tabs.init(this.Tabs);
+        if (this.state.rooms.length > 0)
+            M.Tabs.init(this.Tabs);
         let rooms = this.get_all_rooms(this.props);
         console.log(rooms);
     }
 
     render() {
+        var isThereRoom = this.state.rooms.length > 0;
+        var rooms_display = null;
+        if (isThereRoom) {
+            rooms_display = <div className="row">
+                                <div className="col s12">
+                                    <ul className="tabs tabs-fixed-width" ref={Tabs => {this.Tabs = Tabs;}}>
+                                        {
+                                            this.state.rooms.map(room => {
+                                                return <li className="tab col s3" key={room.login}><a href={ "#" + room.login }>{ room.firstname + " " + room.lastname }</a></li>
+                                            })
+                                        }
+                                        {/*<li className="tab col s3"><a href="#test1">Test 1</a></li>
+                                        <li className="tab col s3"><a className="active" href="#test2">Test 2</a></li>
+                                        <li className="tab col s3"><a href="#test3">Test 3</a></li>
+                                        <li className="tab col s3"><a href="#test4">Test 4</a></li>*/}
+                                    </ul>
+                                </div>
+                                <div className="room-container">
+                                    <div className="z-depth-3 col s12 room-wrapper">
+                                        <Room id="tutu" to="tutu"/>
+                                    </div>
+                                </div>
+                            </div>
+        } else {
+            rooms_display = null
+        }
         return (
             <div className="conv-anchor">
                 <div className="conv">
-                    <div className="row">
-                        <div className="col s12">
-                            <ul className="tabs tabs-fixed-width" ref={Tabs => {this.Tabs = Tabs;}}>
-                                {
-                                    this.state.rooms.map(room => {
-                                        return <li className="tab col s3" key={room.login}><a href={ "#" + room.login }>{ room.firstname + " " + room.lastname }</a></li>
-                                    })
-                                }
-                                {/*<li className="tab col s3"><a href="#test1">Test 1</a></li>
-                                <li className="tab col s3"><a className="active" href="#test2">Test 2</a></li>
-                                <li className="tab col s3"><a href="#test3">Test 3</a></li>
-                                <li className="tab col s3"><a href="#test4">Test 4</a></li>*/}
-                            </ul>
-                        </div>
-                        <div className="room-container">
-                            <div className="z-depth-3 col s12 room-wrapper">
-                                <Room id="tutu" to="tutu"/>
-                            </div>
-                        </div>
-                    </div>
+                    { rooms_display }
                 </div>
             </div>
         )
