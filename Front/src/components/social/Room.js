@@ -123,8 +123,8 @@ class Room extends Component {
                 <div className="divider center"></div>
                 <div className="field-wrapper">
                     <div className="input-field col s12">
-                        <input type="text" name="msg" id="msg" value={this.state.msg} onChange={(e) => {this.handleMsgUpdate(e)}} onKeyDown={(e) => {this.handleSend(e, 1)}}/>
-                        <label htmlFor="msg">Message</label>
+                        <input type="text" name="msg" id={"msg-" + this.state.to} value={this.state.msg} onChange={(e) => {this.handleMsgUpdate(e)}} onKeyDown={(e) => {this.handleSend(e, 1)}}/>
+                        <label htmlFor={"msg-" + this.state.to}>Message</label>
                     </div>
                     <div className="btn send" onClick={(e) => {this.handleSend(e, 0)}} onKeyDown={(e) => {this.handleSend(e, 1)}}><i className="far fa-paper-plane"></i></div>
                 </div>
