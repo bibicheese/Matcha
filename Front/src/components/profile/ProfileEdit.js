@@ -115,6 +115,7 @@ export class ProfileEdit extends Component {
                 M.toast({html : data.error, classes : "red"});
             } else {
                 M.toast({html : "Profile mis à jour :)", classes : "green"});
+                this.setState({});
             }
         }).catch(e => {console.log(e)})
     }
