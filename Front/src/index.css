@@ -620,6 +620,13 @@ code {
 .room-msg {
   min-height: 400px;
   height: 60vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  max-width: 50vw;
+  width: fit-content;
 }
 
 .field-wrapper {

@@ -6,17 +6,17 @@ class Message extends Component {
         super(props);
 
         this.state = {
-            content : this.props.msg,
-            from : this.props.from,
-            to : this.props.to,
-            uid : this.props.login,
+            content : props.msg,
+            from : props.from,
+            to : props.to,
+            uid : props.login,
         }
     }
 
     render() {
         const classOfChip = this.state.uid === this.state.to ? "receiver" : "sender";
         return (
-            <div className={ "chip " + classOfChip }>
+            <div className={ "chip message" + classOfChip }>
                 {this.content}
             </div>
         )
