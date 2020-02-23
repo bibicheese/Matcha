@@ -240,7 +240,7 @@ export class ProfileEdit extends Component {
     }
 
     deleteImageHelper = (index) => {
-        let images_new = this.state.images.filter((img, id) => { return id != index});
+        let images_new = this.state.images.filter((img, id) => { return id !== index});
         this.setState({
             images : images_new
         });
