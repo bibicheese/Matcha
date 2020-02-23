@@ -50,18 +50,19 @@ class UserLoggerRepository
       else {
         $token = bin2hex(openssl_random_pseudo_bytes(16, $truc));
         $id = $ret['id'];
-        
+
         $sql = "UPDATE users SET
         token_log = '$token'
         WHERE
         id = '$id'";
         $this->connection->query($sql);
-        
+
         return [
           'status' => 1,
           'success' => [
             'id' => $id,
             'token' => $token,
+            'login' => $ret['login'],
             'firstname' => $ret['firstname'],
             'lastname' => $ret['lastname']
           ]

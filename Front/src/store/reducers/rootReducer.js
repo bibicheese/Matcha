@@ -2,6 +2,7 @@ const initState = {
     auth : {
         uid : -1,
         key : null,
+        login : null,
         firstname : "",
         lastname : ""
     },
@@ -27,6 +28,7 @@ const rootReducer = (state = initState, action) => {
             auth : {
                 uid : -1,
                 key : null,
+                login : null,
                 firstname : "",
                 lastname : ""
             },
@@ -42,6 +44,7 @@ const rootReducer = (state = initState, action) => {
             auth : {
                 uid : action.payload.uid,
                 key : action.payload.key,
+                login : action.payload.login,
                 firstname : action.payload.firstname,
                 lastname : action.payload.lastname
             }

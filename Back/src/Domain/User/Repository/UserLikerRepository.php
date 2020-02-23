@@ -50,6 +50,16 @@ class UserLikerRepository
           'success' => 'Unliked.'
         ];
 
+        $sql_del = "DELETE FROM chat WHERE
+        sender = '$from_login'
+        AND
+        receiver = '$user->login'
+        OR
+        sender = '$user->login'
+        AND
+        receiver = '$from_login'";
+        $this->connection->query($sql_del);
+
         $sql_notif = "INSERT INTO notif SET
         sender = '$from_login',
         msg = \"$from_name ne s'interesse plus à vous.\",
@@ -136,6 +146,20 @@ class UserLikerRepository
             sender = '$from_login',
             msg = \"Vous venez de MATCH avec $from_name.\",
             receiver = '$user->login'";
+
+            $i = rand(0, 11);
+            $j = -1;
+            $file = fopen("../config/seed/DRAGUE.CSV", "r");
+            while ($j != $i) {
+              $msg = fgets($file);
+              $j++;
+            }
+            fclose($file);
+            $sql = "INSERT INTO chat SET
+            sender = '$from_login',
+            msg = '$msg',
+            receiver = '$user->login'";
+            $this->connection->query($sql);
 
         }
       }

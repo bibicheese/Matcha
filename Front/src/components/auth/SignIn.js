@@ -41,9 +41,10 @@ export class SignIn extends Component {
             const status = log_status.status ? true : false;
             var user = -1;
             if (status) {
+                console.log(response);
                 user = log_status.success.id;
                 let token = log_status.success.token;
-                this.props.authUser(user, token, log_status.success.firstname, log_status.success.lastname);
+                this.props.authUser(user, token, log_status.success.firstname, log_status.success.lastname, log_status.success.login);
                 this.props.history.push("/lucky");
                 //this.askForList(user, token);
             } else {
@@ -115,7 +116,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        authUser : (id, token, fname, lname) => { dispatch(authLogin(id, token, fname, lname)) },
+        authUser : (id, token, fname, lname, login) => { dispatch(authLogin(id, token, fname, lname, login)) },
         populateProfiles : (profiles) => { dispatch(getProfile(profiles)) }
     }
 }

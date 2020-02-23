@@ -13,8 +13,15 @@ export class Profile extends Component {
         };
     }
 
-    handleChat = () => {
-        M.toast({html : "Cette fonctionnalité n'est pas encore disponible.", classes: ""});
+    handleChat = (e) => {
+        if (e.nativeEvent.button === 1 || e.nativeEvent.button === 0) {
+            if (e.nativeEvent.button === 1) {
+                window.open("/socialRoom#" + this.state.profile.login, "_blank");
+            } else {
+                this.props.history.push("/socialRoom#" + this.state.profile.login);
+            }
+        }
+        //M.toast({html : "Cette fonctionnalité n'est pas encore disponible.", classes: ""});
     }
 
     handleReport = (e) => {
@@ -34,7 +41,6 @@ export class Profile extends Component {
     }
 
     handleLike = (e) => {
-        console.log(this.props);
         Axios.post("http://localhost:8080/api/like", {
             id : this.props.auth.uid,
             token : this.props.auth.key,
@@ -130,7 +136,7 @@ export class Profile extends Component {
                             <a href="#like" onClick={this.handleLike} className={"btn-floating btn-large waves-effect waves-light " + liked_style}>
                                 <i className={"fa" + (user_profile.match ? " fa-star " : user_profile.likedBy ? " fa-question " : " fa-heart ") + liked_icon_style} aria-hidden="true"></i>
                             </a>
-                            <a href="#!" className={ user_profile.match ? "btn-floating btn-large" : "btn-floating btn-large disabled" } onClick={this.handleChat}>
+                            <a href={ "/socialRoom#" + this.state.profile.login } className={ user_profile.match ? "btn-floating btn-large" : "btn-floating btn-large disabled" } onMouseDown={this.handleChat}>
                                 <i className="material-icons">message</i>
                             </a>
                             <a href="#!" className="btn-floating btn-large yellow darken-3" onClick={this.handleReport}>

@@ -238,9 +238,11 @@ export class ProfileEdit extends Component {
     initTags = () => {
         let tags = document.querySelectorAll('.chips');
         let autocomplete_data = {};
-        this.state.tags_server.map(tag => {
-            return autocomplete_data[tag] = null;
-        });
+        if (this.state.tags_server) {
+            this.state.tags_server.map(tag => {
+                return autocomplete_data[tag] = null;
+            });
+        }
 
         M.Chips.init(tags, {
             autocompleteOptions : {
@@ -334,6 +336,8 @@ export class ProfileEdit extends Component {
         
         let carousel = document.querySelector('.carousel');
         M.Carousel.init(carousel, {indicators:true});
+
+        this.initTags();
     }
 
     render() {

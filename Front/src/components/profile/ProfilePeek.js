@@ -24,8 +24,15 @@ export class ProfilePeek extends Component {
         };
     }
 
-    handleChat = () => {
-        M.toast({html : "Cette fonctionnalité n'est pas encore disponible.", classes: ""});
+    handleChat = (e) => {
+        if (e.nativeEvent.button === 1 || e.nativeEvent.button === 0) {
+            if (e.nativeEvent.button === 1) {
+                window.open("/socialRoom#" + this.state.login, "_blank");
+            } else {
+                this.props.history.push("/socialRoom"  + this.state.login);
+            }
+        }
+        //M.toast({html : "Cette fonctionnalité n'est pas encore disponible.", classes: ""});
     }
 
     handleLike = (e) => {
@@ -71,7 +78,7 @@ export class ProfilePeek extends Component {
                     <a href="#like" onClick={this.handleLike} className={"btn-floating btn-large waves-effect waves-light " + liked_style}>
                         <i className={"fa" + (this.state.match ? " fa-star " : this.state.likedBy ? " fa-question " : " fa-heart ") + liked_icon_style} aria-hidden="true"></i>
                     </a>
-                    <a href="#!" className={ this.state.match ? "btn-floating btn-large" : "btn-floating btn-large disabled" } onClick={this.state.match ? this.handleChat : null}>
+                    <a href={"/socialRoom#" + this.state.login} className={ this.state.match ? "btn-floating btn-large" : "btn-floating btn-large disabled" } onClick={this.state.match ? this.handleChat : null}>
                         <i className="material-icons">message</i>
                     </a>
                 </div>

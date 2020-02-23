@@ -12,6 +12,7 @@ import MatchList from './components/profile/MatchList';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Historic from './components/hist/Historic';
 import Notifications from './components/dashboard/Notifications';
+import Chat from './components/social/Chat';
 
 /*
 <ProtectedRoute path="/profiles/:user_id" component={Profile} />
@@ -34,6 +35,7 @@ class App extends Component {
             <ProtectedRoute path="/lucky" component={MatchList} />
             <ProtectedRoute exact path="/profile-admirer" component={Historic} />
             <ProtectedRoute exact path="/Center" component={Notifications} />
+            <ProtectedRoute exact path="/SocialRoom" component={Chat} />
             {/* <Route path="/profiles/:user_id" component={Profile} />
             <Route path="/profiles-list" component={ProfileList} />
             <Route path="/profile-edit" component={ProfileEdit} />

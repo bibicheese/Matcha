@@ -88,7 +88,7 @@ class db {
                 email VARCHAR(50) UNIQUE NOT NULL,
                 birth VARCHAR(30) DEFAULT NULL,
                 age INT DEFAULT 0,
-                gender VARCHAR(30) DEFAULT NULL,
+                gender VARCHAR(30) DEFAULT 'Male',
                 orientation VARCHAR(30) DEFAULT 'Bisexuel',
                 login VARCHAR(30) NOT NULL UNIQUE,
                 password VARCHAR(255) NOT NULL,
@@ -195,7 +195,7 @@ class db {
     $db->query("CREATE TABLE IF NOT EXISTS chat (
                 id INT UNIQUE AUTO_INCREMENT PRIMARY KEY,
                 sender VARCHAR(50) NOT NULL,
-                msg VARCHAR(1024) NOT NULL,
+                msg VARCHAR(1024) DEFAULT NULL,
                 receiver VARCHAR(50) NOT NULL,
                 reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
       }
