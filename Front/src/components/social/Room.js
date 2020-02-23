@@ -32,7 +32,8 @@ function get_message(props, to) {
                 /*console.log(response.data.success);
                 console.log("Updating conversation");*/
                 this.setState({
-                    content : response.data.success
+                    content : response.data.success,
+                    update : 1
                 });
             }
         } else {
@@ -53,6 +54,7 @@ class Room extends Component {
             from_login : props.auth.login,
             content : [],
             current_index : 0,
+            update : 1
         }
 
         this.snd_msg = send_message.bind(this);
@@ -85,10 +87,16 @@ class Room extends Component {
     }
 
     handleMsgDisplay = () => {
+        if (!this.state.update) {
+            return ;
+        }
         var display = [];
         this.state.content.map(msg => {
             display.push(<Message sender={msg.sender} uid={this.state.from_login} msg={msg.msg} key={msg.id}/>);
         });
+        this.setState({
+            update : 0
+        })
         return display;
     }
 
