@@ -58,8 +58,6 @@ class Room extends Component {
         this.snd_msg = send_message.bind(this);
         this.rcv_msg = get_message.bind(this);
         this.interval = setInterval(this.handleUpdateRoom, 2500);
-        console.log(this.state);
-        console.log(this.props);
     }
 
     handleUpdateRoom = () => {
@@ -81,10 +79,13 @@ class Room extends Component {
     handleMsgDisplay = () => {
         var display = [];
         this.state.content.map(msg => {
-            console.log(msg);
             display.push(<Message sender={msg.sender} uid={this.state.from_login} msg={msg.msg} key={msg.id}/>);
         });
         return display;
+    }
+
+    componentDidMount() {
+        this.handleUpdateRoom();
     }
 
     componentWillUnmount() {
