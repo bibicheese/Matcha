@@ -127,7 +127,7 @@ class Room extends Component {
                         <input type="text" name="msg" id="msg" value={this.state.msg} onChange={(e) => {this.handleMsgUpdate(e)}}/>
                         <label htmlFor="msg">Message</label>
                     </div>
-                    <div className="btn send" onClick={(e) => {this.handleSend(e, 0)}} onKeyDown={(e) => [this.handleSend(e, 1)]}><i className="far fa-paper-plane"></i></div>
+                    <div className="btn send" onClick={(e) => {this.handleSend(e, 0)}} onKeyDown={(e) => {this.handleSend(e, 1)}}><i className="far fa-paper-plane"></i></div>
                 </div>
             </div>
         )
