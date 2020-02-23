@@ -72,8 +72,6 @@ class Room extends Component {
     handleSend = (e, type) => {
         //console.log("sending : [" + this.state.msg + "]");
         if (type === 1) {
-            console.log(e);
-            console.log(e.key);
             if (e.key !== "Enter") {
                 return ;
             }
