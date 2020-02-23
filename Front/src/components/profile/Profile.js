@@ -136,7 +136,7 @@ export class Profile extends Component {
                             <a href="#like" onClick={this.handleLike} className={"btn-floating btn-large waves-effect waves-light " + liked_style}>
                                 <i className={"fa" + (user_profile.match ? " fa-star " : user_profile.likedBy ? " fa-question " : " fa-heart ") + liked_icon_style} aria-hidden="true"></i>
                             </a>
-                            <a href="#!" className={ user_profile.match ? "btn-floating btn-large" : "btn-floating btn-large disabled" } onClick={this.handleChat}>
+                            <a href="#!" className={ user_profile.match ? "btn-floating btn-large" : "btn-floating btn-large disabled" } onMouseDown={this.handleChat}>
                                 <i className="material-icons">message</i>
                             </a>
                             <a href="#!" className="btn-floating btn-large yellow darken-3" onClick={this.handleReport}>
