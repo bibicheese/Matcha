@@ -622,6 +622,11 @@ code {
   height: 60vh;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+}
+
+.message-wrapper {
+  width: 100%;
 }
 
 .message {
@@ -631,6 +636,7 @@ code {
 
 .foreign {
   background-color: #fbc2eb;
+  color: white;
   float: left;
 }
 
