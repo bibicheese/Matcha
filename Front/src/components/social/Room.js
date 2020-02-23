@@ -76,6 +76,7 @@ class Room extends Component {
                 return ;
             }
         }
+        if (this.state.msg === "") return ;
         this.snd_msg(this.props, this.state.to, this.state.msg);
         this.setState({
             msg : ""
@@ -115,7 +116,7 @@ class Room extends Component {
     render() {
         const msg_dp = this.state.display;
         return (
-            <div className="room">
+            <div className="room" id ={this.state.to}>
                 <div className="room-msg">
                     {msg_dp}
                 </div>
