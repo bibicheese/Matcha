@@ -40,6 +40,7 @@ final class GetRoom
 
         $i = 0;
         $check[] = $login;
+        $myConv = [];
         foreach ($ret as $key => $value) {
             if (!in_array($ret[$i]['receiver'], $check)) {
               $check[] = $ret[$i]['receiver'];
