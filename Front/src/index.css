@@ -647,10 +647,8 @@ code {
 
 .announcer {
   text-align: center;
-}
-
-.announcer-wrapper {
-  justify-content: center;
+  width: max-content;
+  margin: 0 auto;
 }
 
 .field-wrapper {
