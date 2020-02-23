@@ -46,7 +46,7 @@ class Chat extends Component {
     createRoom = (userId) => {
 
     }
-    
+
     componentDidMount() {
         if (this.state.rooms.length > 0)
             M.Tabs.init(this.Tabs);
@@ -76,7 +76,7 @@ class Chat extends Component {
                                     <div className="z-depth-3 col s12 room-wrapper">
                                         {
                                             this.state.rooms.map(room => {
-                                                return <Room to={room.login}/>
+                                                return <Room to={room.login} key={room.login}/>
                                             })
                                         }
                                     </div>

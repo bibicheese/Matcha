@@ -49,9 +49,10 @@ class Room extends Component {
         this.rcv_msg(this.props, this.state.to);
     }
 
-    handleSend = () => {
+    handleSend = (e) => {
         console.log("sending : [" + this.state.msg + "]");
         this.snd_msg(this.props, this.state.to, this.state.msg);
+        e.target.value = "";
     }
 
     handleMsgUpdate = (e) => {
@@ -76,7 +77,7 @@ class Room extends Component {
                         <input type="text" name="msg" id="msg" onChange={(e) => {this.handleMsgUpdate(e)}}/>
                         <label htmlFor="msg">Message</label>
                     </div>
-                    <div className="btn send" onClick={() => {this.handleSend()}}><i className="far fa-paper-plane"></i></div>
+                    <div className="btn send" onClick={(e) => {this.handleSend(e)}}><i className="far fa-paper-plane"></i></div>
                 </div>
             </div>
         )
