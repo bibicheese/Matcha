@@ -21,8 +21,7 @@ class ImagesDeleterRepository
         AND
         userid = '$id'";
         $this->connection->query($sql);
-        if (unlink($value))
-          return "yes";
+        unlink($value;
       }
       return ['status' => 1, 'success' => 'images deleted'];
     }
