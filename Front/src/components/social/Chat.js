@@ -35,6 +35,7 @@ class Chat extends Component {
     // rooms : [login, firstname, lastname]
     state = {
         rooms : [],
+        tab_active : 0,
     }
 
     constructor(props) {
@@ -51,6 +52,15 @@ class Chat extends Component {
         if (this.state.rooms.length > 0)
             M.Tabs.init(this.Tabs);
         this.get_all_rooms(this.props);
+    }
+
+    componentDidUpdate() {
+        if (this.state.tab_active === 0 && this.state.rooms.length > 0){
+            M.Tabs.init(this.Tabs);
+            this.setState({
+                tab_active : 1
+            })
+        }
     }
 
     render() {
