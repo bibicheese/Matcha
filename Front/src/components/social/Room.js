@@ -16,7 +16,7 @@ class Room extends Component {
     }
 
     handleSend = () => {
-        console.log("sending : [" + this.msg + "]");
+        console.log("sending : [" + this.state.msg + "]");
     }
 
     handleMsgUpdate = (e) => {
