@@ -94,8 +94,8 @@ class Chat extends Component {
                                 <li className="tab col s3"><a href="#test4">Test 4</a></li>*/}
                             </ul>
                         </div>
-                        <div className="room-container z-depth-3 col s12">
-                            <div className="">
+                        <div className="room-container">
+                            <div className="z-depth-3 col s12 room-wrapper">
                                 <Room />
                                 <div id="test1" className="col s12">Test 1</div>
                                 <div id="2" className="col s12">Test 2</div>

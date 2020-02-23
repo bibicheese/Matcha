@@ -605,5 +605,9 @@ code {
 
 .room-container {
   margin: 0 0.75rem;
+}
+
+.room-wrapper {
   background-color: white;
+  width: 100%;
 }
