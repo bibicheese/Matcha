@@ -629,6 +629,10 @@ code {
   width: fit-content;
 }
 
+.sender {
+  background-color: #fbc2eb;
+}
+
 .field-wrapper {
   display: flex;
   flex-direction: row;
