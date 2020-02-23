@@ -29,7 +29,7 @@ function get_message(props, to) {
     }).then(response => {
         if (response.data.status === 1) {
             if (JSON.stringify(response.data.success) !== JSON.stringify(this.state.content)) {
-                console.log(response.data.success);
+                //console.log(response.data.success);
                 /*console.log("Updating conversation");*/
                 this.setState({
                     content : response.data.success,
