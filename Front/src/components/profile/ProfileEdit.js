@@ -115,7 +115,9 @@ export class ProfileEdit extends Component {
                 M.toast({html : data.error, classes : "red"});
             } else {
                 M.toast({html : "Profile mis à jour :)", classes : "green"});
-                this.setState({});
+                this.setState({
+                    crazy : "right"
+                });
             }
         }).catch(e => {console.log(e)})
     }
@@ -167,6 +169,7 @@ export class ProfileEdit extends Component {
     uploadProfile = (e) => {
         var imagefile = document.querySelector('#profil_pic');
 
+        if (imagefile.files.length < 1) return ;
         var idxDot = imagefile.files[0].name.lastIndexOf(".") + 1;
         var extFile = imagefile.files[0].name.substr(idxDot, imagefile.files[0].name.length).toLowerCase();
         if (!(extFile === "jpg" || extFile === "jpeg" || extFile === "png" || extFile === "svg" || extFile === "gif")) {
