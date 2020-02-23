@@ -7,12 +7,34 @@ class Room extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            msg : "",
+            to : props.to,
+            from : props.auth.uid
+        }
+    }
+
+    handleSend = () => {
+        console.log("sending : [" + this.msg + "]");
+    }
+
+    handleMsgUpdate = (e) => {
+        this.setState({
+            msg : e.target.value
+        });
     }
 
     render() {
         return (
             <div className="room">
-                
+                <div className="room-msg">
+
+                </div>
+                <div className="input-field">
+                    <input type="text" name="msg" id="msg" onChange={(e) => {this.handleMsgUpdate(e)}}/>
+                    <div className="btn btn-large" onClick={() => {this.handleSend()}}><i className="far fa-paper-plane"></i></div>
+                </div>
             </div>
         )
     }

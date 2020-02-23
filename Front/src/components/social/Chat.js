@@ -83,21 +83,20 @@ class Chat extends Component {
                     <div className="row">
                         <div className="col s12">
                             <ul className="tabs tabs-fixed-width" ref={Tabs => {this.Tabs = Tabs;}}>
-                                <li className="tab col s3"><a href="#test1">Test 1</a></li>
                                 {
                                     this.state.rooms.map(room => {
                                         return <li className="tab col s3" key={room.login}><a href={ "#" + room.login }>{ room.firstname + " " + room.lastname }</a></li>
                                     })
                                 }
-                                {/*<li className="tab col s3"><a className="active" href="#test2">Test 2</a></li>
+                                {/*<li className="tab col s3"><a href="#test1">Test 1</a></li>
+                                <li className="tab col s3"><a className="active" href="#test2">Test 2</a></li>
                                 <li className="tab col s3"><a href="#test3">Test 3</a></li>
                                 <li className="tab col s3"><a href="#test4">Test 4</a></li>*/}
                             </ul>
                         </div>
                         <div className="room-container">
                             <div className="z-depth-3 col s12 room-wrapper">
-                                <Room />
-                                <div id="test1" className="col s12">Test 1</div>
+                                <Room to="tutu"/>
                                 <div id="2" className="col s12">Test 2</div>
                                 <div id="3" className="col s12">Test 3</div>
                                 <div id="4" className="col s12">Test 4</div>
