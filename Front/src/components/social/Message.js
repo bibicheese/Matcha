@@ -16,7 +16,7 @@ class Message extends Component {
     render() {
         const classOfChip = this.state.uid === this.state.to ? "receiver" : "sender";
         return (
-            <div className={ "chip message" + classOfChip }>
+            <div className={ "chip message " + classOfChip }>
                 {this.state.content}
             </div>
         )
