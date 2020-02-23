@@ -344,7 +344,7 @@ export class ProfileEdit extends Component {
     render() {
         var i = 0;
         const user_profile = this.state.profile;
-        var homo, hetero, wants, sex, pictures, gender = null;
+        var homo, hetero, wants, sex, pictures, pictures_ui, gender = null;
 
         if (user_profile) {
             sex = user_profile.gender;
@@ -366,6 +366,16 @@ export class ProfileEdit extends Component {
                     })}
                 </div>
             ) : null;
+            pictures_ui = user_profile.images.length ? (
+                <div className="pictures-ui">
+                    {user_profile.images.map((image, index) => {
+                        return (// eslint-disable-next-line
+                            <div className="btn red" onClick={() => {console.log("You want to delete img #" + index)}}/>
+                            //<a key={index} className="carousel-item images"><img src={"http://localhost:8080/" + image['link']} alt="Some stuff"/></a>
+                        )
+                    })}
+                </div>
+            ): null;
         }
         const page = user_profile ? (
         (
@@ -478,6 +488,7 @@ export class ProfileEdit extends Component {
                                 <input className="file-path validate" type="text" />
                             </div>
                         </div>
+                        {pictures_ui}
                         {pictures}
                     </div>
                 </form>
