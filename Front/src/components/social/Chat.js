@@ -96,10 +96,7 @@ class Chat extends Component {
                         </div>
                         <div className="room-container">
                             <div className="z-depth-3 col s12 room-wrapper">
-                                <Room to="tutu"/>
-                                <div id="2" className="col s12">Test 2</div>
-                                <div id="3" className="col s12">Test 3</div>
-                                <div id="4" className="col s12">Test 4</div>
+                                <Room id="tutu" to="tutu"/>
                             </div>
                         </div>
                     </div>
