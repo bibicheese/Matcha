@@ -258,7 +258,7 @@ export class ProfileEdit extends Component {
             })
             .then(function (response) {
                 //handle success
-                console.log(response);
+                //console.log(response);
                 let status = response.data.status;
                 if (status === 0) {
                     M.toast({ html: response.data.error, classes : "red"});
