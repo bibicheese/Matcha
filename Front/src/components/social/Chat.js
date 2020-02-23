@@ -12,10 +12,6 @@ function get_rooms(props) {
         console.log(response);
         if (response.data.status === 1) {
             if (response.data.success === null) return ;
-            let tab = [];
-            response.data.success.forEach(element => {
-                console.log(element);
-            });
             this.setState({
                 rooms : [...this.state.rooms, ...response.data.success]
             });
