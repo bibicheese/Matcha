@@ -54,7 +54,8 @@ class Room extends Component {
             from_login : props.auth.login,
             content : [],
             current_index : 0,
-            update : 1
+            update : 1,
+            display : []
         }
 
         this.snd_msg = send_message.bind(this);
@@ -65,6 +66,7 @@ class Room extends Component {
     handleUpdateRoom = () => {
         //console.log("Update message in progress");
         this.rcv_msg(this.props, this.state.to);
+        this.handleMsgDisplay();
     }
 
     handleSend = (e, type) => {
@@ -95,9 +97,9 @@ class Room extends Component {
             display.push(<Message sender={msg.sender} uid={this.state.from_login} msg={msg.msg} key={msg.id}/>);
         });
         this.setState({
+            display,
             update : 0
         })
-        return display;
     }
 
     componentDidMount() {
@@ -109,7 +111,7 @@ class Room extends Component {
     }
 
     render() {
-        const msg_dp = this.handleMsgDisplay();
+        const msg_dp = this.state.display;
         return (
             <div className="room">
                 <div className="room-msg">
