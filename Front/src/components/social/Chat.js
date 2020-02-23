@@ -21,26 +21,6 @@ function get_rooms(props) {
     });
 }
 
-function send_message(props, to, msg) {
-    Axios.post("http://localhost:8080/api/send_message", {
-        id : props.auth.uid,
-        token : props.auth.key,
-        to,
-        msg
-    }).then(response => {
-        console.log(response);
-    });
-}
-
-function get_message(props, to) {
-    Axios.post("http://localhost:8080/api/get_conv", {
-        id : props.auth.uid,
-        token : props.auth.key,
-        to,
-    }).then(response => {
-        console.log(response);
-    });
-}
 /*
 rooms : [
     {login : 1, firstname : "Laure", lastname : "Varich"},
@@ -104,7 +84,11 @@ class Chat extends Component {
                                 </div>
                                 <div className="room-container">
                                     <div className="z-depth-3 col s12 room-wrapper">
-                                        <Room id="tutu" to="tutu"/>
+                                        {
+                                            this.state.rooms.map(room => {
+                                                return <Room to={room.login}/>
+                                            })
+                                        }
                                     </div>
                                 </div>
                             </div>
