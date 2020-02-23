@@ -106,7 +106,7 @@ class Room extends Component {
     }
 
     scrollToBottom = () => {
-        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+        this.messagesEnd.current.scrollIntoView({ behavior: "smooth" });
     }
 
     componentDidMount() {
