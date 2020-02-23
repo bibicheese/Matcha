@@ -10,6 +10,7 @@ function get_rooms(props) {
         token : props.auth.key
     }).then(response => {
         console.log(response);
+        if (this.state.rooms === null) return ;
         this.setState({
             rooms : [...this.state.rooms, ...response.data.success]
         });
