@@ -105,10 +105,13 @@ class Room extends Component {
             display
         });
     }
+    
+    componentWillReceiveProps(newProps) {
+        console.log(newProps);
+    }
 
     scrollToBottom = () => {
         this.messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-        console.log("hi ?");
     }
 
     componentDidMount() {
