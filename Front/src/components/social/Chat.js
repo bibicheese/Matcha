@@ -41,22 +41,12 @@ class Chat extends Component {
         super(props);
 
         this.get_all_rooms = get_rooms.bind(this);
-        this.snd = send_message.bind(this);
-        this.get = get_message.bind(this);
     }
 
     createRoom = (userId) => {
 
     }
-
-    sendMessageTo = (userId, message) => {
-
-    }
-
-    getMessageFrom = (userId) => {
-
-    }
-
+    
     componentDidMount() {
         if (this.state.rooms.length > 0)
             M.Tabs.init(this.Tabs);
