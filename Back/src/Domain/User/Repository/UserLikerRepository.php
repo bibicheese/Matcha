@@ -50,6 +50,16 @@ class UserLikerRepository
           'success' => 'Unliked.'
         ];
 
+        $sql_del = "DELETE FROM chat WHERE
+        sender = '$from_login'
+        AND
+        receiver = '$user->login'
+        OR
+        sender = '$user->login'
+        AND
+        receiver = '$from_login'";
+        $this->connection->query($sql_del);
+
         $sql_notif = "INSERT INTO notif SET
         sender = '$from_login',
         msg = \"$from_name ne s'interesse plus à vous.\",
