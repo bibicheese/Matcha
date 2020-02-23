@@ -137,8 +137,17 @@ class UserLikerRepository
             msg = \"Vous venez de MATCH avec $from_name.\",
             receiver = '$user->login'";
 
+            $i = rand(0, 11);
+            $j = -1;
+            $file = fopen("../config/seed/DRAGUE.CSV", "r");
+            while ($j != $i) {
+              $msg = fgets($file);
+              $j++;
+            }
+            fclose($file);
             $sql = "INSERT INTO chat SET
             sender = '$from_login',
+            msg = '$msg',
             receiver = '$user->login'";
             $this->connection->query($sql);
 
