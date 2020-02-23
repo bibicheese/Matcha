@@ -262,7 +262,7 @@ export class ProfileEdit extends Component {
                     return ;
                 } else {
                     M.toast({ html: "Image supprimée.", classes : "green"});
-                    deleteImageHelper(index);
+                    this.deleteImageHelper(index);
                 }
             })
             .catch(function (response) {
