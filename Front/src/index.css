@@ -633,6 +633,7 @@ code {
 .message {
   max-width: 50vw;
   width: fit-content;
+  height: fit-content !important;
 }
 
 .foreign {
