@@ -82,7 +82,7 @@ class Room extends Component {
         var display = [];
         this.state.content.map(msg => {
             console.log(msg);
-            display.push(<Message sender={msg.sender} uid={this.state.login} msg={msg.msg} key={msg.id}/>);
+            display.push(<Message sender={msg.sender} uid={this.state.from_login} msg={msg.msg} key={msg.id}/>);
         });
         return display;
     }
