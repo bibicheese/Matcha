@@ -25,9 +25,6 @@ export class ProfileEdit extends Component {
             places : [],
             cityIsValid : true
         };
-
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.uploadImage = this.uploadImage.bind(this);
     }
 
     handleChange = (e) => {
@@ -118,7 +115,6 @@ export class ProfileEdit extends Component {
                 M.toast({html : data.error, classes : "red"});
             } else {
                 M.toast({html : "Profile mis à jour :)", classes : "green"});
-                this.setState({ state : this.state});
             }
         }).catch(e => {console.log(e)})
     }
@@ -232,7 +228,6 @@ export class ProfileEdit extends Component {
                     return ;
                 } else {
                     M.toast({ html: "Image ajoutée. Merci de rafraichir la page pour voir les changements", classes : "green"});
-                    this.setState({ state : this.state});
                 }
             })
             .catch(function (response) {
