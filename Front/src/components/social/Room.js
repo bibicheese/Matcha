@@ -72,6 +72,8 @@ class Room extends Component {
     handleSend = (e, type) => {
         //console.log("sending : [" + this.state.msg + "]");
         if (type === 1) {
+            console.log(e);
+            console.log(e.key);
             if (e.key !== "Enter") {
                 return ;
             }
@@ -93,10 +95,10 @@ class Room extends Component {
         let index_up = this.state.current_index;
         if (this.state.content.length <= index_up) index_up = 0; 
         this.state.content.forEach((msg, index) => {
-            if (index_up <= index) {
+            //if (index_up <= index) {
                 display.push(<Message sender={msg.sender} uid={this.state.from_login} msg={msg.msg} key={msg.id}/>);
                 index_up = index;
-            }
+            //}
         });
         this.setState({
             current_index : index_up
