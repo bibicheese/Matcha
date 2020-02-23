@@ -24,7 +24,7 @@ export class ProfilePeek extends Component {
         };
     }
 
-    handleChat = () => {
+    handleChat = (e) => {
         if (e.nativeEvent.button === 1 || e.nativeEvent.button === 0) {
             if (e.nativeEvent.button === 1) {
                 window.open("/socialRoom/", "_blank");
