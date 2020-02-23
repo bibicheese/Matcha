@@ -57,6 +57,7 @@ class Room extends Component {
         this.snd_msg = send_message.bind(this);
         this.rcv_msg = get_message.bind(this);
         this.interval = setInterval(this.handleUpdateRoom, 2500);
+        console.log(this.state);
     }
 
     handleUpdateRoom = () => {
