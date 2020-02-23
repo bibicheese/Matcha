@@ -89,17 +89,17 @@ class Room extends Component {
     }
 
     handleMsgDisplay = () => {
-        if (!this.state.update) {
-            return ;
-        }
         var display = [];
-        this.state.content.map(msg => {
+        let index_up = this.state.current_index;
+        if (this.state.content.length <= index_up) index_up = 0; 
+        this.state.content.map((msg, index) => {
+            if (index_up > index) continue ;
             display.push(<Message sender={msg.sender} uid={this.state.from_login} msg={msg.msg} key={msg.id}/>);
+            index_up = index;
         });
         this.setState({
-            display,
-            update : 0
-        })
+            current_index : index_up
+        });
     }
 
     componentDidMount() {
@@ -120,10 +120,10 @@ class Room extends Component {
                 <div className="divider center"></div>
                 <div className="field-wrapper">
                     <div className="input-field col s12">
-                        <input type="text" name="msg" id="msg" onChange={(e) => {this.handleMsgUpdate(e)}}/>
+                        <input type="text" name="msg" id="msg" value={this.state.msg} onChange={(e) => {this.handleMsgUpdate(e)}}/>
                         <label htmlFor="msg">Message</label>
                     </div>
-                    <div className="btn send" value={this.state.msg} onClick={(e) => {this.handleSend(e, 0)}} onKeyDown={(e) => [this.handleSend(e, 1)]}><i className="far fa-paper-plane"></i></div>
+                    <div className="btn send" onClick={(e) => {this.handleSend(e, 0)}} onKeyDown={(e) => [this.handleSend(e, 1)]}><i className="far fa-paper-plane"></i></div>
                 </div>
             </div>
         )
