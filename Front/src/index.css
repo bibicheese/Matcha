@@ -647,6 +647,7 @@ code {
 
 .announcer {
   text-align: center;
+  margin: 0 auto;
 }
 
 .field-wrapper {
