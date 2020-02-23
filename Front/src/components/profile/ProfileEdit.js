@@ -115,9 +115,7 @@ export class ProfileEdit extends Component {
                 M.toast({html : data.error, classes : "red"});
             } else {
                 M.toast({html : "Profile mis à jour :)", classes : "green"});
-                this.setState({
-                    crazy : "right"
-                });
+                this.forceUpdate();
             }
         }).catch(e => {console.log(e)})
     }
@@ -194,7 +192,7 @@ export class ProfileEdit extends Component {
                     return ;
                 } else {
                     M.toast({ html: "Image de profile ajoutée.", classes : "green"});
-                    console.log(response.data.success);
+                    //console.log(response.data.success);
                     document.getElementById("profil_pic_trigger").setAttribute("src", "http://localhost:8080/" + response.data.success);
                 }
             })
@@ -231,6 +229,7 @@ export class ProfileEdit extends Component {
                     return ;
                 } else {
                     M.toast({ html: "Image ajoutée. Merci de rafraichir la page pour voir les changements", classes : "green"});
+                    this.forceUpdate();
                 }
             })
             .catch(function (response) {
