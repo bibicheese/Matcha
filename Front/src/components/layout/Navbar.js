@@ -14,7 +14,8 @@ class Navbar extends Component {
         super(props);
 
         this.state = {
-            needs_update : 1
+            needs_update : 1,
+            activated : 0
         };
     }
 
@@ -27,8 +28,12 @@ class Navbar extends Component {
         };
         M.Sidenav.init(this.Sidenav, options);
 
-        if (this.props.auth.uid !== -1)
+        if (this.props.auth.uid !== -1) {
             this.interval = setInterval(this.handleNotifUpdate, 2500);
+            this.setState({
+                activated : 1
+            });
+        }
     }
 
     handleNav = () => {
@@ -82,6 +87,15 @@ class Navbar extends Component {
                 })
             }
         });
+    }
+
+    componentDidUpdate() {
+        if (this.state.activated === 0) {
+            this.interval = setInterval(this.handleNotifUpdate, 2500);
+            this.setState({
+                activated : 1
+            });
+        }
     }
 
     componentWillUnmount() {
