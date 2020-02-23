@@ -265,13 +265,13 @@ export class ProfileEdit extends Component {
                     return ;
                 } else {
                     M.toast({ html: "Image supprimée.", classes : "green"});
-                    this.deleteImageHelper(index);
                 }
             })
             .catch(function (response) {
                 //handle error
                 console.log(response);
         });
+        this.deleteImageHelper(index);
     }
 
     initTags = () => {
