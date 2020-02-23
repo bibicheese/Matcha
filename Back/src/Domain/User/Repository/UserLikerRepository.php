@@ -137,6 +137,11 @@ class UserLikerRepository
             msg = \"Vous venez de MATCH avec $from_name.\",
             receiver = '$user->login'";
 
+            $sql = "INSERT INTO chat SET
+            sender = '$from_login',
+            receiver = '$user->login'";
+            $this->connection->query($sql);
+
         }
       }
       $this->connection->query($sql_notif);

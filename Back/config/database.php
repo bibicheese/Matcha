@@ -195,7 +195,7 @@ class db {
     $db->query("CREATE TABLE IF NOT EXISTS chat (
                 id INT UNIQUE AUTO_INCREMENT PRIMARY KEY,
                 sender VARCHAR(50) NOT NULL,
-                msg VARCHAR(1024) NOT NULL,
+                msg VARCHAR(1024) DEFAULT NULL,
                 receiver VARCHAR(50) NOT NULL,
                 reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
       }
