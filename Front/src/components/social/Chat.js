@@ -61,6 +61,7 @@ class Chat extends Component {
                 tab_active : 1
             })
         }
+        console.log(this.state.rooms);
     }
 
     render() {
