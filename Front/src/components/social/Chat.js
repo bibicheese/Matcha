@@ -54,7 +54,7 @@ class Chat extends Component {
 
     // rooms : [login, firstname, lastname]
     state = {
-        rooms : []
+        rooms : [],
     }
 
     constructor(props) {
