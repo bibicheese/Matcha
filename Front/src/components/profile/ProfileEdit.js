@@ -26,7 +26,8 @@ export class ProfileEdit extends Component {
             cityIsValid : true
         };
 
-        this.del = this.deleteImage.bind(this);
+        this.deleteImageHelper = this.deleteImageHelper.bind(this);
+        this.deleteImage = this.deleteImage.bind(this);
     }
 
     handleChange = (e) => {
