@@ -645,6 +645,10 @@ code {
   float: right;
 }
 
+.announcer {
+  text-align: center;
+}
+
 .field-wrapper {
   display: flex;
   flex-direction: row;
