@@ -42,6 +42,7 @@ class Chat extends Component {
         super(props);
 
         this.get_all_rooms = get_rooms.bind(this);
+        console.log(props);
     }
 
     createRoom = (userId) => {
