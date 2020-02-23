@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import M from 'materialize-css';
 import Axios from 'axios';
 import { connect } from 'react-redux';
+import Message from './Message';
 
 function send_message(props, to, msg) {
     Axios.post("http://localhost:8080/api/send_message", {
@@ -28,8 +29,8 @@ function get_message(props, to) {
     }).then(response => {
         if (response.data.status === 1) {
             if (JSON.stringify(response.data.success) !== JSON.stringify(this.state.content)) {
-                console.log(response.data.success);
-                console.log("Updating conversation");
+                /*console.log(response.data.success);
+                console.log("Updating conversation");*/
                 this.setState({
                     content : response.data.success
                 });
@@ -59,12 +60,12 @@ class Room extends Component {
     }
 
     handleUpdateRoom = () => {
-        console.log("Update message in progress");
+        //console.log("Update message in progress");
         this.rcv_msg(this.props, this.state.to);
     }
 
     handleSend = (e) => {
-        console.log("sending : [" + this.state.msg + "]");
+        //console.log("sending : [" + this.state.msg + "]");
         this.snd_msg(this.props, this.state.to, this.state.msg);
     }
 
@@ -74,11 +75,21 @@ class Room extends Component {
         });
     }
 
+    handleMsgDisplay = () => {
+        var display = [];
+        this.state.content.map(msg => {
+            console.log(msg);
+            //display.push(<Message to={msg.to} from={this./>);
+        });
+        return display;
+    }
+
     componentWillUnmount() {
         clearInterval(this.interval);
     }
 
     render() {
+        const msg_dp = this.handleMsgDisplay();
         return (
             <div className="room">
                 <div className="room-msg">

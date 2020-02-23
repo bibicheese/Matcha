@@ -9,7 +9,7 @@ function get_rooms(props) {
         id : props.auth.uid,
         token : props.auth.key
     }).then(response => {
-        console.log(response);
+        //console.log(response);
         if (response.data.status === 1) {
             if (response.data.success === null) return ;
             this.setState({
@@ -50,8 +50,7 @@ class Chat extends Component {
     componentDidMount() {
         if (this.state.rooms.length > 0)
             M.Tabs.init(this.Tabs);
-        let rooms = this.get_all_rooms(this.props);
-        console.log(rooms);
+        this.get_all_rooms(this.props);
     }
 
     render() {
