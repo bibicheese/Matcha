@@ -59,6 +59,7 @@ class Room extends Component {
         this.rcv_msg = get_message.bind(this);
         this.interval = setInterval(this.handleUpdateRoom, 2500);
         console.log(this.state);
+        console.log(this.props);
     }
 
     handleUpdateRoom = () => {
