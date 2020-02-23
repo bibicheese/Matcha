@@ -25,7 +25,14 @@ export class ProfilePeek extends Component {
     }
 
     handleChat = () => {
-        M.toast({html : "Cette fonctionnalité n'est pas encore disponible.", classes: ""});
+        if (e.nativeEvent.button === 1 || e.nativeEvent.button === 0) {
+            if (e.nativeEvent.button === 1) {
+                window.open("/socialRoom/", "_blank");
+            } else {
+                this.props.history.push("/socialRoom");
+            }
+        }
+        //M.toast({html : "Cette fonctionnalité n'est pas encore disponible.", classes: ""});
     }
 
     handleLike = (e) => {
