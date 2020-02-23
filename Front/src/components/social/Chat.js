@@ -9,7 +9,7 @@ function get_rooms(props) {
         id : props.auth.uid,
         token : props.auth.key
     }).then(response => {
-        console.log(response);
+        //console.log(response);
         if (response.data.status === 1) {
             if (response.data.success === null) return ;
             let array = response.data.success;
@@ -62,7 +62,7 @@ class Chat extends Component {
                 tab_active : 1
             })
         }
-        console.log(this.state.rooms);
+        //console.log(this.state.rooms);
     }
 
     render() {

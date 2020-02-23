@@ -13,8 +13,15 @@ export class Profile extends Component {
         };
     }
 
-    handleChat = () => {
-        M.toast({html : "Cette fonctionnalité n'est pas encore disponible.", classes: ""});
+    handleChat = (e) => {
+        if (e.nativeEvent.button === 1 || e.nativeEvent.button === 0) {
+            if (e.nativeEvent.button === 1) {
+                window.open("/socialRoom#" + this.state.login, "_blank");
+            } else {
+                this.props.history.push("/socialRoom#" + this.state.login);
+            }
+        }
+        //M.toast({html : "Cette fonctionnalité n'est pas encore disponible.", classes: ""});
     }
 
     handleReport = (e) => {
@@ -34,7 +41,6 @@ export class Profile extends Component {
     }
 
     handleLike = (e) => {
-        console.log(this.props);
         Axios.post("http://localhost:8080/api/like", {
             id : this.props.auth.uid,
             token : this.props.auth.key,

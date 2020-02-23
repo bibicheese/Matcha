@@ -27,9 +27,9 @@ export class ProfilePeek extends Component {
     handleChat = (e) => {
         if (e.nativeEvent.button === 1 || e.nativeEvent.button === 0) {
             if (e.nativeEvent.button === 1) {
-                window.open("/socialRoom/", "_blank");
+                window.open("/socialRoom#" + this.state.login, "_blank");
             } else {
-                this.props.history.push("/socialRoom");
+                this.props.history.push("/socialRoom"  + this.state.login);
             }
         }
         //M.toast({html : "Cette fonctionnalité n'est pas encore disponible.", classes: ""});
