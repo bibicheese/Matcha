@@ -370,7 +370,7 @@ export class ProfileEdit extends Component {
                 <div className="pictures-ui">
                     {user_profile.images.map((image, index) => {
                         return (// eslint-disable-next-line
-                            <div className="btn red" onClick={() => {console.log("You want to delete img #" + index)}}/>
+                            <div className="btn red picture_ui" onClick={() => {console.log("You want to delete img #" + index)}}><i className="fas fa-times white"></i></div>
                             //<a key={index} className="carousel-item images"><img src={"http://localhost:8080/" + image['link']} alt="Some stuff"/></a>
                         )
                     })}
@@ -488,8 +488,8 @@ export class ProfileEdit extends Component {
                                 <input className="file-path validate" type="text" />
                             </div>
                         </div>
-                        {pictures_ui}
-                        {pictures}
+                        { pictures_ui }
+                        { pictures }
                     </div>
                 </form>
             </div>
