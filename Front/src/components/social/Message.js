@@ -14,6 +14,7 @@ class Message extends Component {
 
     render() {
         const classOfChip = this.state.uid === this.state.sender ? "own" : "foreign";
+        console.log(this.state);
         return (
             <div className={ "chip message " + classOfChip }>
                 {this.state.content}
