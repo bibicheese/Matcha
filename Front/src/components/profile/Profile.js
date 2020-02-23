@@ -89,7 +89,6 @@ export class Profile extends Component {
         var wants, sex, pictures, arr, liked_style, liked_icon_style, gender, gender_display, status, status_class = null;
         if (user_profile) {
             
-            console.log(user_profile);
             sex = user_profile.gender;
             
             let homo = sex === "Male" ? "fas fa-mars-double" : "fas fa-venus-double";

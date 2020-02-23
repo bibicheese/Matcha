@@ -19,7 +19,7 @@ function hasTag(tags, profile) {
   let ok = false;
   if (tags.length === 0) return true;
   tags.forEach(tag => {
-    if (profile.tags.includes(tag)) {
+    if (profile.tags && profile.tags.includes(tag)) {
       ok = true;
     }
   });
