@@ -233,11 +233,38 @@ export class ProfileEdit extends Component {
             .catch(function (response) {
                 //handle error
                 console.log(response);
-            });
+        });
     }
 
     deleteImage = (e, image, index) => {
-        console.log("You want to delete img #" + index)
+        Axios({
+            method: 'post',
+            url: 'http://localhost:8080/api/delete_images',
+            data: {
+                id : this.props.auth.uid,
+                token : this.props.auth.key,
+                images : image
+            }
+            })
+            .then(function (response) {
+                //handle success
+                console.log(response);
+                let status = response.data.status;
+                if (status === 0) {
+                    M.toast({ html: response.data.error, classes : "red"});
+                    return ;
+                } else {
+                    M.toast({ html: "Image supprimée.", classes : "green"});
+                    let images_new = this.state.images.filter((img, id) => { return id != index});
+                    this.setState({
+                        images : images_new
+                    });
+                }
+            })
+            .catch(function (response) {
+                //handle error
+                console.log(response);
+        });
     }
 
     initTags = () => {
@@ -351,28 +378,28 @@ export class ProfileEdit extends Component {
         var homo, hetero, wants, sex, pictures, pictures_ui, gender = null;
 
         if (user_profile) {
-            sex = user_profile.gender;
+            sex = this.state.gender;
 
             homo = sex === "Male" ? "fas fa-mars-double" : "fas fa-venus-double";
             hetero = sex === "Male" ? "fas fa-venus" : "fas fa-mars";
 
-            wants = user_profile.orientation === "Bisexual" ? "fas fa-venus-mars" : user_profile.orientation === "Hétérosexuel" ? hetero : homo;
+            wants = user_profile.orientation === "Bisexual" ? "fas fa-venus-mars" : this.state.orientation === "Hétérosexuel" ? hetero : homo;
             wants += " sweet_pink";
             gender = sex === "Male" ? "fas fa-mars" : "fas fa-venus";
 
-            pictures = user_profile.images.length ? (
+            pictures = this.state.images.length ? (
                 <div className="carousel">
                 <h5 className="center">Petit aperçu de moi ;)</h5>
-                    {user_profile.images.map((image, index) => {
+                    {this.state.images.map((image, index) => {
                         return (// eslint-disable-next-line
                             <a key={index} className="carousel-item images"><img src={"http://localhost:8080/" + image['link']} alt="Some stuff"/></a>
                         )
                     })}
                 </div>
             ) : null;
-            pictures_ui = user_profile.images.length ? (
+            pictures_ui = this.state.images.length ? (
                 <div className="pictures-ui">
-                    {user_profile.images.map((image, index) => {
+                    {this.state.images.map((image, index) => {
                         return (// eslint-disable-next-line
                             <div className="btn red picture_ui" key={image + "-index:" + index} onClick={(e) => { this.deleteImage(e, image, index); }}> {index} <i className="fas fa-times white-text"></i></div>
                             //<a key={index} className="carousel-item images"><img src={"http://localhost:8080/" + image['link']} alt="Some stuff"/></a>
