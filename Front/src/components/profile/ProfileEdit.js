@@ -300,7 +300,7 @@ export class ProfileEdit extends Component {
                 } else {
                     this.setState({
                         ...response.data.success,
-                        display_date : response.data.success.birth,
+                        display_date : Date.parse(response.data.success.birth),
                         profile : response.data.success
                     });
                 }
