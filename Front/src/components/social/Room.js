@@ -82,7 +82,7 @@ class Room extends Component {
         var display = [];
         this.state.content.map(msg => {
             console.log(msg);
-            //display.push(<Message to={msg.to} from={this./>);
+            display.push(<Message to={msg.to} from={this.state.login} msg={msg.msg}/>);
         });
         return display;
     }
@@ -96,7 +96,7 @@ class Room extends Component {
         return (
             <div className="room">
                 <div className="room-msg">
-
+                    {msg_dp}
                 </div>
                 <div className="divider center"></div>
                 <div className="field-wrapper">

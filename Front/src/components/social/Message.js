@@ -9,7 +9,7 @@ class Message extends Component {
             content : this.props.msg,
             from : this.props.from,
             to : this.props.to,
-            uid : this.props.uid,
+            uid : this.props.login,
         }
     }
 
