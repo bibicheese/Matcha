@@ -95,7 +95,7 @@ class Room extends Component {
         if (this.state.content.length <= index_up) index_up = 0; 
         this.state.content.forEach((msg, index) => {
             //if (index_up <= index) {
-                display.push(<Message sender={msg.sender} uid={this.state.from_login} msg={msg.msg} key={msg.id}/>);
+                display.unshift(<Message sender={msg.sender} uid={this.state.from_login} msg={msg.msg} key={msg.id}/>);
                 index_up = index;
             //}
         });
