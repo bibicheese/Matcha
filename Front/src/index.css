@@ -617,6 +617,11 @@ code {
   flex-direction: column;
 }
 
+.room-msg {
+  min-height: 400px;
+  height: 60vh;
+}
+
 .field-wrapper {
   display: flex;
   flex-direction: row;

@@ -36,18 +36,20 @@ function get_message(props, to) {
         console.log(response);
     });
 }
+/*
+rooms : [
+    {login : 1, firstname : "Laure", lastname : "Varich"},
+    {login : 2, firstname : "Lucie", lastname : "Blue"},
+    {login : 3, firstname : "Katrine", lastname : "Azure"},
+    {login : 4, firstname : "Nathalie", lastname : "Huils"},
+    {login : 5, firstname : "Patricia", lastname : "Ulrich"},
+]*/
 
 class Chat extends Component {
 
     // rooms : [login, firstname, lastname]
     state = {
-        rooms : [
-            {login : 1, firstname : "Laure", lastname : "Varich"},
-            {login : 2, firstname : "Lucie", lastname : "Blue"},
-            {login : 3, firstname : "Katrine", lastname : "Azure"},
-            {login : 4, firstname : "Nathalie", lastname : "Huils"},
-            {login : 5, firstname : "Patricia", lastname : "Ulrich"},
-        ]
+        rooms : []
     }
 
     constructor(props) {
