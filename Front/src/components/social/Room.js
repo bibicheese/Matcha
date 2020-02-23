@@ -39,8 +39,8 @@ class Room extends Component {
             from : props.auth.uid
         }
 
-        snd_msg = send_message.bind(this);
-        rcv_msg = get_message.bind(this);
+        this.snd_msg = send_message.bind(this);
+        this.rcv_msg = get_message.bind(this);
         this.interval = setInterval(this.handleUpdateRoom, 2500);
     }
 
