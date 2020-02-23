@@ -16,9 +16,9 @@ export class Profile extends Component {
     handleChat = (e) => {
         if (e.nativeEvent.button === 1 || e.nativeEvent.button === 0) {
             if (e.nativeEvent.button === 1) {
-                window.open("/socialRoom#" + this.state.login, "_blank");
+                window.open("/socialRoom#" + this.state.profile.login, "_blank");
             } else {
-                this.props.history.push("/socialRoom#" + this.state.login);
+                this.props.history.push("/socialRoom#" + this.state.profile.login);
             }
         }
         //M.toast({html : "Cette fonctionnalité n'est pas encore disponible.", classes: ""});
