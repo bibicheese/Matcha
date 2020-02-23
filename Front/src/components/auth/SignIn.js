@@ -41,6 +41,7 @@ export class SignIn extends Component {
             const status = log_status.status ? true : false;
             var user = -1;
             if (status) {
+                console.log(response);
                 user = log_status.success.id;
                 let token = log_status.success.token;
                 this.props.authUser(user, token, log_status.success.firstname, log_status.success.lastname, log_status.success.login);
