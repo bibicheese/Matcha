@@ -10,10 +10,13 @@ function send_message(props, to, msg) {
         to,
         msg
     }).then(response => {
-        console.log(response);
-        /*this.setState({
-            msg : ""
-        });*/
+        if (response.data.status === 1) {
+            this.setState({
+                msg : ""
+            });
+        } else {
+            M.toast({html : "Une erreur est servenue. Merci de réessayer ultérieurement.", classes : "red"});
+        }
     });
 }
 
@@ -23,8 +26,17 @@ function get_message(props, to) {
         token : props.auth.key,
         to,
     }).then(response => {
-        console.log(response);
-        console.log("Messages updated");
+        if (response.data.status === 1) {
+            if (JSON.stringify(response.data.success) !== JSON.stringify(this.state.content)) {
+                console.log(response.data.success);
+                console.log("Updating conversation");
+                this.setState({
+                    content : response.data.success
+                });
+            }
+        } else {
+            M.toast({html : "Une erreur est servenue. Merci de réessayer ultérieurement.", classes : "red"});
+        }
     });
 }
 
@@ -36,7 +48,9 @@ class Room extends Component {
         this.state = {
             msg : "",
             to : props.to,
-            from : props.auth.uid
+            from : props.auth.uid,
+            content : [],
+            current_index : 0,
         }
 
         this.snd_msg = send_message.bind(this);
