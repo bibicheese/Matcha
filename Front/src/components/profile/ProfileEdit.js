@@ -236,6 +236,13 @@ export class ProfileEdit extends Component {
         });
     }
 
+    deleteImageHelper = (index) => {
+        let images_new = this.state.images.filter((img, id) => { return id != index});
+        this.setState({
+            images : images_new
+        });
+    }
+
     deleteImage = (e, image, index) => {
         Axios({
             method: 'post',
@@ -255,10 +262,7 @@ export class ProfileEdit extends Component {
                     return ;
                 } else {
                     M.toast({ html: "Image supprimée.", classes : "green"});
-                    let images_new = this.state.images.filter((img, id) => { return id != index});
-                    this.setState({
-                        images : images_new
-                    });
+                    deleteImageHelper(index);
                 }
             })
             .catch(function (response) {
