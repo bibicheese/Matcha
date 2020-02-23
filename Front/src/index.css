@@ -634,6 +634,7 @@ code {
   max-width: 50vw;
   width: fit-content;
   height: fit-content !important;
+  line-height: 26px !important;
 }
 
 .foreign {
