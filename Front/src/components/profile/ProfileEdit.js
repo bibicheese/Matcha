@@ -446,8 +446,8 @@ export class ProfileEdit extends Component {
                         </div>
                         
                         <div className="center profile-info"><i className="fas fa-birthday-cake"></i>&nbsp;
-                            <DatePicker id="birthday" dateFormat="dd/MM/yyyy" selected={this.state.display_date} onChange={this.handleDate} locale="fr" autoComplete="off"
-                            /*maxDate={subYears(new Date(), 18)} minDate={subYears(new Date(), 125)}*//>
+                            <DatePicker id="birthday" locale="fr" dateFormat="dd/MM/yyyy" selected={this.state.display_date} onChange={this.handleDate} autoComplete="off"/>
+                            { /*maxDate={subYears(new Date(), 18)} minDate={subYears(new Date(), 125)}*/ }
                         </div>
                     </div>
                     <div className="divider center"></div>
