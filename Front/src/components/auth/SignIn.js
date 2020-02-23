@@ -43,7 +43,7 @@ export class SignIn extends Component {
             if (status) {
                 user = log_status.success.id;
                 let token = log_status.success.token;
-                this.props.authUser(user, token, log_status.success.firstname, log_status.success.lastname);
+                this.props.authUser(user, token, log_status.success.firstname, log_status.success.lastname, log_status.success.login);
                 this.props.history.push("/lucky");
                 //this.askForList(user, token);
             } else {
