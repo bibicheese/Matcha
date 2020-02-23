@@ -454,7 +454,7 @@ export class ProfileEdit extends Component {
                             <div className="chips chips-autocomplete"></div>
                         </div>
                         <div className="row profile-tags">
-                            { user_profile.tags.length ?
+                            { this.state.tags.length ?
                             this.state.tags.map((tag, index) => {
                                 return (
                                     <div className="chip" key={index}>
