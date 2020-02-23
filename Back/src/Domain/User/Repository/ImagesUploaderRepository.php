@@ -21,10 +21,10 @@ class ImagesUploaderRepository
       $ret = $this->connection->query($sql)->fetchAll(PDO::FETCH_ASSOC);
       if (count($ret) == 4)
         return [
-          'status' => 0, 
+          'status' => 0,
           'error' => 'Vous ne pouvez, qu\'envoyer un maximum de 4 images.'
         ];
-      
+
       return $this->checkLegal($image);
     }
 
@@ -39,19 +39,19 @@ class ImagesUploaderRepository
       $size = $image->getSize();
       if (! in_array($extension, $legalExtensions)) {
         return [
-        'status' => 0, 
+        'status' => 0,
         'error' => 'Seulement les images de type : JPG, PNG, JPEG sont tolérées'
         ];
       }
       if ($size > $legalSize) {
         return [
-        'status' => 0, 
+        'status' => 0,
         'error' => 'Seulement les images de moins de 10mo sont tolérées'
         ];
       }
-    } 
-    
- 
+    }
+
+
     public function uploadProfil($image, $id) {
       $directory = "img/";
       foreach ($image as $key => $value) {
@@ -69,18 +69,18 @@ class ImagesUploaderRepository
             'userid' => $id,
             'link' => $filepath
           ];
-      
+
           $sql = "UPDATE images SET
           link=:link
           WHERE
           userid=:userid
           AND
           profil=:profil";
-          
+
           unlink($ret['link']);
           $this->connection->prepare($sql)->execute($row);
           return [
-            'status' => 1, 
+            'status' => 1,
             'success' => $filepath
           ];
         }
@@ -90,16 +90,16 @@ class ImagesUploaderRepository
             'userid' => $id,
             'link' => $filepath
           ];
-          
+
           $sql = "INSERT INTO images SET
           link=:link,
           userid=:userid,
           profil=:profil;";
-          
+
           $this->connection->prepare($sql)->execute($row);
           return [
-            'status' => 1, 
-            'success' => 'profil saved'
+            'status' => 1,
+            'success' => $filepath
           ];
         }
       }
@@ -126,7 +126,7 @@ class ImagesUploaderRepository
         $this->connection->prepare($sql)->execute($row);
       }
       return [
-        'status' => 1, 
+        'status' => 1,
         'success' => 'images saved'
       ];
     }
