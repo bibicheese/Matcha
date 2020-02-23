@@ -125,7 +125,7 @@ class Room extends Component {
             <div className="room" id ={this.state.to}>
                 <div className="room-msg">
                     {msg_dp}
-                    <div ref={(el) => { this.messagesEnd = el; }}></div>
+                    <div id="end-anchor" ref={(el) => { this.messagesEnd = el; }}></div>
                 </div>
                 <div className="divider center"></div>
                 <div className="field-wrapper">
