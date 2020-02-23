@@ -31,9 +31,11 @@ class Room extends Component {
                 <div className="room-msg">
 
                 </div>
+                <div className="divider center"></div>
                 <div className="field-wrapper">
                     <div className="input-field col s12">
                         <input type="text" name="msg" id="msg" onChange={(e) => {this.handleMsgUpdate(e)}}/>
+                        <label htmlFor="msg">Message</label>
                     </div>
                     <div className="btn send" onClick={() => {this.handleSend()}}><i className="far fa-paper-plane"></i></div>
                 </div>
