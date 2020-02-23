@@ -32,7 +32,7 @@ class Room extends Component {
 
                 </div>
                 <div className="field-wrapper">
-                    <div className="input-field">
+                    <div className="input-field col s12">
                         <input type="text" name="msg" id="msg" onChange={(e) => {this.handleMsgUpdate(e)}}/>
                     </div>
                     <div className="btn send" onClick={() => {this.handleSend()}}><i className="far fa-paper-plane"></i></div>

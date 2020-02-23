@@ -622,6 +622,7 @@ code {
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: space-between;
 }
 
 .send {
