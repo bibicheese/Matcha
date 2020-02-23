@@ -61,6 +61,7 @@ class Room extends Component {
         this.snd_msg = send_message.bind(this);
         this.rcv_msg = get_message.bind(this);
         this.interval = setInterval(this.handleUpdateRoom, 1000);
+        this.messagesEndRef = React.createRef()
     }
 
     handleUpdateRoom = () => {
@@ -106,7 +107,7 @@ class Room extends Component {
     }
 
     scrollToBottom = () => {
-        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+        this.messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
 
     componentDidMount() {
@@ -125,7 +126,7 @@ class Room extends Component {
             <div className="room" id ={this.state.to}>
                 <div className="room-msg">
                     {msg_dp}
-                    <div id="end-anchor" ref={(el) => { this.messagesEnd = el; }}></div>
+                    <div id="end-anchor" ref={this.messagesEndRef}></div>
                 </div>
                 <div className="divider center"></div>
                 <div className="field-wrapper">
