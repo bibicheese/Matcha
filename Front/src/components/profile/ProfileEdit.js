@@ -25,6 +25,9 @@ export class ProfileEdit extends Component {
             places : [],
             cityIsValid : true
         };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.uploadImage = this.uploadImage.bind(this);
     }
 
     handleChange = (e) => {
