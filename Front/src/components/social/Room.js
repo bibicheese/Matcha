@@ -101,7 +101,8 @@ class Room extends Component {
             //}
         });
         this.setState({
-            current_index : index_up
+            current_index : index_up,
+            display
         });
     }
 
