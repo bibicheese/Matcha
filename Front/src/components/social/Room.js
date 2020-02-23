@@ -105,9 +105,9 @@ class Room extends Component {
             display
         });
     }
-    
-    componentWillReceiveProps(newProps) {
-        console.log(newProps);
+
+    componentDidUpdate() {
+        this.scrollToBottom();
     }
 
     scrollToBottom = () => {
@@ -121,7 +121,6 @@ class Room extends Component {
 
     componentWillUnmount() {
         clearInterval(this.interval);
-        this.scrollToBottom();
     }
 
     render() {
