@@ -8,7 +8,7 @@ class Message extends Component {
         this.state = {
             content : props.msg,
             sender : props.sender,
-            uid : props.login,
+            uid : props.uid,
         }
     }
 
