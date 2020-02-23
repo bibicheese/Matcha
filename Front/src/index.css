@@ -629,8 +629,12 @@ code {
   width: fit-content;
 }
 
-.sender {
+.foreign {
   background-color: #fbc2eb;
+}
+
+.own {
+  
 }
 
 .field-wrapper {
