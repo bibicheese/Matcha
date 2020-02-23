@@ -374,7 +374,7 @@ export class ProfileEdit extends Component {
                 <div className="pictures-ui">
                     {user_profile.images.map((image, index) => {
                         return (// eslint-disable-next-line
-                            <div className="btn red picture_ui" key={image} onClick={(e) => { this.deleteImage(e, image, index); }}> {index} <i className="fas fa-times white-text"></i></div>
+                            <div className="btn red picture_ui" key={image + "-index:" + index} onClick={(e) => { this.deleteImage(e, image, index); }}> {index} <i className="fas fa-times white-text"></i></div>
                             //<a key={index} className="carousel-item images"><img src={"http://localhost:8080/" + image['link']} alt="Some stuff"/></a>
                         )
                     })}
