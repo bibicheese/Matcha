@@ -39,23 +39,26 @@ final class GetRoom
         $ret = $this->connection->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
         $i = 0;
+        $j = 0;
         $check[] = $login;
         foreach ($ret as $key => $value) {
             if (!in_array($ret[$i]['receiver'], $check)) {
               $check[] = $ret[$i]['receiver'];
               $login_to = $ret[$i]['receiver'];
               $them = $this->connection->query("SELECT firstname, lastname FROM users WHERE login = '$login_to'")->fetch(PDO::FETCH_ASSOC);
-              $myConv[$i][login] = $login_to;
-              $myConv[$i][firstname] = $them['firstname'];
-              $myConv[$i][lastname] = $them['lastname'];
+              $myConv[$j][login] = $login_to;
+              $myConv[$j][firstname] = $them['firstname'];
+              $myConv[$j][lastname] = $them['lastname'];
+              $j++;
             }
             elseif (!in_array($ret[$i]['sender'], $check)) {
               $check[] = $ret[$i]['sender'];
               $login_to = $ret[$i]['sender'];
               $them = $this->connection->query("SELECT firstname, lastname FROM users WHERE login = '$login_to'")->fetch(PDO::FETCH_ASSOC);
-              $myConv[$i][login] = $login_to;
-              $myConv[$i][firstname] = $them['firstname'];
-              $myConv[$i][lastname] = $them['lastname'];
+              $myConv[$j][login] = $login_to;
+              $myConv[$j][firstname] = $them['firstname'];
+              $myConv[$j][lastname] = $them['lastname'];
+              $j++;
           }
           $i++;
         }

@@ -20,6 +20,7 @@ class UserLikerRepository
       login = '$login'";
       $to = $this->connection->query($sql)->fetch(PDO::FETCH_ASSOC);
       $idToLike = $to['id'];
+      $to_name = $to['firstname'] . ' ' . $to['lastname'];
 
       $sql_from = "SELECT * FROM users WHERE
       id = '$id'";
@@ -158,6 +159,12 @@ class UserLikerRepository
             $sql = "INSERT INTO chat SET
             sender = '$from_login',
             msg = '$msg',
+            receiver = '$user->login'";
+            $this->connection->query($sql);
+
+            $sql = "INSERT INTO notif SET
+            sender = '$from_login',
+            msg = \"$from_name vous a envoyé un message.\",
             receiver = '$user->login'";
             $this->connection->query($sql);
 
