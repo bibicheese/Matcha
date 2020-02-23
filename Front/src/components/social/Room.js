@@ -95,7 +95,7 @@ class Room extends Component {
         if (this.state.content.length <= index_up) index_up = 0; 
         this.state.content.forEach((msg, index) => {
             //if (index_up <= index) {
-                display.unshift(<Message sender={msg.sender} uid={this.state.from_login} msg={msg.msg} key={msg.id}/>);
+                display.push(<Message sender={msg.sender} uid={this.state.from_login} msg={msg.msg} key={msg.id}/>);
                 index_up = index;
             //}
         });
@@ -105,12 +105,18 @@ class Room extends Component {
         });
     }
 
+    scrollToBottom = () => {
+        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
+
     componentDidMount() {
         this.handleUpdateRoom();
+        this.scrollToBottom();
     }
 
     componentWillUnmount() {
         clearInterval(this.interval);
+        this.scrollToBottom();
     }
 
     render() {
@@ -119,6 +125,7 @@ class Room extends Component {
             <div className="room" id ={this.state.to}>
                 <div className="room-msg">
                     {msg_dp}
+                    <div ref={(el) => { this.messagesEnd = el; }}></div>
                 </div>
                 <div className="divider center"></div>
                 <div className="field-wrapper">
