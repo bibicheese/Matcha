@@ -102,7 +102,7 @@ export class ProfileEdit extends Component {
         }
         let {profile, password, new_password, nv_password, login, ...profile_update} = this.state; // this line is used to exclude profile field in the object we'll be disptaching
         profile_update = this.getModifications();
-        console.log(profile_update);
+        //console.log(profile_update);
         //this.props.updateProfile(profile_update);
         Axios.post("http://localhost:8080/api/account_editor", {
             id : this.props.auth.uid,
@@ -300,7 +300,7 @@ export class ProfileEdit extends Component {
                 } else {
                     this.setState({
                         ...response.data.success,
-                        display_date : Date.parse(response.data.success.birth),
+                        display_date : response.data.success.birth,
                         profile : response.data.success
                     });
                 }
