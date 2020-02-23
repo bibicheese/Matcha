@@ -13,9 +13,8 @@ function get_rooms(props) {
         if (response.data.status === 1) {
             if (response.data.success === null) return ;
             let array = response.data.success;
-            console.log(array);
             this.setState({
-                rooms : [...this.state.rooms, array]
+                rooms : [...this.state.rooms, ...array]
             });
         } else {
             M.toast({html : "Une erreur est servenue. Merci de réessayer ultérieurement.", classes : "red"});
