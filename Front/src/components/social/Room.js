@@ -50,6 +50,7 @@ class Room extends Component {
             msg : "",
             to : props.to,
             from : props.auth.uid,
+            from_login : props.auth.login,
             content : [],
             current_index : 0,
         }
