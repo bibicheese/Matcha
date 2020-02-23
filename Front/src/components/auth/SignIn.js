@@ -116,7 +116,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        authUser : (id, token, fname, lname) => { dispatch(authLogin(id, token, fname, lname)) },
+        authUser : (id, token, fname, lname, login) => { dispatch(authLogin(id, token, fname, lname, login)) },
         populateProfiles : (profiles) => { dispatch(getProfile(profiles)) }
     }
 }
