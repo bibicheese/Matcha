@@ -7,6 +7,8 @@ import 'react-datepicker/src/stylesheets/datepicker.scss';
 import { format, subYears } from 'date-fns';
 import fr from 'date-fns/locale/fr';
 import DatePicker, { registerLocale } from "react-datepicker";
+import ReactPasswordStrength from 'react-password-strength';
+
 registerLocale("fr", fr); // register it with the name you want
 
 function getChipDeleted(e, data) {
