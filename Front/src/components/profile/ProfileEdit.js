@@ -28,7 +28,9 @@ export class ProfileEdit extends Component {
             new_password : null,
             nv_password : null,
             places : [],
-            cityIsValid : true
+            cityIsValid : true,
+            pass_isvalid : true,
+            score : 0
         };
 
         this.deleteImageHelper = this.deleteImageHelper.bind(this);
@@ -51,6 +53,20 @@ export class ProfileEdit extends Component {
         if (this.is_mounted) {
             this.setState({
                 [e.target.id] : e.target.value
+            });
+        }
+    }
+
+    handlePassword = (e, type) => {
+        if (type === "password" && this.is_mounted) {
+            this.setState({
+                new_password : e.password,
+                pass_isvalid : e.IsValid,
+                score : e.score
+            });
+        } else if (type === "nv_password" && this.is_mounted) {
+            this.setState({
+                nv_password : e.password
             });
         }
     }
@@ -106,6 +122,10 @@ export class ProfileEdit extends Component {
         }
         if (this.state.new_password !== this.state.nv_password) {
             M.toast({html : "Les nouveaux mot de passe ne correspondent pas.", classes : "red"});
+            return ;
+        }
+        if (this.state.new_password != null && !(this.state.score >= 3 && this.state.pass_isvalid)) {
+            M.toast({html : "Le nouveau mot de passe n'est pas valide.", classes : "red"});
             return ;
         }
         if (this.state.email === null || this.state.email.length === 0) {
@@ -452,23 +472,15 @@ export class ProfileEdit extends Component {
                             <ReactPasswordStrength className="input-field password-field" minLength={6} minScore={3}
                                 scoreWords={['Faible', 'Moyen', 'Suffisant', 'Fort', 'Compliqué']}
                                 tooShortWord={"Trop court"}
-                                changeCallback={this.handleChange}
+                                changeCallback={(e) => {this.handlePassword(e, "password")}}
                                 inputProps={{ id: "password", name: "password", autoComplete: "off", placeholder: "Nouveau password"}}
                             />
-                            <div className="input-field col s12 private-item">
-                                <input id="new_password" type="password" className="validate" onChange={this.handleChange}/>
-                                <label htmlFor="new_password">Nouveau mot de passe</label>
-                            </div>
                             <ReactPasswordStrength className="input-field password-field" minLength={6} minScore={3}
                                 scoreWords={['Faible', 'Moyen', 'Suffisant', 'Fort', 'Compliqué']}
                                 tooShortWord={"Trop court"}
-                                changeCallback={this.handleChange}
+                                changeCallback={(e) => {this.handlePassword(e, "nv_password")}}
                                 inputProps={{ id: "nv_password", name: "nv_password", autoComplete: "off", placeholder: "Vérification"}}
                             />
-                            <div className="input-field col s12 private-item">
-                                <input id="nv_password" type="password" className="validate" onChange={this.handleChange}/>
-                                <label htmlFor="nv_password">Vérification</label>
-                            </div>
                         </div>
                         <div className="private-email">
                             <div className="input-field col s12 private-item">
