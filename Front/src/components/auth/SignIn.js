@@ -97,7 +97,7 @@ export class SignIn extends Component {
                             </div>
                             <div className="input-field">
                                 <button className="btn pink lighten-1 z-depth-0">Login</button>
-                                <button className="btn grey lighten-1 z-depth-1 right hide-on-med-and-down small" onClick={() => { this.props.history.push('/forgot-password') }}>Mot de passe oublié ?</button>
+                                <button type="button" className="btn grey lighten-1 z-depth-1 right hide-on-med-and-down small" onClick={() => { this.props.history.push('/forgot-password') }}>Mot de passe oublié ?</button>
                                 <i className="material-icons hide-fw-pwd right forgot_pwd" onClick={() => { this.props.history.push('/forgot-password') }}>https</i>
                             </div>
                         </form>

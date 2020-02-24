@@ -20,7 +20,7 @@ class UserCreatorRepository
         
         // $access_token = 'd068dfed09a69b';
         // $client = new IPinfo($access_token);
-        $ip = $this->get_user_ip();
+        // $ip = $this->get_user_ip();
         // $details = $client->getDetails($ip);
         $details['city'] = 'paris 17';
         $details['arr'] = '17';
@@ -71,7 +71,8 @@ class UserCreatorRepository
         else {
           return [
             'status' => 1,
-            'success' => 'Votre compte a été créé avec succès.'
+            'success' => 'Votre compte a été créé avec succès,
+                          un email de confirmation vient de vous être envoyé.'
           ];
         }
 
@@ -97,7 +98,6 @@ class UserCreatorRepository
           }
         }
       }
-    return "163.172.250.12";
     }
 
 
