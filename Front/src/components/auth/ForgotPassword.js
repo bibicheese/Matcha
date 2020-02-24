@@ -62,13 +62,13 @@ class ForgotPassword extends Component {
             <li id="3" className="step">
                 <h4>Étape 3</h4>
                 <form onSubmit={(e) => {this.onSubmit(e, 3)}}>
-                    <ReactPasswordStrength className="input-field password-field" minLength={6} minScore={2}
+                    <ReactPasswordStrength className="input-field password-field" minLength={6} minScore={3}
                     scoreWords={['Faible', 'Moyen', 'Suffisant', 'Fort', 'Compliqué']}
                     tooShortWord={"Trop court"}
                     changeCallback={(e) => {this.handlePassword(e, "password")}}
                     inputProps={{ id: "password", name: "password", autoComplete: "off", placeholder: "Nouveau password"}}
                     />
-                    <ReactPasswordStrength className="input-field password-field" minLength={6} minScore={2}
+                    <ReactPasswordStrength className="input-field password-field" minLength={6} minScore={3}
                     scoreWords={['Faible', 'Moyen', 'Suffisant', 'Fort', 'Compliqué']}
                     tooShortWord={"Trop court"}
                     changeCallback={(e) => {this.handlePassword(e, "vpassword")}}

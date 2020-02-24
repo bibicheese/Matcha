@@ -447,10 +447,22 @@ export class ProfileEdit extends Component {
                     </button>
                     <div className="private-info">
                         <div className="private-pass">
+                            <ReactPasswordStrength className="input-field password-field" minLength={6} minScore={3}
+                                scoreWords={['Faible', 'Moyen', 'Suffisant', 'Fort', 'Compliqué']}
+                                tooShortWord={"Trop court"}
+                                changeCallback={this.handleChange}
+                                inputProps={{ id: "password", name: "password", autoComplete: "off", placeholder: "Nouveau password"}}
+                            />
                             <div className="input-field col s12 private-item">
                                 <input id="new_password" type="password" className="validate" onChange={this.handleChange}/>
                                 <label htmlFor="new_password">Nouveau mot de passe</label>
                             </div>
+                            <ReactPasswordStrength className="input-field password-field" minLength={6} minScore={3}
+                                scoreWords={['Faible', 'Moyen', 'Suffisant', 'Fort', 'Compliqué']}
+                                tooShortWord={"Trop court"}
+                                changeCallback={this.handleChange}
+                                inputProps={{ id: "nv_password", name: "nv_password", autoComplete: "off", placeholder: "Vérification"}}
+                            />
                             <div className="input-field col s12 private-item">
                                 <input id="nv_password" type="password" className="validate" onChange={this.handleChange}/>
                                 <label htmlFor="nv_password">Vérification</label>
