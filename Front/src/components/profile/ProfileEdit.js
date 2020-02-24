@@ -127,6 +127,7 @@ export class ProfileEdit extends Component {
             return ;
         }
         if (this.state.new_password !== null && !(this.state.score >= 3 && this.state.pass_isvalid)) {
+            console.log(this.state);
             M.toast({html : "Le nouveau mot de passe n'est pas valide.", classes : "red"});
             return ;
         }
