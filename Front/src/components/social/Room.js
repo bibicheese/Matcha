@@ -11,7 +11,7 @@ function send_message(props, to, msg) {
         to,
         msg
     }).then(response => {
-        if (response.data.status === 1) {
+        if (response.data.status === 1 && this.is_mounted) {
             this.setState({
                 msg : ""
             });
@@ -31,7 +31,7 @@ function get_message(props, to) {
             if (JSON.stringify(response.data.success) !== JSON.stringify(this.state.content)) {
                 //console.log(response.data.success);
                 /*console.log("Updating conversation");*/
-                if (this.is_mount) {
+                if (this.is_mounted) {
                     this.setState({
                         content : response.data.success,
                         update : 1
@@ -91,9 +91,11 @@ class Room extends Component {
     }
 
     handleMsgUpdate = (e) => {
-        this.setState({
-            msg : e.target.value
-        });
+        if (this.is_mounted) {
+            this.setState({
+                msg : e.target.value
+            });
+        }
     }
 
     handleMsgDisplay = () => {
