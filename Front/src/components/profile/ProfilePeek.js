@@ -4,6 +4,9 @@ import Axios from 'axios';
 import M from 'materialize-css';
 
 export class ProfilePeek extends Component {
+
+    is_mounted = false;
+
     state = {}
     /*state = {
         profile_id : 5468871046058184,
@@ -47,10 +50,12 @@ export class ProfilePeek extends Component {
                 M.toast({html : response.data.error, classes: "red"});
             } else {
                 let like = response.data.success;
-                this.setState({
-                    myLikeTo : like === "liked" ? true : false,
-                    match : like === "MATCH" ? true : false
-                })
+                if (this.is_mounted) {
+                    this.setState({
+                        myLikeTo : like === "liked" ? true : false,
+                        match : like === "MATCH" ? true : false
+                    })
+                }
             }
         })
     }
@@ -63,6 +68,14 @@ export class ProfilePeek extends Component {
                 this.props.history.push("/profiles/" + login);
             }
           }
+    }
+
+    componentDidMount() {
+        this.is_mounted = true;
+    }
+
+    componentWillUnmount() {
+        this.is_mounted = false;
     }
 
     render() {

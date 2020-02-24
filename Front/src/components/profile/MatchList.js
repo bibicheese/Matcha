@@ -28,6 +28,8 @@ function hasTag(tags, profile) {
 
 class ProfileList extends Component {
 
+    is_mounted = false;
+
     constructor(props) {
       super(props);
 
@@ -70,51 +72,61 @@ class ProfileList extends Component {
                 if (response.data.status !== 1) {
                     M.toast({html : "An error occurred. Please retry later or contact staff.", classes: "red"});
                 } else {
+                  if (this.is_mounted) {
                     this.setState({
                       ...this.state,
                       profile : response.data.success
                     }, () => {
                       let interval = [this.state.profile.age - 3, this.state.profile.age + 3];
-                      this.setState({
-                        ...this.state.profile,
-                        filter : {
-                          ...this.state.filter,
-                          value : interval
-                        },
-                        pop : {
-                          ...this.state.pop,
-                          value : [this.state.profile.score - 10, 100]
-                        }
-                      })
+                      if (this.is_mounted) {
+                        this.setState({
+                          ...this.state.profile,
+                          filter : {
+                            ...this.state.filter,
+                            value : interval
+                          },
+                          pop : {
+                            ...this.state.pop,
+                            value : [this.state.profile.score - 10, 100]
+                          }
+                        })
+                      }
                     });
+                  }
                 }
             }
         }).catch(e => {console.log(e)})
     }
 
     onSliderChange = (value) => {
-      this.setState({
-        filter : { ...this.state.filter, value },
-      }, () => {
-        this.setOutput();
-        this.setOutput();
-      });
+      if (this.is_mounted) {
+        this.setState({
+          filter : { ...this.state.filter, value },
+        }, () => {
+          this.setOutput();
+          this.setOutput();
+        });
+      }
     }
     onSliderDstChange = (value) => {
-      this.setState({
-        dst : { ...this.state.dst, value },
-      }, () => {
-        this.setOutput();
-        this.setOutput();
-      });
+      if (this.is_mounted) {
+        this.setState({
+          dst : { ...this.state.dst, value },
+        }, () => {
+          this.setOutput();
+          this.setOutput();
+        });
+      }
     }
     onSliderPopChange = (value) => {
-      this.setState({
-        pop : { ...this.state.pop, value },
-      }, () => {
-        this.setOutput();
-        this.setOutput();
-      });
+      if (this.is_mounted) {
+        this.setState({
+          pop : { ...this.state.pop, value },
+        }, () => {
+          this.setOutput();
+          this.setOutput();
+        });
+      }
     }
 
     onSortChange = (e) => {
@@ -124,18 +136,22 @@ class ProfileList extends Component {
       else if (var_state === 1) elem.classList.remove("fa-sort-up");
       else if (var_state === 2) elem.classList.remove("fa-sort-down");
       elem.classList.add(var_state === 0 ? "fa-sort-up" : var_state === 1 ? "fa-sort-down" : "fa-sort");
-      this.setState({
-        [e.target.id] : var_state === 0 ? 1 : var_state === 1 ? 2 : 0
-      }, () => {
-        this.askForList();
-        this.askForList();
-      });
+      if (this.is_mounted) {
+        this.setState({
+          [e.target.id] : var_state === 0 ? 1 : var_state === 1 ? 2 : 0
+        }, () => {
+          this.askForList();
+          this.askForList();
+        });
+      }
     }
 
     handlePageChange = (page) => {
-      this.setState({
-        page
-      })
+      if (this.is_mounted) {
+        this.setState({
+          page
+        })
+      }
     }
   
     initTags = () => {
@@ -153,13 +169,15 @@ class ProfileList extends Component {
         onChipAdd : (chip) => {
             let value = chip[0].childNodes[chip[0].childNodes.length - 3].textContent;
             value = value.replace("close", "");
-            this.setState({
-              filter_tags : [...this.state.filter_tags, value]
-            }, () => {this.setOutput();this.setOutput();});
+            if (this.is_mounted) {
+              this.setState({
+                filter_tags : [...this.state.filter_tags, value]
+              }, () => {this.setOutput();this.setOutput();});
+            }
         },
         onChipDelete : (e, data) => {
           let tag = getChipDeleted(e, data);
-          if (tag) {
+          if (tag && this.is_mounted) {
             this.setState({
               filter_tags : this.state.filter_tags.filter(ftag => { return ftag !== tag })
             }, () => {this.setOutput();this.setOutput();})
@@ -174,11 +192,13 @@ class ProfileList extends Component {
           if (tags.length === 0 ) {
             M.toast({html : "No tags retrieved.", classes: "red"});
           } else {
-            this.setState({
-              tags
-            }, () => {
-              this.initTags(); 
-            } );
+            if (this.is_mounted) {
+              this.setState({
+                tags
+              }, () => {
+                this.initTags(); 
+              });
+            }
           }
         }).catch(err => {
             console.log(err);
@@ -197,10 +217,12 @@ class ProfileList extends Component {
             }
         })
       }
-      this.setState({
-        filtered_profiles : result,
-        max_page : result ? Math.floor(result.length / 20) : 0
-      }, /*console.log(this.state.filtered_profiles)*/);
+      if (this.is_mounted) {
+        this.setState({
+          filtered_profiles : result,
+          max_page : result ? Math.floor(result.length / 20) : 0
+        }, /*console.log(this.state.filtered_profiles)*/);
+      }
     }
 
     askForList = () => {
@@ -227,7 +249,12 @@ class ProfileList extends Component {
       })
     }
 
+    componentWillUnmount() {
+      this.is_mounted = false;
+    }
+
     componentDidMount() {
+      this.is_mounted = true;
       this.askForTags();
       this.askForList(this.state.sort_age,this.state.sort_dst,this.state.sort_pop,this.state.sort_tsyn);
 

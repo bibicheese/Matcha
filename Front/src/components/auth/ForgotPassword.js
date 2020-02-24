@@ -5,6 +5,8 @@ import ReactPasswordStrength from 'react-password-strength';
 
 class ForgotPassword extends Component {
 
+    is_mounted = false;
+
     constructor(props) {
         super(props);
 
@@ -121,7 +123,7 @@ class ForgotPassword extends Component {
         if (step === 3 && status === 1) {
             this.props.history.push("/signin");
         }
-        if (status === 1) {
+        if (status === 1 && this.is_mounted) {
             this.setState({
                 step : step + 1
             });
@@ -189,6 +191,14 @@ class ForgotPassword extends Component {
                 this.updateStep(status, step);
             });
         }
+    }
+
+    componentDidMount() {
+        this.is_mounted = true;
+    }
+
+    componentWillUnmount() {
+        this.is_mounted = false;
     }
 
     render() {

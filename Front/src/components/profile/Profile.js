@@ -5,6 +5,9 @@ import Axios from 'axios';
 import Score from './Score';
 
 export class Profile extends Component {
+
+    is_mounted = false;
+
     constructor(props) {
         super(props);
 
@@ -52,30 +55,40 @@ export class Profile extends Component {
                 M.toast({html : "An error occurred. Please retry later or contact staff.", classes: "red"});
             } else {
                 let like = response.data.success;
-                this.setState({
-                    profile : {
-                        ...this.state.profile,
-                        myLikeTo : like === "liked" ? true : false,
-                        match : like === "MATCH" ? true : false
-                    }
-                })
+                if (this.is_mounted) {
+                    this.setState({
+                        profile : {
+                            ...this.state.profile,
+                            myLikeTo : like === "liked" ? true : false,
+                            match : like === "MATCH" ? true : false
+                        }
+                    })
+                }
             }
         })
     }
 
     componentDidMount = () => {
+        this.is_mounted = true;
         Axios.get("http://localhost:8080/api/profil/" + this.props.match.params['user_id'] + "?id=" + this.props.auth.uid + "&token=" + this.props.auth.key).then((response) => {
             let status = response.data.status;
 
             if (status === 0) {
                 M.toast({html : "An error occurred. Please retry later or contact staff.", classes: "red"});
             } else {
-                this.setState({
-                    profile : response.data.success
-            })}
+                if (this.is_mounted) {
+                    this.setState({
+                        profile : response.data.success
+                    })
+                }
+            }
         }).catch(err => {
             console.log(err);
         })
+    }
+
+    componentWillUnmount() {
+        this.is_mounted = false;
     }
 
     componentDidUpdate() {

@@ -13,9 +13,11 @@ function get_rooms(props) {
         if (response.data.status === 1) {
             if (response.data.success === null) return ;
             let array = response.data.success;
-            this.setState({
-                rooms : [...this.state.rooms, ...array]
-            });
+            if (this.is_mounted) {
+                this.setState({
+                    rooms : [...this.state.rooms, ...array]
+                });
+            }
         } else {
             M.toast({html : "Une erreur est servenue. Merci de réessayer ultérieurement.", classes : "red"});
         }
@@ -32,6 +34,7 @@ rooms : [
 ]*/
 
 class Chat extends Component {
+    is_mounted = false;
 
     // rooms : [login, firstname, lastname]
     state = {
@@ -45,11 +48,12 @@ class Chat extends Component {
         this.get_all_rooms = get_rooms.bind(this);
     }
 
-    createRoom = (userId) => {
-
+    componentWillUnmount() {
+        this.is_mounted = false;
     }
 
     componentDidMount() {
+        this.is_mounted = true;
         if (this.state.rooms.length > 0)
             M.Tabs.init(this.Tabs);
         this.get_all_rooms(this.props);

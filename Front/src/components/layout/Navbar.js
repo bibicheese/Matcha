@@ -10,6 +10,8 @@ import Axios from 'axios';
 
 class Navbar extends Component {
 
+    is_mounted = false;
+
     constructor (props) {
         super(props);
 
@@ -20,6 +22,7 @@ class Navbar extends Component {
     }
 
     componentDidMount() {
+        this.is_mounted = true;
         const options = {
             inDuration: 250,
             outDuration: 200,
@@ -28,7 +31,7 @@ class Navbar extends Component {
         };
         M.Sidenav.init(this.Sidenav, options);
 
-        if (this.props.auth.uid !== -1) {
+        if (this.props.auth.uid !== -1 && this.is_mounted) {
             this.interval = setInterval(this.handleNotifUpdate, 2500);
             this.setState({
                 activated : 1
@@ -82,15 +85,17 @@ class Navbar extends Component {
                         this.props.notifA(element);
                     }
                 })
-                this.setState({
-                    needs_update : 1
-                })
+                if (this.is_mounted) {
+                    this.setState({
+                        needs_update : 1
+                    })
+                }
             }
         });
     }
 
     componentDidUpdate() {
-        if (this.state.activated === 0) {
+        if (this.state.activated === 0 && this.is_mounted) {
             this.interval = setInterval(this.handleNotifUpdate, 2500);
             this.setState({
                 activated : 1
@@ -99,6 +104,7 @@ class Navbar extends Component {
     }
 
     componentWillUnmount() {
+        this.is_mounted = false;
         clearInterval(this.interval);
     }
 

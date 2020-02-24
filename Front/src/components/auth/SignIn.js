@@ -5,6 +5,9 @@ import { authLogin, getProfile } from '../../store/actions/authActions';
 import M from "materialize-css";
 
 export class SignIn extends Component {
+
+    is_mounted = false;
+
     constructor(props) {
         super(props);
 
@@ -73,9 +76,19 @@ export class SignIn extends Component {
     handleChange = (e) => {
         var input = document.getElementById(e.target.id);
         input.classList.remove("login-error");
-        this.setState({
-            [e.target.id]: e.target.value
-        })
+        if (this.is_mounted) {
+            this.setState({
+                [e.target.id]: e.target.value
+            })
+        }
+    }
+
+    componentDidMount() {
+        this.is_mounted = true;
+    }
+
+    componentWillUnmount() {
+        this.is_mounted = false;
     }
 
     render() {

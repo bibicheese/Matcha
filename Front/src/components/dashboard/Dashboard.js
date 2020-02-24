@@ -21,7 +21,6 @@ class Dashboard extends Component {
                 M.toast({html : "Bienvenue ! Votre compte est désormais actif. ", classes : "green toast-container-activation"});
             }).catch(e => {
                 console.log(e);
-                console.log(e);
             })
         }
     }

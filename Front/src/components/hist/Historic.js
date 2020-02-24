@@ -26,6 +26,8 @@ class UserView extends Component {
 
 class Historic extends Component {
 
+    is_mounted = false;
+
     constructor(props) {
         super(props);
 
@@ -36,7 +38,12 @@ class Historic extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.is_mounted = false;
+    }
+
     componentDidMount() {
+        this.is_mounted = true;
         Axios.post("http://localhost:8080/api/get_historic", {
             id : this.props.auth.uid,
             token : this.props.auth.key
@@ -46,11 +53,13 @@ class Historic extends Component {
                 M.toast({html : "Une erreur s'est produite. Merci de réessayer." , classes : "red"});
                 return ;
             }
-            this.setState({
-                historicDay : response.data.success.historicDay,
-                historicWeek : response.data.success.historicWeek,
-                historicLike : response.data.success.historicLike,
-            }, () => {console.log(this.state)});
+            if (this.is_mounted) {
+                this.setState({
+                    historicDay : response.data.success.historicDay,
+                    historicWeek : response.data.success.historicWeek,
+                    historicLike : response.data.success.historicLike,
+                }, () => {console.log(this.state)});
+            }
         });
     } 
 

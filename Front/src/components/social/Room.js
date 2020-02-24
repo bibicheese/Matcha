@@ -31,10 +31,12 @@ function get_message(props, to) {
             if (JSON.stringify(response.data.success) !== JSON.stringify(this.state.content)) {
                 //console.log(response.data.success);
                 /*console.log("Updating conversation");*/
-                this.setState({
-                    content : response.data.success,
-                    update : 1
-                });
+                if (this.is_mount) {
+                    this.setState({
+                        content : response.data.success,
+                        update : 1
+                    });
+                }
             }
         } else {
             M.toast({html : "Une erreur est servenue. Merci de réessayer ultérieurement.", classes : "red"});
@@ -43,6 +45,8 @@ function get_message(props, to) {
 }
 
 class Room extends Component {
+
+    is_mounted = false;
 
     constructor(props) {
         super(props);
@@ -79,9 +83,11 @@ class Room extends Component {
         }
         if (this.state.msg === "") return ;
         this.snd_msg(this.props, this.state.to, this.state.msg);
-        this.setState({
-            msg : ""
-        })
+        if (this.is_mounted) {
+            this.setState({
+                msg : ""
+            })
+        }
     }
 
     handleMsgUpdate = (e) => {
@@ -100,10 +106,12 @@ class Room extends Component {
                 index_up = index;
             //}
         });
-        this.setState({
-            current_index : index_up,
-            display
-        });
+        if (this.is_mounted) {
+            this.setState({
+                current_index : index_up,
+                display
+            });
+        }
     }
 
     componentDidUpdate() {
@@ -115,11 +123,13 @@ class Room extends Component {
     }
 
     componentDidMount() {
+        this.is_mounted = true;
         this.handleUpdateRoom();
         this.scrollToBottom();
     }
 
     componentWillUnmount() {
+        this.is_mounted = false;
         clearInterval(this.interval);
     }
 

@@ -14,6 +14,9 @@ function getChipDeleted(e, data) {
 }
 
 export class ProfileEdit extends Component {
+
+    is_mounted = false;
+
     constructor(props) {
         super(props);
 
@@ -43,9 +46,11 @@ export class ProfileEdit extends Component {
             }
             if (flag) return ;
         }
-        this.setState({
-            [e.target.id] : e.target.value
-        });
+        if (this.is_mounted) {
+            this.setState({
+                [e.target.id] : e.target.value
+            });
+        }
     }
 
     getModifications = () => {
@@ -75,10 +80,12 @@ export class ProfileEdit extends Component {
 
     handleDate = (date) => {
         let birthday = format(date, 'dd/MM/yyyy');
-        this.setState({
-            birth : birthday,
-            display_date : date
-        });
+        if (this.is_mounted) {
+            this.setState({
+                birth : birthday,
+                display_date : date
+            });
+        }
     }
 
     handleSubmit = (e) => {
@@ -136,10 +143,12 @@ export class ProfileEdit extends Component {
             document.querySelector(".check-pos").classList.add("red-text");
             valid = false;
         }
-        this.setState({
-            city : place,
-            cityIsValid : valid
-        })
+        if (this.is_mounted) {
+            this.setState({
+                city : place,
+                cityIsValid : valid
+            })
+        }
     }
 
     handlePositionChange = (e) => {
@@ -156,10 +165,12 @@ export class ProfileEdit extends Component {
             document.querySelector(".check-pos").classList.add("red-text");
             valid = false;
         }
-        this.setState({
-            city : e.target.value,
-            cityIsValid : valid
-        })
+        if (this.is_mounted) {
+            this.setState({
+                city : e.target.value,
+                cityIsValid : valid
+            })
+        }
     }
 
     uploadProfileTrigger = (e) => {
@@ -241,9 +252,11 @@ export class ProfileEdit extends Component {
 
     deleteImageHelper = (index) => {
         let images_new = this.state.images.filter((img, id) => { return id !== index});
-        this.setState({
-            images : images_new
-        });
+        if (this.is_mounted) {
+            this.setState({
+                images : images_new
+            });
+        }
     }
 
     deleteImage = (e, image, index) => {
@@ -292,7 +305,7 @@ export class ProfileEdit extends Component {
             onChipAdd : (chip) => {
                 let value = chip[0].childNodes[chip[0].childNodes.length - 3].textContent;
                 value = value.replace("close", "");
-                if (!this.state.tags.includes(value)) {
+                if (!this.state.tags.includes(value) && this.is_mounted) {
                     this.setState({
                         tags : [...this.state.tags, value]
                     })
@@ -300,8 +313,8 @@ export class ProfileEdit extends Component {
             },
             onChipDelete : (e, data) => {
                 let tag = getChipDeleted(e, data);
-                console.log("Deleted tag : " + tag);
-                if (tag) {
+                //console.log("Deleted tag : " + tag);
+                if (tag  && this.is_mounted) {
                   this.setState({
                     tags : this.state.tags.filter(ftag => { return ftag !== tag })
                   })
@@ -316,28 +329,36 @@ export class ProfileEdit extends Component {
             if (tags.length === 0 ) {
                 M.toast({html : "No tags retrieved.", classes: "red"});
             } else {
+                if (this.is_mounted) {
                 this.setState({
                     tags_server : tags
                 }, () => {
                 this.initTags(); 
-                } );
+                } )};
             }
             }).catch(err => {
                 console.log(err);
         });
     }
 
+    componentWillUnmount() {
+        this.is_mounted = false;
+    }
+
     componentDidMount = () => {
+        this.is_mounted = true;
         Axios.get("http://localhost:8080/api/my_account?id=" + this.props.auth.uid + "&token=" + this.props.auth.key).then((response) => {
             if (response.data != null) {
                 if (response.data.status !== 1) {
                     M.toast({html : "An error occurred. Please retry later or contact staff.", classes: "red"});
                 } else {
-                    this.setState({
-                        ...response.data.success,
-                        display_date : Date.parse(response.data.success.birth),
-                        profile : response.data.success
-                    });
+                    if (this.is_mounted) {
+                        this.setState({
+                            ...response.data.success,
+                            display_date : Date.parse(response.data.success.birth),
+                            profile : response.data.success
+                        });
+                    }
                 }
             }
         }).catch(e => {console.log(e)});
@@ -357,9 +378,11 @@ export class ProfileEdit extends Component {
             cities.map(place => {
                 return state_city.push(place.city);
             });
-            this.setState({
-                places : state_city
-            });
+            if (this.is_mounted) {
+                this.setState({
+                    places : state_city
+                });
+            }
             M.Autocomplete.init(Position, { data : autocomplete_city, limit : 5, minLength : 1, onAutocomplete : (place) => this.handlePositionChangeAC(place) });
         });
     }

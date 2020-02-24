@@ -6,6 +6,9 @@ import { geolocated } from 'react-geolocated';
 import M from 'materialize-css';
 
 export class SignUp extends Component {
+
+    is_mounted = false;
+
     state = {
         email: '',
         password: '',
@@ -19,13 +22,13 @@ export class SignUp extends Component {
     }
 
     handlePassword = (e, type) => {
-        if (type === "password") {
+        if (type === "password" && this.is_mounted) {
             this.setState({
                 password : e.password,
                 pass_isvalid : e.IsValid,
                 score : e.score
             });
-        } else if (type === "vpassword") {
+        } else if (type === "vpassword" && this.is_mounted) {
             this.setState({
                 vpassword : e.password
             });
@@ -54,9 +57,11 @@ export class SignUp extends Component {
     }
 
     handleChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
+        if (this.is_mounted) {
+            this.setState({
+                [e.target.id]: e.target.value
+            })
+        }
     }
 
     handleCheckBoxChange = (e) => {
@@ -66,7 +71,7 @@ export class SignUp extends Component {
         else if (count <= 3) msg = "Si je te jure ! À rien !";
         else if (count < 10) msg = "Ça devient ridicule... Arrêtez...";
         else msg = "C'est bon ! Je ne vous parle plus. Au revoir !";
-        if (count <= 10) {
+        if (count <= 10 && this.is_mounted) {
             this.setState({
              btn_count: count + 1
             });
@@ -74,7 +79,12 @@ export class SignUp extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.is_mounted = false;
+    }
+
     componentDidMount() {
+        this.is_mounted = true;
         document.querySelector("#allow-geo").checked = "checked";
     }
 
