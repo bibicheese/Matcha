@@ -96,7 +96,7 @@ class ForgotPassword extends Component {
         if (type === "password" && this.is_mounted) {
             this.setState({
                 password : e.password,
-                pass_isvalid : e.IsValid,
+                pass_isvalid : e.isValid,
                 score : e.score
             });
         } else if (type === "vpassword" && this.is_mounted) {

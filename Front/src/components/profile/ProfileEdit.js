@@ -58,7 +58,6 @@ export class ProfileEdit extends Component {
     }
 
     handlePassword = (e, type) => {
-        console.log(e);
         if (type === "password" && this.is_mounted) {
             let is_valid = e.password !== null && e.password !== "" ? e.isValid : true;
             let mscore = e.password !== null && e.password !== "" ? e.score : 3;
@@ -128,7 +127,6 @@ export class ProfileEdit extends Component {
             return ;
         }
         if (this.state.new_password !== null && !(this.state.score >= 3 && this.state.pass_isvalid)) {
-            console.log(this.state);
             M.toast({html : "Le nouveau mot de passe n'est pas valide.", classes : "red"});
             return ;
         }
