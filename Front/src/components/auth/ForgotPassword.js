@@ -75,7 +75,7 @@ class ForgotPassword extends Component {
                     inputProps={{ id: "vpassword", name: "password", autoComplete: "off", placeholder: "Vérification"}}
                     />
                     <div className="stepper-btn">
-                        <button type="submit" className="btn stepper-back" onClick={this.handlePrevious}>Back</button>
+                        <button type="button" className="btn stepper-back" onClick={this.handlePrevious}>Back</button>
                         <button type="submit" className="btn stepper-final">Apply</button>
                     </div>
                 </form>
@@ -93,13 +93,13 @@ class ForgotPassword extends Component {
     }
 
     handlePassword = (e, type) => {
-        if (type === "password") {
+        if (type === "password" && this.is_mounted) {
             this.setState({
                 password : e.password,
                 pass_isvalid : e.IsValid,
                 score : e.score
             });
-        } else if (type === "vpassword") {
+        } else if (type === "vpassword" && this.is_mounted) {
             this.setState({
                 vpassword : e.password
             });
@@ -108,16 +108,21 @@ class ForgotPassword extends Component {
 
     handleChange = (e) => {
         // console.log(e.target.id + " : " + e.target.value);
-        this.setState({
-            [e.target.id] : e.target.value
-        });
+        if (this.is_mounted) {
+            this.setState({
+                [e.target.id] : e.target.value
+            });
+        }
     }
 
     handlePrevious = () => {
-        this.setState({
-            step : this.state.step === 3 ? 1 : this.state.step - 1
-        })
+        if (this.is_mounted) {
+            this.setState({
+                step : this.state.step === 3 ? 1 : this.state.step - 1
+            })
+        }
     }
+        
 
     updateStep = (status, step) => {
         if (step === 3 && status === 1) {
