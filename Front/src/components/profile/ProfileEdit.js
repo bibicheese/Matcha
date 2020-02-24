@@ -122,7 +122,7 @@ export class ProfileEdit extends Component {
             M.toast({html : "Merci de mettre un âge entre 18 et 125 ans.", classes : "red"});
             return ;
         }
-        console.log(this.state);
+        //console.log(this.state);
         if (this.state.new_password !== this.state.nv_password) {
             M.toast({html : "Les nouveaux mot de passe ne correspondent pas.", classes : "red"});
             return ;
@@ -473,13 +473,13 @@ export class ProfileEdit extends Component {
                     <div className="private-info">
                         <div className="private-pass">
                             <ReactPasswordStrength className="input-field password-field pass-edit" minLength={6} minScore={3}
-                                scoreWords={['Faible', 'Moyen', 'Suffisant', 'Fort', 'Compliqué']}
+                                scoreWords={['Faible', 'Moyen', 'Presque', 'Fort', 'Compliqué']}
                                 tooShortWord={"Trop court"}
                                 changeCallback={(e) => {this.handlePassword(e, "password")}}
                                 inputProps={{ id: "password", name: "password", autoComplete: "off", placeholder: "Nouveau password"}}
                             />
                             <ReactPasswordStrength className="input-field password-field pass-edit" minLength={6} minScore={3}
-                                scoreWords={['Faible', 'Moyen', 'Suffisant', 'Fort', 'Compliqué']}
+                                scoreWords={['Faible', 'Moyen', 'Presque', 'Fort', 'Compliqué']}
                                 tooShortWord={"Trop court"}
                                 changeCallback={(e) => {this.handlePassword(e, "nv_password")}}
                                 inputProps={{ id: "nv_password", name: "nv_password", autoComplete: "off", placeholder: "Vérification"}}
