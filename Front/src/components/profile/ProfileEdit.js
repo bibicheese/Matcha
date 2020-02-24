@@ -59,10 +59,12 @@ export class ProfileEdit extends Component {
 
     handlePassword = (e, type) => {
         if (type === "password" && this.is_mounted) {
+            let is_valid = e.password !== null && e.password !== "" ? e.IsValid : true;
+            let mscore = e.password !== null && e.password !== "" ? e.score : 3;
             this.setState({
                 new_password : e.password,
-                pass_isvalid : e.IsValid,
-                score : e.score
+                pass_isvalid : is_valid,
+                score : mscore
             });
         } else if (type === "nv_password" && this.is_mounted) {
             this.setState({
@@ -83,7 +85,7 @@ export class ProfileEdit extends Component {
                 }
             }
         });
-        if (this.state.new_password != null && this.state.new_password.length >= 4) {
+        if (this.state.new_password !== null && this.state.new_password.length >= 4) {
             profile_update = {
                 ...profile_update,
                 password : this.state.new_password
@@ -124,7 +126,7 @@ export class ProfileEdit extends Component {
             M.toast({html : "Les nouveaux mot de passe ne correspondent pas.", classes : "red"});
             return ;
         }
-        if (this.state.new_password != null && !(this.state.score >= 3 && this.state.pass_isvalid)) {
+        if (this.state.new_password !== null && !(this.state.score >= 3 && this.state.pass_isvalid)) {
             M.toast({html : "Le nouveau mot de passe n'est pas valide.", classes : "red"});
             return ;
         }
