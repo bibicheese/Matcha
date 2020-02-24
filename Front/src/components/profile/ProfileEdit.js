@@ -122,6 +122,7 @@ export class ProfileEdit extends Component {
             M.toast({html : "Merci de mettre un âge entre 18 et 125 ans.", classes : "red"});
             return ;
         }
+        console.log(this.state);
         if (this.state.new_password !== this.state.nv_password) {
             M.toast({html : "Les nouveaux mot de passe ne correspondent pas.", classes : "red"});
             return ;
