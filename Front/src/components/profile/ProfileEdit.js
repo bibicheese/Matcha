@@ -60,7 +60,7 @@ export class ProfileEdit extends Component {
     handlePassword = (e, type) => {
         console.log(e);
         if (type === "password" && this.is_mounted) {
-            let is_valid = e.password !== null && e.password !== "" ? e.IsValid : true;
+            let is_valid = e.password !== null && e.password !== "" ? e.isValid : true;
             let mscore = e.password !== null && e.password !== "" ? e.score : 3;
             this.setState({
                 new_password : e.password,

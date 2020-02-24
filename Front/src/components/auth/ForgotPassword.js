@@ -93,7 +93,6 @@ class ForgotPassword extends Component {
     }
 
     handlePassword = (e, type) => {
-        console.log(e);
         if (type === "password" && this.is_mounted) {
             this.setState({
                 password : e.password,
