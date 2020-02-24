@@ -676,3 +676,7 @@ code {
 .picture_ui {
   margin: 10px 15px;
 }
+
+.pass-edit {
+  margin: 0 5px;
+}
